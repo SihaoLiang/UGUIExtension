@@ -483,7 +483,7 @@ public class DynamicTableNormal : MonoBehaviour
             StartIndex = START_INDEX;
 
         //跳转到索引
-        JumpToIndex(startIndex);
+        JumpToIndex(StartIndex);
     }
 
 
@@ -497,7 +497,7 @@ public class DynamicTableNormal : MonoBehaviour
         if (TotalCount == 0)
             return;
 
-        Mathf.Clamp(index, 1, TotalCount);
+        index = Mathf.Clamp(index, 1, TotalCount);
 
         Vector3 vec3 = CalulateStartPosByIndex(index);
         ContentOffset = new Vector2(vec3.x, vec3.y);

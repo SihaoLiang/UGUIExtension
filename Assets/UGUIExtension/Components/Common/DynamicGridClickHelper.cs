@@ -17,14 +17,6 @@ public class DynamicGridClickHelper : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public Action<PointerEventData> OnClick;
 
-    private void Awake()
-    {
-        m_Graphic = GetComponent<Graphic>();
-        if (m_Graphic == null)
-            m_Graphic = gameObject.AddComponent<Empty4Raycast>();
-        m_Graphic.raycastTarget = true;
-    }
-
     /// <summary>
     /// 点击
     /// </summary>
@@ -37,8 +29,9 @@ public class DynamicGridClickHelper : MonoBehaviour, IPointerClickHandler
 
     public void SetupClickEnable(bool IsEnable, Action<PointerEventData> onClick = null)
     {
+        m_Graphic = GetComponent<Graphic>();
         if (m_Graphic == null)
-            return;
+            m_Graphic = gameObject.AddComponent<Empty4Raycast>();
 
         m_Graphic.raycastTarget = IsEnable;
         OnClick = onClick;
