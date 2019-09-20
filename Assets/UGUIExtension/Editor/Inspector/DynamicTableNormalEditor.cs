@@ -13,10 +13,18 @@ public class DynamicTableNormalEditor : Editor
     protected SerializedProperty Grid;
     protected SerializedProperty GridSize;
     protected SerializedProperty GridTouchEventEnable;
+    protected SerializedProperty GridLoadInteral;
+    protected SerializedProperty GridLoadRule;
+
+    protected SerializedProperty OriginGridSize;
+    protected SerializedProperty GridStretching;
+    protected SerializedProperty GridStretchingEqualRatio;
+
 
     protected SerializedProperty AvailableViewCount;
     protected SerializedProperty TotalCount;
     protected SerializedProperty ViewSize;
+    protected SerializedProperty UseViewportSize;
 
     protected SerializedProperty Direction;
     protected SerializedProperty StartAxis;
@@ -34,9 +42,17 @@ public class DynamicTableNormalEditor : Editor
     protected GUIContent GridSizeContent;
     protected GUIContent GridTouchEventEnableContent;
 
+    protected GUIContent GridLoadInteralContent;
+    protected GUIContent GridLoadRuleContent;
+
+    protected GUIContent OriginGridSizeContent;
+    protected GUIContent GridStretchingContent;
+    protected GUIContent GridStretchingEqualRatioContent;
+
     protected GUIContent AvailableViewCountContent;
     protected GUIContent TotalCountContent;
     protected GUIContent ViewSizeContent;
+    protected GUIContent UseViewportSizeContent;
 
     protected GUIContent DirectionContent;
     protected GUIContent StartAxisContent;
@@ -51,16 +67,26 @@ public class DynamicTableNormalEditor : Editor
     protected GUIContent ClearButtonContent;
     protected GUIContent CorrectButtonContent;
 
+
     protected virtual void OnEnable()
     {
-        ScrRect = serializedObject.FindProperty("ScrRect");
+        ScrRect = serializedObject.FindProperty("ScrollRectInstance");
         AvailableViewCount = serializedObject.FindProperty("AvailableViewCount");
         TotalCount = serializedObject.FindProperty("TotalCount");
         ViewSize = serializedObject.FindProperty("ViewSize");
+        UseViewportSize = serializedObject.FindProperty("UseViewportSize");
+
+
+        OriginGridSize = serializedObject.FindProperty("OriginGridSize");
+        GridStretching = serializedObject.FindProperty("GridStretching");
+        GridStretchingEqualRatio = serializedObject.FindProperty("GridStretchingEqualRatio");
 
         Grid = serializedObject.FindProperty("Grid");
         GridSize = serializedObject.FindProperty("GridSize");
         GridTouchEventEnable = serializedObject.FindProperty("IsGridTouchEventEnable");
+        GridLoadInteral = serializedObject.FindProperty("GridLoadInteral");
+        GridLoadRule = serializedObject.FindProperty("GridLoadRule");
+
 
         Direction = serializedObject.FindProperty("Direction");
         StartAxis = serializedObject.FindProperty("StartAxis");
@@ -77,10 +103,18 @@ public class DynamicTableNormalEditor : Editor
         TotalCountContent = new GUIContent("总数");
         AvailableViewCountContent = new GUIContent("动态节点数量");
         ViewSizeContent = new GUIContent("可视区域");
+        UseViewportSizeContent = new GUIContent("使用视窗大小");
+
+        OriginGridSizeContent = new GUIContent("节点原始大小");
+        GridStretchingContent = new GUIContent("节点适配拉伸");
+        GridStretchingEqualRatioContent = new GUIContent("是否等比适配拉伸");
 
         GridContent = new GUIContent("动态节点");
         GridSizeContent = new GUIContent("节点大小");
         GridTouchEventEnableContent = new GUIContent("节点点击");
+        GridLoadInteralContent = new GUIContent("异步加载间隔");
+        GridLoadRuleContent = new GUIContent("异步加载规则");
+
 
         DirectionContent = new GUIContent("布局方向");
         ChildAlignmentContent = new GUIContent("布局停靠");
@@ -105,17 +139,46 @@ public class DynamicTableNormalEditor : Editor
         EditorGUILayout.BeginVertical("box");
         GUILayout.Label("基础属性", "ShurikenModuleTitle");
         EditorGUILayout.PropertyField(ScrRect, ScrRectContent, true);
+
+
         EditorGUILayout.PropertyField(TotalCount, TotalCountContent, true);
-        EditorGUILayout.PropertyField(AvailableViewCount, AvailableViewCountContent, true);
-        EditorGUILayout.PropertyField(ViewSize, ViewSizeContent, true);
+        EditorGUILayout.PropertyField(UseViewportSize, UseViewportSizeContent, true);
+        if (!UseViewportSize.boolValue)
+            EditorGUILayout.PropertyField(ViewSize, ViewSizeContent, true);
+
         EditorGUILayout.EndVertical();
         //节点
         GUILayout.Space(5f);
         EditorGUILayout.BeginVertical("box");
         GUILayout.Label("动态节点", "ShurikenModuleTitle");
         EditorGUILayout.PropertyField(Grid, GridContent, true);
+        if (GUI.changed)
+        {
+            DynamicTableNormal dynamicTableNormal = target as DynamicTableNormal;
+            if (Grid.objectReferenceValue != null)
+            {
+                DynamicGrid dynamicGrid = Grid.objectReferenceValue as DynamicGrid;
+                dynamicTableNormal.OriginGridSize = dynamicGrid.rectTransform.rect.size;
+                OriginGridSize.vector2Value = dynamicGrid.rectTransform.rect.size;
+            }
+            else
+            {
+                OriginGridSize.vector2Value = Vector2.one;
+            }
+
+        }
+
+        EditorGUILayout.PropertyField(AvailableViewCount, AvailableViewCountContent, true);
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PropertyField(GridStretching, GridStretchingContent, true);
+        EditorGUILayout.PropertyField(GridStretchingEqualRatio, GridStretchingEqualRatioContent, true);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.PropertyField(OriginGridSize, OriginGridSizeContent, true);
         EditorGUILayout.PropertyField(GridSize, GridSizeContent, true);
         EditorGUILayout.PropertyField(GridTouchEventEnable, GridTouchEventEnableContent, true);
+        EditorGUILayout.PropertyField(GridLoadInteral, GridLoadInteralContent, true);
+        EditorGUILayout.PropertyField(GridLoadRule, GridLoadRuleContent, true);
         EditorGUILayout.EndVertical();
 
         GUILayout.Space(5f);

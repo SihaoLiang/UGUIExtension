@@ -12,19 +12,24 @@ public class DynamicGrid : MonoBehaviour
     /// 索引
     /// </summary>
     public int Index = -1;
+
     /// <summary>
-    /// RectTransform
+    /// 容器RectTransform
     /// </summary>
     [System.NonSerialized]
-    public RectTransform rectTransform;
+    protected RectTransform m_Rect;
+    public RectTransform rectTransform
+    {
+        get
+        {
+            if (m_Rect == null)
+                m_Rect = GetComponent<RectTransform>();
+            return m_Rect;
+        }
+    }
 
     public string LuaTable = "CSProxy";
     public string CS = "CSProxy";
-
-    private void Awake()
-    {
-        rectTransform = gameObject.GetComponent<RectTransform>();
-    }
 
     public Vector2 GetSize()
     {

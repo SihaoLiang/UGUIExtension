@@ -8,15 +8,25 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(ScrollRect))]
 [DisallowMultipleComponent]
-public class DynamicTableNormal : MonoBehaviour
+public class DynamicTableNormal : UIBehaviour
 {
-
+    //用于修正某些界限
     const float CALCULATE_OFFSET = 0.001f;
+    //开始下表
     const int START_INDEX = 1;
     /// <summary>
     /// 滑动组件
     /// </summary>
-    public ScrollRect ScrRect;
+    public ScrollRect ScrollRectInstance = null;
+    public ScrollRect ScrRect
+    {
+        get
+        {
+            if (ScrollRectInstance == null)
+                ScrollRectInstance = GetComponent<ScrollRect>();
+            return ScrollRectInstance;
+        }
+    }
 
     /// <summary>
     /// 总数
@@ -47,6 +57,11 @@ public class DynamicTableNormal : MonoBehaviour
     /// 可显示的数量
     /// </summary>
     public int AvailableViewCount = 0;
+
+    /// <summary>
+    /// 使用ViewPort
+    /// </summary>
+    public bool UseViewportSize = true;
 
     /// 可视区域大小
     /// </summary>
@@ -80,12 +95,59 @@ public class DynamicTableNormal : MonoBehaviour
     /// <summary>
     /// 是否第一次初始化完成
     /// </summary>
-    bool IsInitCompeleted = false;
+    public bool IsInitCompeleted { get; private set; }
 
     /// <summary>
     /// 是否异步加载中
     /// </summary>
     bool IsAsyncLoading = false;
+
+    /// <summary>
+    /// 原始gridSize
+    /// </summary>
+    public Vector2 OriginGridSize = Vector2.one;
+
+    /// <summary>
+    /// 自动拉伸Grid
+    /// </summary>
+    public bool GridStretching = false;
+
+    /// <summary>
+    /// 等比拉伸
+    /// </summary>
+    public bool GridStretchingEqualRatio = true;
+
+    /// <summary>
+    /// 是否已经Start
+    /// </summary>
+    bool IsStart = false;
+
+    /// <summary>
+    /// 是否需要重载
+    /// </summary>
+    bool IsNeedReload = false;
+
+    /// <summary>
+    /// 是否是异步重载
+    /// </summary>
+    bool IsAsyncReload = false;
+
+    /// <summary>
+    /// grid异步加载间隔 默认0 一帧
+    /// </summary>
+    public float GridLoadInteral = 0;
+
+    /// <summary>
+    /// 异步加载规则
+    /// </summary>
+    public LayoutRule.GridLoadRule GridLoadRule = LayoutRule.GridLoadRule.PER_GRID;
+
+#if CLIENT
+    /// <summary>
+    /// 持有LuaTable
+    /// </summary>
+    public LuaTable LuaTableDelegate;
+#endif
 
     /// <summary>
     /// RectTransform
@@ -154,29 +216,48 @@ public class DynamicTableNormal : MonoBehaviour
 
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
-        ScrRect = GetComponent<ScrollRect>();
-        ScrRect.onValueChanged.AddListener(this.OnScrollRectValueChanged);
-        Init();
+        base.Awake();
+        InitScrollRect();
     }
 
-    private void OnDestroy()
+    protected override void Start()
     {
+        base.Start();
+
+        IsStart = true;
+
+        if (IsNeedReload)
+        {
+            IsNeedReload = false;
+            if (IsAsyncReload)
+                ReloadDataAsync(StartIndex);
+            else
+                ReloadDataSync(StartIndex);
+        }
+    }
+
+    void InitScrollRect()
+    {
+        if (OriginGridSize == Vector2.one)
+            OriginGridSize = GridSize;
+
+        ScrRect.onValueChanged.AddListener(this.OnScrollRectValueChanged);
+        ScrRect.content.anchorMax = new Vector2(0, 1);
+        ScrRect.content.anchorMin = new Vector2(0, 1);
+
+        SetDirection((int)Direction);
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+
         Grid = null;
         Clear();
     }
 
-    /// <summary>
-    /// 初始化
-    /// </summary>
-    protected virtual void Init()
-    {
-        ScrRect.content.anchorMax = new Vector2(0, 1);
-        ScrRect.content.anchorMin = new Vector2(0, 1);
-        SetViewSize(rectTransform.rect.size);
-        SetDirection((int)Direction);
-    }
 
     #region 控制相关
 
@@ -233,17 +314,43 @@ public class DynamicTableNormal : MonoBehaviour
         Direction = direct;
     }
 
+    public virtual bool IsActive()
+    {
+        if (ScrRect.viewport.rect.size == Vector2.zero)
+            return false;
+
+        return IsStart && isActiveAndEnabled;
+    }
+
+
     /// <summary>
     /// 重载
     /// </summary>
     /// <param name="startIndex">开始索引为</param>
-    public virtual void ReloadDataSync(int startIndex = -1)
+    public virtual void ReloadDataSync(int startIndex = -1, bool forceReload = false)
     {
-        if (!isActiveAndEnabled)
+        IsAsyncReload = false;
+
+        if (!IsActive())
+        {
+            IsNeedReload = true;
+            StartIndex = startIndex;
+            return;
+        }
+
+        if (forceReload && IsAsyncLoading)
+            StopAllCoroutines();
+
+        if (IsAsyncLoading && !forceReload)
             return;
 
-        if (IsAsyncLoading)
-            return;
+        if (UseViewportSize)
+            SetViewSize(ScrRect.viewport.rect.size);
+
+        if (GridStretching)
+            ReCalculateGridSize();
+        else
+            GridSize = OriginGridSize;
 
         //计算可视区域和显示的节点数量
         CalculateAvailableViewGridCount();
@@ -265,13 +372,31 @@ public class DynamicTableNormal : MonoBehaviour
     /// 重载
     /// </summary>
     /// <param name="startIndex">开始索引为</param>
-    public virtual void ReloadDataAsync(int startIndex = -1)
+    public virtual void ReloadDataAsync(int startIndex = -1, bool forceReload = false)
     {
-        if (!isActiveAndEnabled)
+        IsAsyncReload = true;
+
+        if (!IsActive())
+        {
+            IsNeedReload = true;
+            StartIndex = startIndex;
+            return;
+        }
+
+        if (forceReload && IsAsyncLoading)
+            StopAllCoroutines();
+
+        if (IsAsyncLoading && !forceReload)
             return;
 
-        if (IsAsyncLoading)
-            return;
+        if (UseViewportSize)
+            SetViewSize(ScrRect.viewport.rect.size);
+
+        if (GridStretching)
+            ReCalculateGridSize();
+        else
+            GridSize = OriginGridSize;
+
 
         //计算可视区域和显示的节点数量
         CalculateAvailableViewGridCount();
@@ -284,10 +409,7 @@ public class DynamicTableNormal : MonoBehaviour
         //设置容器偏移
         SetContentOffest();
         // 重载Grid
-        if (!IsInitCompeleted)
-            StartCoroutine(AsyncLoadGrid());
-        else
-            ReloadGrids();
+        StartCoroutine(AsyncLoadGrid());
     }
 
     IEnumerator AsyncLoadGrid()
@@ -314,8 +436,16 @@ public class DynamicTableNormal : MonoBehaviour
         {
             DynamicGridAtIndex(i + StartIndex);
             //按照行列进行分帧加载
-            if (preFrameLoadCount != 0 && i % preFrameLoadCount == 0)
-                yield return new WaitForEndOfFrame();
+            if (GridLoadRule == LayoutRule.GridLoadRule.PER_GRID)
+            {
+                yield return new WaitForSeconds(GridLoadInteral);
+            }
+            else
+            {
+                if (preFrameLoadCount != 0 && i % preFrameLoadCount == 0)
+                    yield return new WaitForSeconds(GridLoadInteral);
+            }
+
         }
 
         UnFreeze();
@@ -382,7 +512,7 @@ public class DynamicTableNormal : MonoBehaviour
     /// <returns></returns>
     public virtual DynamicGrid DynamicGridAtIndex(int index)
     {
-        if (index - START_INDEX >= TotalCount)
+        if (index <= 0 || index - START_INDEX >= TotalCount)
         {
             Debug.LogErrorFormat("Index {0} Overflow TotalCount {1}", index, TotalCount);
             return null;
@@ -437,9 +567,9 @@ public class DynamicTableNormal : MonoBehaviour
             if (trigger == null)
                 trigger = grid.gameObject.AddComponent<DynamicGridClickHelper>();
 
-            trigger.SetupClickEnable(true,delegate (PointerEventData eventData)
+            trigger.SetupClickEnable(true, delegate (PointerEventData eventData)
             {
-                OnTableGridTouched(grid,eventData);
+                OnTableGridTouched(grid, eventData);
             });
         }
         else
@@ -472,11 +602,15 @@ public class DynamicTableNormal : MonoBehaviour
     /// <param name="startIndex"></param>
     void ResetStartIndex(int startIndex)
     {
+
+        StartIndex = StartIndex < START_INDEX ? START_INDEX : StartIndex;
+
         //保持当前位置，只更新当前显示的Grid
         if (startIndex < START_INDEX && IsInitCompeleted)
             return;
 
         StartIndex = startIndex < START_INDEX ? START_INDEX : startIndex;
+
         //填不满内容框
         if ((ScrRect.content.rect.size.y < ViewSize.y && Direction == LayoutRule.Direction.Vertical)
         || ScrRect.content.rect.size.x < ViewSize.x && Direction == LayoutRule.Direction.Horizontal)
@@ -497,9 +631,7 @@ public class DynamicTableNormal : MonoBehaviour
         if (TotalCount == 0)
             return;
 
-        index = Mathf.Clamp(index, 1, TotalCount);
-
-        Vector3 vec3 = CalulateStartPosByIndex(index);
+        Vector3 vec3 = CalulateStartPosByIndex(Mathf.Clamp(index, START_INDEX, TotalCount));
         ContentOffset = new Vector2(vec3.x, vec3.y);
         StartIndex = (int)vec3.z;
     }
@@ -553,7 +685,7 @@ public class DynamicTableNormal : MonoBehaviour
     /// <param name="offest"></param>
     protected void OnScrollRectValueChanged(Vector2 offest)
     {
-        if (!IsInitCompeleted)
+        if (!IsInitCompeleted || IsAsyncLoading)
             return;
 
         ContentOffset = offest;
@@ -603,6 +735,22 @@ public class DynamicTableNormal : MonoBehaviour
         return null;
     }
 
+
+    /// <summary>
+    /// 回收所有节点到池
+    /// </summary>
+    public void RecycleAllTableGrid()
+    {
+        if (UsingGridSet == null || UsingGridSet.Count == 0)
+            return;
+
+        foreach (var grid in UsingGridSet)
+        {
+            if (grid != null)
+                RecycleTableGrid(grid);
+        }
+    }
+
     /// <summary>
     /// 回收节点
     /// </summary>
@@ -627,6 +775,8 @@ public class DynamicTableNormal : MonoBehaviour
         {
             if (grid != null)
             {
+                RecycleTableGrid(grid);
+
                 if (!Application.isPlaying)
                     DestroyImmediate(grid.gameObject);
                 else
@@ -648,7 +798,7 @@ public class DynamicTableNormal : MonoBehaviour
 
         UsingGridSet.Clear();
         GridPoolStack.Clear();
-       
+
         IsAsyncLoading = false;
         IsInitCompeleted = false;
     }
@@ -665,7 +815,7 @@ public class DynamicTableNormal : MonoBehaviour
     {
         if (DynamicTableGridDelegate == null)
             return;
-        DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_GRID_RELOAD_COMPLETED,-1,null);
+        DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_GRID_RELOAD_COMPLETED, -1, null);
     }
 
     /// <summary>
@@ -698,7 +848,6 @@ public class DynamicTableNormal : MonoBehaviour
     {
         if (DynamicTableGridDelegate == null)
             return;
-
         DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_GRID_ATINDEX, grid.Index, grid);
     }
     #endregion
@@ -722,7 +871,7 @@ public class DynamicTableNormal : MonoBehaviour
             if (Direction == LayoutRule.Direction.Vertical)
                 row = Mathf.Max(1, Mathf.CeilToInt((height - Padding.vertical + Spacing.y + CALCULATE_OFFSET) / (GridSize.y + Spacing.y))) + 1;
             else //一般不考虑这种情况，尽量垂直限定列数,水平限定行数
-                row = Mathf.CeilToInt(TotalCount / column);
+                row = Mathf.CeilToInt(TotalCount / (float)column);
 
         }
         /*如果指定行数*/
@@ -732,7 +881,7 @@ public class DynamicTableNormal : MonoBehaviour
             if (Direction == LayoutRule.Direction.Horizontal)
                 column = Mathf.Max(1, Mathf.CeilToInt((width - Padding.horizontal + Spacing.x + CALCULATE_OFFSET) / (GridSize.x + Spacing.x))) + 1;
             else //一般不考虑这种情况，尽量垂直限定列数,水平限定行数
-                column = Mathf.CeilToInt(TotalCount / row);
+                column = Mathf.CeilToInt(TotalCount / (float)row);
         }
         /*自动适配*/
         else
@@ -843,7 +992,7 @@ public class DynamicTableNormal : MonoBehaviour
         int cornerX = (int)StartCorner % 2;
         int cornerY = (int)StartCorner / 2;
 
-        Vector2 pos = ScrRect.content.anchoredPosition;
+        Vector2 pos = ScrRect.content.anchoredPosition - GetPositionOffsetOfPivotByTopLeft(ScrRect.content);
         Vector2 realSize = ScrRect.content.rect.size - ViewSize;
 
         ContentOffset = Vector2.zero;
@@ -962,11 +1111,11 @@ public class DynamicTableNormal : MonoBehaviour
             else
                 posOffest.y = 1.0f - (float)(index - 1) / ((float)TotalCount - inerNum);
             //如果没有超出
-            startIndex = positionY * ActualRow + 1;
+            startIndex = positionY * ActualColumn + 1;
             /*对齐起始点*/
             indexOff = TotalCount - (int)startIndex;
             /*可视范围可以存放的Cell的最大值*/
-            int viewCount = Mathf.CeilToInt(ViewSize.y / (GridSize.y + Spacing.y)) * (ActualRow) - 1;
+            int viewCount = Mathf.CeilToInt(ViewSize.y / (GridSize.y + Spacing.y)) * (ActualColumn) - 1;
 
             if (indexOff < viewCount && TotalCount > viewCount)
                 startIndex = TotalCount - viewCount;
@@ -1061,6 +1210,20 @@ public class DynamicTableNormal : MonoBehaviour
         return startIndex;
     }
 
+    /// <summary>
+    /// 获取基于锚点左上的位置偏移
+    /// </summary>
+    /// <param name="rectTrans"></param>
+    /// <returns></returns>
+    public Vector2 GetPositionOffsetOfPivotByTopLeft(RectTransform rectTrans)
+    {
+        if (rectTrans == null)
+            return Vector2.zero;
+
+        Vector2 offset = new Vector2(rectTrans.pivot.x * rectTrans.rect.size.x, (rectTrans.pivot.y - 1.0f) * rectTrans.rect.size.y);
+        return offset;
+    }
+
 
     /// <summary>  
     /// 根据Content偏移,计算当前开始显示所在数据列表中的行或列  
@@ -1073,12 +1236,13 @@ public class DynamicTableNormal : MonoBehaviour
         /*开始的位置*/
         int cornerX = (int)StartCorner % 2;
         int cornerY = (int)StartCorner / 2;
+        Vector2 operatePosition = ScrRect.content.anchoredPosition - GetPositionOffsetOfPivotByTopLeft(ScrRect.content);
 
-        float hideOffestX = Mathf.Max(0, ScrRect.content.rect.width - ViewSize.x + ScrRect.content.anchoredPosition.x - StartOffset.x);
-        int x = cornerX == 1 ? Mathf.FloorToInt(hideOffestX / (GridSize.x + Spacing.x)) : Mathf.FloorToInt(Mathf.Abs((Mathf.Min(0, ScrRect.content.anchoredPosition.x) + StartOffset.x)) / (GridSize.x + Spacing.x));
+        float hideOffestX = Mathf.Max(0, ScrRect.content.rect.width - ViewSize.x + operatePosition.x - StartOffset.x);
+        int x = cornerX == 1 ? Mathf.FloorToInt(hideOffestX / (GridSize.x + Spacing.x)) : Mathf.FloorToInt(Mathf.Abs((Mathf.Min(0, operatePosition.x) + StartOffset.x)) / (GridSize.x + Spacing.x));
 
-        float hideOffestY = Mathf.Max(0, ScrRect.content.rect.height - ViewSize.y - ScrRect.content.anchoredPosition.y - StartOffset.y);
-        int y = cornerY == 1 ? Mathf.FloorToInt(hideOffestY / (GridSize.y + Spacing.y)) : Mathf.FloorToInt((Mathf.Max(0, ScrRect.content.anchoredPosition.y) - StartOffset.y) / (GridSize.y + Spacing.y));
+        float hideOffestY = Mathf.Max(0, ScrRect.content.rect.height - ViewSize.y - operatePosition.y - StartOffset.y);
+        int y = cornerY == 1 ? Mathf.FloorToInt(hideOffestY / (GridSize.y + Spacing.y)) : Mathf.FloorToInt((Mathf.Max(0, operatePosition.y) - StartOffset.y) / (GridSize.y + Spacing.y));
 
         switch (Direction)
         {
@@ -1094,4 +1258,92 @@ public class DynamicTableNormal : MonoBehaviour
     }
 
     #endregion
+
+
+#if CLIENT
+    #region 其他
+    public void SetDelegate(LuaTable table)
+    {
+        LuaTableDelegate = table;
+    }
+    #endregion
+#endif
+
+    /// <summary>
+    /// 重新计算GridSize
+    /// </summary>
+    public virtual void ReCalculateGridSize()
+    {
+        if (Direction == LayoutRule.Direction.Vertical)
+        {
+            Vector2 unusedSpace = new Vector2(ViewSize.x - Padding.horizontal, ViewSize.y);
+            int count = Mathf.FloorToInt((unusedSpace.x + Spacing.x) / (OriginGridSize.x + Spacing.x));
+            count = count <= 0 ? 1 : count;
+
+            if (Constraint == LayoutRule.Constraint.FixedColumnCount)
+                count = ConstraintCount;
+            else if (Constraint == LayoutRule.Constraint.FixedRowCount)
+                count = Mathf.CeilToInt((float)TotalCount / (float)ConstraintCount);
+
+            float surpluX = (unusedSpace.x + Spacing.x) - (OriginGridSize.x + Spacing.x) * count;
+
+            float targetX = surpluX / count + OriginGridSize.x - 0.01f;
+            float targetY = OriginGridSize.y;
+            if (GridStretchingEqualRatio)
+                targetY = targetX / OriginGridSize.x * OriginGridSize.y;
+
+            GridSize = new Vector2(targetX, targetY);
+        }
+        else
+        {
+            Vector2 unusedSpace = new Vector2(ViewSize.x, ViewSize.y - Padding.vertical);
+            int count = Mathf.FloorToInt((unusedSpace.y + Spacing.y) / (OriginGridSize.y + Spacing.y));
+            count = count <= 0 ? 1 : count;
+
+            if (Constraint == LayoutRule.Constraint.FixedRowCount)
+                count = ConstraintCount;
+            else if (Constraint == LayoutRule.Constraint.FixedColumnCount)
+                count = Mathf.CeilToInt((float)TotalCount / (float)ConstraintCount);
+
+            float surpluY = (unusedSpace.y + Spacing.y) - (OriginGridSize.y + Spacing.y) * count;
+            float targetY = surpluY / count + OriginGridSize.y - 0.01f;
+            float targetX = OriginGridSize.x;
+            if (GridStretchingEqualRatio)
+                targetX = targetY / OriginGridSize.y * OriginGridSize.x;
+
+            GridSize = new Vector2(targetX, targetY);
+        }
+    }
+
+
+    /// <summary>
+    /// 下一帧刷新
+    /// </summary>
+    private void Update()
+    {
+        if (!IsNeedReload)
+            return;
+
+        if (!IsActive())
+            return;
+
+        IsNeedReload = false;
+
+        if (!IsAsyncReload)
+            ReloadDataSync(StartIndex);
+        else
+            ReloadDataAsync(StartIndex);
+    }
+
+    protected override void OnRectTransformDimensionsChange()
+    {
+        base.OnRectTransformDimensionsChange();
+        Debug.Log("OnRectTransformDimensionsChange");
+    }
+    protected virtual void OnTransformChildrenChanged()
+    {
+        Debug.Log("OnTransformChildrenChanged");
+    }
 }
+
+

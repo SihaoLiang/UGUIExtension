@@ -34,6 +34,11 @@ public class ExampleDynamicTableIrregular : MonoBehaviour
 
 
     }
+    public InputField m_InputCountField;
+    public Button m_AsyncLoadButton;
+    public Button m_SyncLoadButton;
+
+
 
     public InputField m_InputField;
     public Button m_Button;
@@ -44,16 +49,16 @@ public class ExampleDynamicTableIrregular : MonoBehaviour
     {
         GridDic = new Dictionary<Transform, TestGrid>();
         m_Button.onClick.AddListener(OnButtonSenderClick);
+        m_AsyncLoadButton.onClick.AddListener(OnBtnAsyncClick);
+        m_SyncLoadButton.onClick.AddListener(OnBtnSyncClick);
         DynamicTable.DynamicTableGridDelegate = OnDynamicTableViewCallBack;
-        for (int i = 0; i < 100; i++)
-        {
-            m_ChatContentList.Add(i.ToString());
-        }
+        
     }
 
     private void Start()
     {
-        OnButtonSenderClick();
+       /// DynamicTable.TotalCount = m_ChatContentList.Count;
+        //DynamicTable.ReloadDataAsync();
     }
 
     void OnButtonSenderClick()
@@ -63,6 +68,45 @@ public class ExampleDynamicTableIrregular : MonoBehaviour
 
         m_ChatContentList.Add(m_InputField.text);
         DynamicTable.TotalCount = m_ChatContentList.Count;
+        DynamicTable.ReloadDataAsync(m_ChatContentList.Count);
+    }
+
+
+    /// <summary>
+    /// 异步加载
+    /// </summary>
+    void OnBtnAsyncClick()
+    {
+        if (m_InputCountField == null)
+            return;
+        m_ChatContentList.Clear();
+
+        int count = int.Parse(m_InputCountField.text);
+        for (int i = 0; i < count; i++)
+        {
+            m_ChatContentList.Add(i.ToString());
+        }
+
+        DynamicTable.TotalCount = m_ChatContentList.Count;
+        DynamicTable.ReloadDataAsync();
+    }
+
+    /// <summary>
+    /// 同步加载
+    /// </summary>
+    void OnBtnSyncClick()
+    {
+        if (m_InputCountField == null)
+            return;
+
+        m_ChatContentList.Clear();
+        int count = int.Parse(m_InputCountField.text);
+        for (int i = 0; i < count; i++)
+        {
+            m_ChatContentList.Add(i.ToString());
+        }
+
+        DynamicTable.TotalCount = m_ChatContentList.Count;
         DynamicTable.ReloadDataAsync();
     }
 
@@ -71,6 +115,7 @@ public class ExampleDynamicTableIrregular : MonoBehaviour
     {
         if (evt == (int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_GRID_ATINDEX)
         {
+            Debug.Log(index);
             int rand = index % 3 + 1;
             RectTransform trans = DynamicTable.PreDequeueGrid(rand.ToString(), index);
 

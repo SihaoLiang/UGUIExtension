@@ -11,9 +11,9 @@ public class LayoutRule
    
     //顺序
     public enum Order { Positive = 0, Reverse = 1 }
-   
-    //轴 
-   // public enum Axis { Horizontal = 0, Vertical = 1 }
+
+    //异步加载规则
+    public enum GridLoadRule { PER_GRID = 0, GROUP = 1 }
 
     //分割布局
     public enum Constraint { Flexible = 0, FixedColumnCount = 1, FixedRowCount = 2 }

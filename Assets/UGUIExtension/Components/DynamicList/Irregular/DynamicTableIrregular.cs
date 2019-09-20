@@ -269,6 +269,9 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         if (!IsActive())
             return;
 
+        if (IsAsyncLoading)
+            return;
+
         //获取当前滑动光标的位置
         Vector2 localCursor;
         if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(Viewport, eventData.position, eventData.pressEventCamera, out localCursor))
@@ -326,9 +329,6 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
     /// <param name="pos"></param>
     void SetContentAnchoredPosition(Vector2 position)
     {
-        if (IsLocked)
-            return;
-
         if (Direction == LayoutRule.Direction.Vertical)
             position.x = Content.anchoredPosition.x;
         if (Direction == LayoutRule.Direction.Horizontal)
@@ -451,14 +451,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         //保证内容边界在视图内
         if (MoveType == MovementType.Clamped)
         {
-            //调整内容，使内容边界底部（右侧）永远不会高于视图边界底部（右侧）。
-            // Adjust content so that content bounds bottom (right side) is never higher (to the left) than the view bounds bottom (right side).
-            //顶部（左侧）永远不会低于视图边界顶部（左侧）。
-            // top (left side) is never lower (to the right) than the view bounds top (left side).
-            //如果内容缩小，所有这些都会发生。
-            // All this can happen if content has shrunk.
-            //所以保证内容边界范围大于等于视图范围内
-            // This works because content size is at least as big as view size (because of the call to InternalUpdateBounds above).
+            //调整内容，使内容边界底部（右侧）永远不会高于视图边界底部（右侧）。顶部（左侧）永远不会低于视图边界顶部（左侧）。如果内容缩小，所有这些都会发生。所以保证内容边界范围大于等于视图范围内
             Vector2 delta = Vector2.zero;
             if (ViewBounds.max.x > ContentBounds.max.x)
             {
@@ -489,15 +482,11 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         }
     }
 
+    // 调整包围盒
+    // 确保Content跟View同样大小，如果不添加填充,可能比View小，但是滑动,还是允许的,这是一种特殊情况,只有在内容比视图大的时候才需要滑动，否则就没意义了,我们通过参照点去决定内容的缩放方向
+    // 如果参照点在顶部，那么就会在往下拓展, 这也使的ContentSizeFitter可以很好地工作
     internal static void AdjustBounds(ref Bounds viewBounds, ref Vector2 contentPivot, ref Vector3 contentSize, ref Vector3 contentPos)
     {
-        // Make sure content bounds are at least as large as view by adding padding if not.确保Content跟View同样大小，如果不添加填充
-        // One might think at first that if the content is smaller than the view, scrolling should be allowed.content可能比View小，但是滑动还是允许的
-        // However, that's not how scroll views normally work.这是一种特殊情况
-        // Scrolling is *only* possible when content is *larger* than view.只有在内容比视图大的时候才需要滑动，否则就没意义了
-        // We use the pivot of the content rect to decide in which directions the content bounds should be expanded.我们通过参照点去决定内容的缩放方向
-        // E.g. if pivot is at top, bounds are expanded downwards.如果参照点在顶部，那么就会在往下拓展
-        // This also works nicely when ContentSizeFitter is used on the content.这也使的ContentSizeFitter可以很好地工作
         Vector3 excess = viewBounds.size - contentSize;
         if (excess.x > 0)//可视区域的宽大于内容区域
         {
@@ -675,7 +664,9 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
             return;
 
         if (IsAsyncLoading)
-            return;
+        {
+            StopAllCoroutines();
+        }
 
         //重置内容框大小
         ResetContentSize();
@@ -697,7 +688,10 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
             return;
 
         if (IsAsyncLoading)
-            return;
+        {
+            StopAllCoroutines();
+        }
+
 
         //重置内容框大小
         ResetContentSize();
@@ -722,7 +716,8 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         if (startIndex < START_INDEX && IsInitCompeleted)
             return;
 
-        StartIndex = startIndex < START_INDEX ? START_INDEX : startIndex;
+        StartIndex = Math.Max(startIndex, START_INDEX);
+        StartIndex = Math.Min(StartIndex, TotalCount);
         EndIndex = StartIndex;
     }
 
@@ -737,14 +732,14 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
 
         IsLocked = true;
         float containerSize = 0;
-        int gridCount = 0;
-        bool IsGridFillToFull = false;
+        bool IsGridFillToFull = true;
         int index = StartIndex;
+ 
         //第一次加载先填满可视区域
         while (containerSize < GetAxis(ViewSize))
         {
             //没有铺满可视区域
-            if (TotalCount <= gridCount)
+            if (TotalCount < index)
             {
                 IsGridFillToFull = false;
                 break;
@@ -763,15 +758,65 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
 
             yield return new WaitForEndOfFrame();
 
-            gridCount++;
             index++;
             containerSize += GetAxis(grid.GetSize());
         }
 
-        if (IsGridFillToFull || (!IsGridFillToFull && !IsReverse))
-            SetContentAnchoredPosition(Vector2.zero);
-        else if (IsReverse)
-            SetContentAnchoredPosition(Content.rect.size - ViewSize);
+        //假如已经填到末尾还没填满，就往回填
+        if (!IsGridFillToFull && StartIndex > START_INDEX)
+        {
+            IsGridFillToFull = true;
+
+            while (containerSize < GetAxis(ViewSize))
+            {
+
+                StartIndex = StartIndex - 1;
+
+                DynamicGrid grid = DynamicGridAtIndex(StartIndex);
+                if (grid == null)
+                    break;
+
+                if (IsReverse)
+                    PushGridTail(grid);
+                else
+                    PushGridHead(grid);
+
+                containerSize += GetAxis(grid.GetSize());
+
+                //没有铺满可视区域
+                if (StartIndex == START_INDEX)
+                {
+                    IsGridFillToFull = false;
+                    break;
+                }
+
+                yield return new WaitForEndOfFrame();
+
+            }
+        }
+
+        if (!IsReverse)
+        {
+            if (!IsGridFillToFull)
+            {
+                SetContentAnchoredPosition(Vector2.zero);
+            }
+            else
+            {
+                SetContentAnchoredPosition(Content.rect.size - ViewSize);
+            }
+        }
+        else
+        {
+            if (!IsGridFillToFull)
+            {
+                SetContentAnchoredPosition(Content.rect.size - ViewSize);
+            }
+            else
+            {
+                SetContentAnchoredPosition(Vector2.zero);
+            }
+        }
 
         IsInitCompeleted = true;
         IsAsyncLoading = false;
@@ -788,14 +833,15 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
     private void ReloadGrids()
     {
         float containerSize = 0;
+        bool IsGridFillToFull = true;
         int gridCount = 0;
-        bool IsGridFillToFull = false;
         int index = StartIndex;
+
         //第一次加载先填满可视区域
         while (containerSize < GetAxis(ViewSize))
         {
             //没有铺满可视区域
-            if (TotalCount <= gridCount)
+            if (TotalCount < index)
             {
                 IsGridFillToFull = false;
                 break;
@@ -812,18 +858,66 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
             else
                 PushGridHead(grid);
 
-            gridCount++;
             index++;
+            gridCount++;
             containerSize += GetAxis(grid.GetSize());
         }
+        //假如已经填到末尾还没填满，就往回填
+        if (!IsGridFillToFull && StartIndex > START_INDEX)
+        {
+            IsGridFillToFull = true;
 
-        if (IsGridFillToFull || (!IsGridFillToFull && !IsReverse))
-            SetContentAnchoredPosition(Vector2.zero);
-        else if (IsReverse)
-            SetContentAnchoredPosition(Content.rect.size - ViewSize);
+            while (containerSize < GetAxis(ViewSize))
+            {
+      
+                StartIndex = StartIndex - 1;
+
+                DynamicGrid grid = DynamicGridAtIndex(StartIndex);
+                if (grid == null)
+                    break;
+
+                if (IsReverse)
+                    PushGridTail(grid);
+                else
+                    PushGridHead(grid);
+
+                containerSize += GetAxis(grid.GetSize());
+
+                //没有铺满可视区域
+                if (StartIndex == START_INDEX)
+                {
+                    IsGridFillToFull = false;
+                    break;
+                }
+            }
+        }
+
+        if (!IsReverse)
+        {
+            if (!IsGridFillToFull)
+            {
+                SetContentAnchoredPosition(Vector2.zero);
+            }
+            else
+            {
+                SetContentAnchoredPosition(Content.rect.size - ViewSize);
+            }
+
+
+        }
+        else
+        {
+            if (!IsGridFillToFull)
+            {
+                SetContentAnchoredPosition(Content.rect.size - ViewSize);
+            }
+            else
+            {
+                SetContentAnchoredPosition(Vector2.zero);
+            }
+        }
 
         IsInitCompeleted = true;
-
         OnTableGridReloadCompleted();
     }
 

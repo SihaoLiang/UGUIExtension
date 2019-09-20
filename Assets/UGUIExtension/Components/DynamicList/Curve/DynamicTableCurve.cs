@@ -9,11 +9,20 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, ICanvasRaycastFilter
 {
+    private const int RESOLUTION_WIDTH = 1920;
+    private const int RESOLUTION_HEIGHT = 1080;
+
     #region 基础属性
     /// <summary>
     /// 方向
     /// </summary>
     public LayoutRule.Direction Direction = LayoutRule.Direction.Horizontal;
+
+    /// <summary>
+    /// 正反向
+    /// </summary>
+    public LayoutRule.Order Order = LayoutRule.Order.Positive;
+
     /// <summary>
     /// grid事件
     /// </summary>
@@ -72,9 +81,14 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     protected Stack<DynamicGrid> GridPoolStack = new Stack<DynamicGrid>();
 
     /// <summary>
-    /// 间隔因子，影响滑动速度
+    /// 滑动因子，影响滑动速度
     /// </summary>
     public float InteralFactor = 0.1f;
+
+    /// <summary>
+    /// 滑动因子，影响滑动速度
+    /// </summary>
+    public float DragFactor = 1.0f;
 
     /// <summary>
     /// 聚焦点索引
@@ -106,6 +120,25 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     /// </summary>
     public float AxisOffset = 0.0f;
 
+    /// <summary>
+    /// 间距比率
+    /// </summary>
+    public float SpaceRate = 1.0f;
+
+    /// <summary>
+    /// 原始gridSize
+    /// </summary>
+    public Vector2 OriginGridSize = Vector2.one;
+
+    /// <summary>
+    /// 自动拉伸Grid
+    /// </summary>
+    public bool GridStretching = true;
+
+    /// <summary>
+    /// gridSize
+    /// </summary>
+    public Vector2 GridSize = Vector2.one;
 
     /// <summary>
     /// 是否需要修正
@@ -168,9 +201,15 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     public bool Inertia = true;
 
     /// <summary>
+    /// 使用ViewPort
+    /// </summary>
+    public bool UseViewportSize = true;
+
+    /// <summary>
     /// 速度
     /// </summary>
     private Vector2 Velocity;
+
 
     /// <summary>
     /// 惯性系数 Only used when inertia is enabled
@@ -231,7 +270,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     {
         ViewSize = size;
 
-        if (Viewport == null)
+        if (Viewport == null || UseViewportSize)
             return;
 
         Viewport.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
@@ -254,6 +293,16 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     {
         if (!IsActive())
             return;
+
+        if (GridStretching)
+        {
+            ReCalculateGridSize();
+        }
+
+        if (UseViewportSize)
+        {
+            SetViewSize(Viewport.rect.size);
+        }
 
         //停止惯性
         StopMovement();
@@ -345,6 +394,34 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         Velocity = Vector2.zero;
     }
 
+    void ReCalculateGridSize()
+    {
+
+        Vector2 ScreenSize = new Vector2();
+        ScreenSize.x = Screen.width;
+        ScreenSize.y = Screen.height;
+
+        float scaleFactorX = ScreenSize.x / RESOLUTION_WIDTH;
+        float scaleFactorY = ScreenSize.y / RESOLUTION_HEIGHT;
+
+        float width = 0;
+        float height = 0;
+
+        if (scaleFactorX <= scaleFactorY)
+        {
+            //用高铺满
+            height = OriginGridSize.y * scaleFactorY;
+            width = OriginGridSize.x * scaleFactorY;
+        }
+        else
+        {
+            //用宽铺满
+            width = OriginGridSize.x * scaleFactorX;
+            height = OriginGridSize.y * scaleFactorX;
+        }
+
+        GridSize = new Vector2(width,height);
+    }
 
     /// <summary>
     /// 设置单个cell位置
@@ -364,14 +441,17 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
         //设置位置和缩放
         grid.name = index.ToString();
-        float size = ViewSize[axis];
+        float size = ViewSize[axis] * SpaceRate;
+
+        int order = Order == LayoutRule.Order.Positive ? 1 : -1;
+
         if (axis == 0)
-            grid.rectTransform.anchoredPosition = new Vector2(posCurveValue * size - size / 2, AxisOffset);
+            grid.rectTransform.anchoredPosition = new Vector2((posCurveValue * size - size / 2) * order, AxisOffset);
         else
-            grid.rectTransform.anchoredPosition = new Vector2(AxisOffset, posCurveValue * size - size / 2);
+            grid.rectTransform.anchoredPosition = new Vector2(AxisOffset, (posCurveValue * size - size / 2) * order);
 
         grid.rectTransform.localScale = new Vector3(scaleCurveValue, scaleCurveValue, scaleCurveValue);
-
+        grid.rectTransform.sizeDelta = GridSize;
         //设置深度
         int newDepth = (int)(depthCurveValue * (float)transform.childCount);
         grid.rectTransform.SetSiblingIndex(newDepth);
@@ -477,7 +557,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         GridPoolStack.Push(grid);
     }
 
-    #region 事件
+#region 事件
     /// <summary>
     /// 回收节点
     /// </summary>
@@ -522,7 +602,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
             DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_TWEEN_OVER, null);
     }
 
-    #endregion
+#endregion
 
 
 
@@ -623,9 +703,14 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         if (CurOffsetValue < 0 && CurOffsetValue > TotalOffsetValue)
             return;
 
-        float dt = (axisValue / ViewSize[axis]) * InteralFactor * GetShowingCount();
 
-        CurOffsetValue -= dt;
+        DragFactor = DragFactor <= 0 ? 1 : DragFactor;
+
+        float dt = (axisValue / ViewSize[axis]) * InteralFactor * GetShowingCount() * DragFactor;
+
+        int order = Order == LayoutRule.Order.Positive ? 1 : -1;
+
+        CurOffsetValue -= dt * order;
 
         if (CurOffsetValue > TotalOffsetValue)
             CurOffsetValue = TotalOffsetValue;
