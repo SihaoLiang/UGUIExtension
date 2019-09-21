@@ -38,8 +38,6 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
     /// </summary>
     public LayoutRule.Direction Direction = LayoutRule.Direction.Vertical;
 
-    public bool IsLocked = false;
-
     /// <summary>
     /// 内容节点
     /// </summary>
@@ -668,6 +666,8 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
             StopAllCoroutines();
         }
 
+        StopMovement();
+
         //重置内容框大小
         ResetContentSize();
         //回收所有节点
@@ -692,6 +692,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
             StopAllCoroutines();
         }
 
+        StopMovement();
 
         //重置内容框大小
         ResetContentSize();
@@ -730,11 +731,11 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
     {
         IsAsyncLoading = true;
 
-        IsLocked = true;
         float containerSize = 0;
         bool IsGridFillToFull = true;
         int index = StartIndex;
- 
+        bool isBottom = false;
+
         //第一次加载先填满可视区域
         while (containerSize < GetAxis(ViewSize))
         {
@@ -766,7 +767,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         if (!IsGridFillToFull && StartIndex > START_INDEX)
         {
             IsGridFillToFull = true;
-
+            isBottom = true;
             while (containerSize < GetAxis(ViewSize))
             {
 
@@ -797,7 +798,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
 
         if (!IsReverse)
         {
-            if (!IsGridFillToFull)
+            if (IsGridFillToFull && !isBottom)
             {
                 SetContentAnchoredPosition(Vector2.zero);
             }
@@ -808,7 +809,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         }
         else
         {
-            if (!IsGridFillToFull)
+            if (IsGridFillToFull && !isBottom)
             {
                 SetContentAnchoredPosition(Content.rect.size - ViewSize);
             }
@@ -820,7 +821,6 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
 
         IsInitCompeleted = true;
         IsAsyncLoading = false;
-        IsLocked = false;
         OnTableGridReloadCompleted();
 
     }
@@ -836,7 +836,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         bool IsGridFillToFull = true;
         int gridCount = 0;
         int index = StartIndex;
-
+        bool isBottom = false;
         //第一次加载先填满可视区域
         while (containerSize < GetAxis(ViewSize))
         {
@@ -866,7 +866,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         if (!IsGridFillToFull && StartIndex > START_INDEX)
         {
             IsGridFillToFull = true;
-
+            isBottom = true;
             while (containerSize < GetAxis(ViewSize))
             {
       
@@ -894,7 +894,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
 
         if (!IsReverse)
         {
-            if (!IsGridFillToFull)
+            if (IsGridFillToFull && !isBottom)
             {
                 SetContentAnchoredPosition(Vector2.zero);
             }
@@ -907,7 +907,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         }
         else
         {
-            if (!IsGridFillToFull)
+            if (IsGridFillToFull && !isBottom)
             {
                 SetContentAnchoredPosition(Content.rect.size - ViewSize);
             }

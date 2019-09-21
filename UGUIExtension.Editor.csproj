@@ -286,6 +286,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\UGUIExtension\Components\Text\TextEx\Editor\BMFontAssetGenWindow.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\Text\TextEx\Editor\TextExEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\Text\TextEx\Editor\TextExSpriteAssetAssetEditor.cs" />
     <Compile Include="Assets\UGUIExtension\Editor\Inspector\DynamicTableCurveEditor.cs" />
     <Compile Include="Assets\UGUIExtension\Editor\Inspector\DynamicTableIrregularEditor.cs" />
     <Compile Include="Assets\UGUIExtension\Editor\Inspector\DynamicTableNormalEditor.cs" />

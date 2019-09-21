@@ -142,7 +142,7 @@ public class DynamicTableNormal : UIBehaviour
     /// </summary>
     public LayoutRule.GridLoadRule GridLoadRule = LayoutRule.GridLoadRule.PER_GRID;
 
-#if CLIENT
+#if XLUA
     /// <summary>
     /// 持有LuaTable
     /// </summary>
@@ -682,15 +682,15 @@ public class DynamicTableNormal : UIBehaviour
     /// <summary>
     /// 活动回调
     /// </summary>
-    /// <param name="offest"></param>
-    protected void OnScrollRectValueChanged(Vector2 offest)
+    /// <param name="offset"></param>
+    protected void OnScrollRectValueChanged(Vector2 offset)
     {
         if (!IsInitCompeleted || IsAsyncLoading)
             return;
 
-        ContentOffset = offest;
+        ContentOffset = offset;
 
-        int startIndex = GetStartIndexByOffest(offest);
+        int startIndex = GetStartIndexByOffest(offset);
         int endIndex = (startIndex + AvailableViewCount - 1);
         endIndex = endIndex > TotalCount ? TotalCount : endIndex;
 
@@ -1260,7 +1260,7 @@ public class DynamicTableNormal : UIBehaviour
     #endregion
 
 
-#if CLIENT
+#if XLUA
     #region 其他
     public void SetDelegate(LuaTable table)
     {
@@ -1287,7 +1287,7 @@ public class DynamicTableNormal : UIBehaviour
 
             float surpluX = (unusedSpace.x + Spacing.x) - (OriginGridSize.x + Spacing.x) * count;
 
-            float targetX = surpluX / count + OriginGridSize.x - 0.01f;
+            float targetX = surpluX / count + OriginGridSize.x - CALCULATE_OFFSET;
             float targetY = OriginGridSize.y;
             if (GridStretchingEqualRatio)
                 targetY = targetX / OriginGridSize.x * OriginGridSize.y;
@@ -1306,7 +1306,8 @@ public class DynamicTableNormal : UIBehaviour
                 count = Mathf.CeilToInt((float)TotalCount / (float)ConstraintCount);
 
             float surpluY = (unusedSpace.y + Spacing.y) - (OriginGridSize.y + Spacing.y) * count;
-            float targetY = surpluY / count + OriginGridSize.y - 0.01f;
+            float targetY = surpluY / count + OriginGridSize.y - CALCULATE_OFFSET ;
+            ;
             float targetX = OriginGridSize.x;
             if (GridStretchingEqualRatio)
                 targetX = targetY / OriginGridSize.y * OriginGridSize.x;
@@ -1333,16 +1334,6 @@ public class DynamicTableNormal : UIBehaviour
             ReloadDataSync(StartIndex);
         else
             ReloadDataAsync(StartIndex);
-    }
-
-    protected override void OnRectTransformDimensionsChange()
-    {
-        base.OnRectTransformDimensionsChange();
-        Debug.Log("OnRectTransformDimensionsChange");
-    }
-    protected virtual void OnTransformChildrenChanged()
-    {
-        Debug.Log("OnTransformChildrenChanged");
     }
 }
 

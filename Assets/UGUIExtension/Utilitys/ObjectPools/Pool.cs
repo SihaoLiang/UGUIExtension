@@ -125,7 +125,7 @@ public class Pool
             {
                 PoolObject poolObject = m_UsingList[index];
                 m_UsingList.Remove(poolObject);
-                GameObject.Destroy(poolObject);
+                Object.Destroy(poolObject);
                 poolObject = null;
                 index--;
             }
@@ -137,7 +137,7 @@ public class Pool
             while(m_UnusedList.Count > 0)
             {
                 PoolObject poolObject = m_UnusedList.Pop();
-                GameObject.Destroy(poolObject);
+                Object.Destroy(poolObject);
                 poolObject = null;
             }
         }

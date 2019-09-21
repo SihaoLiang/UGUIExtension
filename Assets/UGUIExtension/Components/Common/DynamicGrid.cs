@@ -28,9 +28,6 @@ public class DynamicGrid : MonoBehaviour
         }
     }
 
-    public string LuaTable = "CSProxy";
-    public string CS = "CSProxy";
-
     public Vector2 GetSize()
     {
         return rectTransform.rect.size;

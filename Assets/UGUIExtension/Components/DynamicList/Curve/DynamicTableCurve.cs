@@ -26,7 +26,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     /// <summary>
     /// grid事件
     /// </summary>
-    public Action<int, DynamicGrid> DynamicTableGridDelegate;
+    public Action<int,int,DynamicGrid> DynamicTableGridDelegate;
     /// <summary>
     /// 缩放曲线
     /// </summary>
@@ -35,6 +35,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     /// 位置曲线
     /// </summary>
     public AnimationCurve PositionCurve;
+
     /// <summary>
     /// 深度曲线
     /// </summary>
@@ -283,6 +284,12 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     void CalculateTotalOffsetValue()
     {
         TotalOffsetValue = InteralFactor * (TotalCount - 1);
+    }
+
+
+    public void SetTotalCount(int count)
+    {
+        TotalCount = count;
     }
 
     /// <summary>
@@ -566,7 +573,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     {
         if (DynamicTableGridDelegate == null)
             return;
-        DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_GRID_RECYCLE, grid);
+        DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_GRID_RECYCLE,grid.Index,grid);
     }
 
     /// <summary>
@@ -578,7 +585,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         if (DynamicTableGridDelegate == null)
             return;
 
-        DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_GRID_TOUCHED, grid);
+        DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_GRID_TOUCHED, grid.Index, grid);
     }
 
     /// <summary>
@@ -590,7 +597,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         if (DynamicTableGridDelegate == null)
             return;
 
-        DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_GRID_ATINDEX, grid);
+        DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_GRID_ATINDEX, grid.Index, grid);
     }
 
     /// <summary>
@@ -599,7 +606,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     public void OnTweenOver()
     {
         if (DynamicTableGridDelegate != null)
-            DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_TWEEN_OVER, null);
+            DynamicTableGridDelegate((int)LayoutRule.DYNAMIC_DELEGATE_EVENT.DYNAMIC_TWEEN_OVER,-1,null);
     }
 
 #endregion
