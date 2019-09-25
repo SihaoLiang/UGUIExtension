@@ -242,7 +242,6 @@
     <Compile Include="Assets\UGUIExtension\Components\Layouts\AutoLayoutGroup.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Layouts\LayoutNode.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Layouts\LayoutRule.cs" />
-    <Compile Include="Assets\UGUIExtension\Components\Text\TextEx\Data\JsonData.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Text\TextEx\Data\TextExAnimate.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Text\TextEx\Data\TextExConst.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Text\TextEx\Data\TextExElement.cs" />
@@ -256,6 +255,7 @@
     <Compile Include="Assets\UGUIExtension\Examples\DynamicTableIrregular\Scripts\ExampleDynamicTableIrregular.cs" />
     <Compile Include="Assets\UGUIExtension\Examples\DynamicTableNormal\ExamplesDynamicTableNormal.cs" />
     <Compile Include="Assets\UGUIExtension\Examples\DynamicTableNormal\TestNormalGrid.cs" />
+    <Compile Include="Assets\UGUIExtension\TexturePackTool\JsonData.cs" />
     <Compile Include="Assets\UGUIExtension\Utilitys\ObjectPools\ObjectPools.cs" />
     <Compile Include="Assets\UGUIExtension\Utilitys\ObjectPools\Pool.cs" />
     <Compile Include="Assets\UGUIExtension\Utilitys\ObjectPools\PoolObject.cs" />

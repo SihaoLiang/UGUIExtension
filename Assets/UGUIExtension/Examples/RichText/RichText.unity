@@ -183,7 +183,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: "111<quad animate=a03 rate=25 />2<quad animate=a05 rate=25 /><color=#FF0000FF><u>111\u4E0B\u5212\u7EBF
-    11999</color></u><quad sprite=88 />11<u><link=233>\u548C\u989D\u5475\u5475 </link></u>"
+    11999</color></u><quad sprite=88 />11255555  <color=#FF0000FF><link=233>[\u8D85\u94FE\u63A5]</link></color>"
   m_SpriteAsset: {fileID: 11400000, guid: fd100c04bae897d419d38de8e1c7b97f, type: 2}
   m_TextExSpriteRender: {fileID: 1978650399}
 --- !u!222 &1157841883

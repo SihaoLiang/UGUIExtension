@@ -5,11 +5,22 @@ using UnityEditor;
 using Serialize;
 using System.IO;
 using System;
+using System.Runtime.InteropServices;
 using TextExtend;
 
-public class ArtFontAssetGenWindow : EditorWindow
+
+public class FontAtlasGenWindow : EditorWindow
 {
 
+    public enum PackingType
+    {
+        TexturePack = 0,
+        UnityPack
+    }
+
+     
+
+    
     Texture2D texSource;
     TextAsset texSheet;
     string genConsole;
@@ -20,10 +31,12 @@ public class ArtFontAssetGenWindow : EditorWindow
 
     TextExSpriteAsset fontAsset;
 
+    private PackingType AtlasPacking = PackingType.TexturePack;
+
     [MenuItem("Assets/Art Font Asset Creator")]
     public static void ShowArtFontAssetGenWindow()
     {
-        ArtFontAssetGenWindow window = EditorWindow.GetWindow<ArtFontAssetGenWindow>();
+        FontAtlasGenWindow window = EditorWindow.GetWindow<FontAtlasGenWindow>();
         window.titleContent = new GUIContent("ArtFontAsset Creator");
         window.Focus();
     }
@@ -49,7 +62,27 @@ public class ArtFontAssetGenWindow : EditorWindow
 
     void OnGUI()
     {
-        GUILayout.BeginVertical(new GUILayoutOption[0]);
+        GUILayout.BeginVertical();
+
+
+        AtlasPacking = (PackingType)EditorGUILayout.EnumPopup("Packing Type", AtlasPacking);
+
+        if (AtlasPacking == PackingType.TexturePack)
+        {
+            TexturePackGUI();
+        }
+        else
+        {
+            
+        }
+
+
+        GUILayout.EndVertical();
+    }
+
+
+    void TexturePackGUI()
+    {
         EditorGUI.BeginChangeCheck();
         this.texSheet = (EditorGUILayout.ObjectField("Texture Data(Json)", this.texSheet, typeof(TextAsset), false, new GUILayoutOption[0]) as TextAsset);
         this.texSource = (EditorGUILayout.ObjectField("Texture Atlas", this.texSource, typeof(Texture2D), false, new GUILayoutOption[0]) as Texture2D);
@@ -60,7 +93,6 @@ public class ArtFontAssetGenWindow : EditorWindow
 
         if (texSheet == null || texSource == null)
         {
-            GUILayout.EndVertical();
             return;
         }
 
@@ -109,7 +141,6 @@ public class ArtFontAssetGenWindow : EditorWindow
         GUILayout.EndVertical();
 
         GUILayout.Space(5f);
-        GUILayout.EndVertical();
     }
 
     private List<TextExSprite> CreateSpriteInfoList(TP.JsonData spriteDataObject)

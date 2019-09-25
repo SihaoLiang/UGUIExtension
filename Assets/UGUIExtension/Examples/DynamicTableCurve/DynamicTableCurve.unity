@@ -274,6 +274,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 0
   Order: 0
+  MoveType: 0
+  Elasticity: 0.1
   ScaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -603,6 +605,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 0
   Order: 0
+  MoveType: 0
+  Elasticity: 0.1
   ScaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -682,8 +686,8 @@ MonoBehaviour:
   AxisOffset: 0
   SpaceRate: 3
   OriginGridSize: {x: 1500, y: 650}
-  GridStretching: 1
-  GridSize: {x: 1415.2778, y: 613.28705}
+  GridStretching: 0
+  GridSize: {x: 1500, y: 650}
   IsNeedTweenToFix: 1
   LerpDuration: 0.2
   Inertia: 0

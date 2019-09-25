@@ -2260,8 +2260,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 347.3, y: -215.29999}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 224.2, y: -316.5}
+  m_SizeDelta: {x: 199.8, y: 60.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1608165200
 MonoBehaviour:
@@ -2946,7 +2946,7 @@ MonoBehaviour:
   EndIndex: 0
   IsReverse: 0
   CompatibleDistance: 0
-  ViewSize: {x: 2160, y: 1010}
+  ViewSize: {x: 0, y: -70}
   IsGridTouchEventEnable: 1
   Padding:
     m_Left: 0
@@ -3057,8 +3057,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160.59998, y: -214.20001}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 224.2, y: -237}
+  m_SizeDelta: {x: 199.8, y: 60.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2094753089
 MonoBehaviour:

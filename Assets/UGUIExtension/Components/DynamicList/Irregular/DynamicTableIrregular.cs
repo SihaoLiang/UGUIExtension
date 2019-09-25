@@ -283,13 +283,26 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         Vector2 offset = CalculateOffset(position - Content.anchoredPosition);
         position += offset;
 
+        float rubb = 0;
         if (MoveType == MovementType.Elastic)
         {
             if (offset.x != 0)
                 position.x = position.x - RubberDelta(offset.x, ViewBounds.size.x);
             if (offset.y != 0)
+            {
+                rubb = RubberDelta(offset.y, ViewBounds.size.y);
                 position.y = position.y - RubberDelta(offset.y, ViewBounds.size.y);
+            }
+
+
         }
+
+        //Debug.LogError("offset:" + offset.ToString());
+        Debug.LogError("rubb:" + rubb.ToString());
+
+        //Debug.LogError("Content:" + Content.anchoredPosition.ToString());
+        //Debug.LogError("position:" + position.ToString());
+        //Debug.LogError("ViewBounds.size.y:" + ViewBounds.size.y.ToString());
 
         SetContentAnchoredPosition(position);
     }

@@ -89,8 +89,6 @@ namespace TextExtend
 
             alignByGeometry = true;
             m_TextureUvInfos = new List<TextMeshInfo>();
-
-            Parser();
             SetupTextRender();
         }
 
@@ -144,7 +142,9 @@ namespace TextExtend
         /// </summary>
         void Parser()
         {
+
             m_Content = text;
+
             m_Content = ParsingUnderLine(m_Content);
             m_Content = ParsingLinker(m_Content);
 
