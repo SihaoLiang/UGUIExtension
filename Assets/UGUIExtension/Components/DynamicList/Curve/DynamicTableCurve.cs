@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// 曲线动态列表
 /// </summary>
-public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, ICanvasRaycastFilter
+public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, ICanvasRaycastFilter, IInitializePotentialDragHandler
 {
     private const int RESOLUTION_WIDTH = 1920;
     private const int RESOLUTION_HEIGHT = 1080;
@@ -21,6 +21,16 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         Elastic, // Restricted but flexible -- can go past the edges, but springs back in place
         Clamped, // Restricted movement where it's not possible to go past the edges
     }
+
+    /// <summary>
+    /// 修正类型
+    /// </summary>
+    public enum FixType
+    {
+        Inertia,//惯性
+        ForeTween, //强制修正
+    }
+
 
 
     #region 基础属性
@@ -40,9 +50,19 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     public MovementType MoveType = MovementType.Elastic;
 
     /// <summary>
+    /// 修正类型
+    /// </summary>
+    public FixType FixMoveType = FixType.ForeTween;
+
+    /// <summary>
     /// 弹力系数 Only used for MovementType.Elastic
     /// </summary>
     public float Elasticity = 0.1f;
+
+    /// <summary>
+    /// 边缘拖拽限制
+    /// </summary>
+    public float ElasticRate = 1.0f;
 
     /// <summary>
     /// grid事件
@@ -166,6 +186,17 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     /// 是否需要修正
     /// </summary>
     public bool IsNeedTweenToFix = true;
+
+    /// <summary>
+    /// 强制修正
+    /// </summary>
+    public bool ForceTween = true;
+
+    /// <summary>
+    /// 强制修正因子
+    /// </summary>
+    public float ForceTweenVelocity = 10;
+
     /// <summary>
     /// 修正偏移
     /// </summary>
@@ -251,7 +282,6 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     /// 滑动前的值
     /// </summary>
     protected float CursorStartValue = 0.0f;
-
 
     /// <summary>
     /// 上一次光标位置
@@ -702,7 +732,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
             return;
 
         CursorStartValue = CurOffsetValue;
-
+        IsTweening = false;
         IsDragging = true;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(Content, eventData.position, eventData.pressEventCamera, out LastCursorStartPosition);
         CursorStartPosition = LastCursorStartPosition;
@@ -728,6 +758,19 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         OnDragGridMove(delta);
     }
 
+    /// <summary>
+    /// 再次滑动，重置上一次速度
+    /// </summary>
+    /// <param name="eventData"></param>
+    public void OnInitializePotentialDrag(PointerEventData eventData)
+    {
+        if (eventData.button != PointerEventData.InputButton.Left)
+            return;
+
+        Velocity = Vector2.zero;
+    }
+
+
 
     /// <summary>
     /// 橡皮筋，用于拖拽反弹
@@ -746,28 +789,28 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     /// <param name="delta"></param>
     public void OnDragGridMove(Vector2 delta)
     {
-        int axis = (int)Direction;
-        float axisValue = delta[axis];
-
-        DragFactor = DragFactor <= 0 ? 1 : DragFactor;
-        float dt = (axisValue / ViewSize[axis]) * InteralFactor * GetShowingCount() * DragFactor;
-
-        int order = Order == LayoutRule.Order.Positive ? 1 : -1;
-        float offset = - dt * order;
-        float value = CursorStartValue + offset; //下一个位置
-
+        //下一个位置
+        float value = CursorStartValue + DeltaToOffset(delta);
+        //超出的距离
         float overStretching = CalculateOffset(value - CurOffsetValue);
-        value -= overStretching; //归零到边界
-      
+        //归零到边界
+        value -= overStretching;
+        //边界有弹性
         if (MoveType == MovementType.Elastic)
         {
             if (overStretching != 0)
             {
-                value = value + RubberDelta(overStretching, InteralFactor) /SpaceRate;
+                value = value + RubberDelta(overStretching, InteralFactor * ElasticRate) / SpaceRate;
             }
         }
 
         CurOffsetValue = value;
+        //边界被限定
+        if (MoveType == MovementType.Clamped)
+        {
+            CurOffsetValue = Mathf.Clamp(CurOffsetValue, 0, TotalOffsetValue);
+        }
+
         OnGridsInOut();
     }
 
@@ -776,7 +819,24 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     /// 非拖拽移动
     /// </summary>
     /// <param name="delta"></param>
-    public void OnUnDragGridMove(Vector2 delta)
+    void OnUnDragGridMove(Vector2 delta)
+    {
+        CurOffsetValue = CurOffsetValue + DeltaToOffset(delta);
+
+        if (MoveType == MovementType.Clamped)
+        {
+            CurOffsetValue = Mathf.Clamp(CurOffsetValue, 0, TotalOffsetValue);
+        }
+
+        OnGridsInOut();
+    }
+
+    /// <summary>
+    /// 将位移转换到列表上的偏移
+    /// </summary>
+    /// <param name="delta"></param>
+    /// <returns></returns>
+    float DeltaToOffset(Vector2 delta)
     {
         int axis = (int)Direction;
         float axisValue = delta[axis];
@@ -785,12 +845,9 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         float dt = (axisValue / ViewSize[axis]) * InteralFactor * GetShowingCount() * DragFactor;
         //正反向
         int order = Order == LayoutRule.Order.Positive ? 1 : -1;
-        float offset = -dt * order;
 
-        CurOffsetValue = CurOffsetValue + offset; 
-        OnGridsInOut();
+        return -dt * order;
     }
-
 
 
     /// <summary>
@@ -803,7 +860,22 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
         //获得最近的一个修正位置
         if (!IsTweening)
-            FixOffsetValue = Mathf.Clamp(offest * InteralFactor, 0, TotalOffsetValue);
+        {
+            float fixValue = offest * InteralFactor;
+            if (fixValue <= 0)
+            {
+                FixOffsetValue = 0;
+            }
+            else if (fixValue > TotalOffsetValue)
+            {
+                FixOffsetValue = TotalOffsetValue;
+            }
+            else
+            {
+                FixOffsetValue = fixValue;
+            }
+        }
+
 
         StartIndex = Mathf.Clamp(offest, 0, TotalCount - 1);
         int endIndex = (StartIndex + CentralIndex - 1);
@@ -848,44 +920,79 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         if (!IsInitCompeleted)
             return;
 
+        int axis = (int)Direction;
         float deltaTime = Time.unscaledDeltaTime;
         float offset = CalculateOffset(0);
+        float lastVelocity = 0.0f;
         //已经脱手，需要考虑惯性的问题
-        if (!IsDragging && (Velocity != Vector2.zero))
+        if (!IsDragging)
         {
-            Vector2 position = Vector2.zero;
-            for (int axis = 0; axis < 2; axis++)
+            if (Mathf.Abs(offset) > 0.001f || Mathf.Abs(Velocity[axis]) > 0.001f)
             {
+                Vector2 position = Vector2.zero;
+
                 // 获得物理弹性如果弹性运动并且内容超出了视图
-                if (MoveType == MovementType.Elastic && offset != 0.0f)
+                if (MoveType == MovementType.Elastic && offset != 0)
                 {
-                    //float speed = Velocity[axis]/10;
-                    ////平滑阻尼，类似弹簧
-                    //position[axis] = Mathf.SmoothDamp(CurOffsetValue, CurOffsetValue + offset, ref speed, Elasticity, Mathf.Infinity, deltaTime);
-                    //if (Mathf.Abs(speed) < 1)
-                    //    speed = 0;
-                    //Velocity[axis] = speed;
+                    float speed = Velocity[axis];
+                    float current = offset < 0 ? CurOffsetValue * ViewSize[axis] : offset * ViewSize[axis];
+                    float target = 0;
+
+
+                    //平滑阻尼，类似弹簧
+                    position[axis] = Mathf.SmoothDamp(current, target, ref speed, Elasticity, Mathf.Infinity, deltaTime);
+                    if (Mathf.Abs(speed) < 1)
+                    {
+                        speed = 0;
+                    }
+
+                    Velocity[axis] = speed;
                 }
 
                 // 惯性运动
-                else if (Inertia)
+                else if (FixMoveType == FixType.Inertia)
                 {
-                    Debug.LogError("Inertia");
                     //速度根据摩擦系数递减
                     Velocity[axis] *= Mathf.Pow(DecelerationRate, deltaTime);
                     if (Mathf.Abs(Velocity[axis]) < 1)
                         Velocity[axis] = 0;
                     position[axis] += Velocity[axis] * deltaTime;
+
                 }
                 // 如果不使用惯性.
                 else
                 {
+                    lastVelocity = Velocity[axis];
                     Velocity[axis] = 0;
                 }
 
+
                 OnUnDragGridMove(position);
+
+                //强制修正对齐
+                if (FixMoveType == FixType.ForeTween && lastVelocity != 0.0f && Mathf.Abs(lastVelocity * deltaTime) >= ForceTweenVelocity)
+                {
+                    int velocityOrder = lastVelocity > 0 ? 1 : -1;
+                    int order = Order == LayoutRule.Order.Positive ? 1 : -1;
+                    FixOffsetValue = FixOffsetValue - InteralFactor * velocityOrder * order;
+                    FixOffsetValue = Mathf.Clamp(FixOffsetValue, 0.0f, TotalOffsetValue);
+                }
+
+            } //需要修正位置
+            else if (IsNeedTweenToFix)
+            {
+                if (!IsTweening && CurOffsetValue != FixOffsetValue)
+                {
+                    IsTweening = true;
+                    CurrentDuration = 0.0f;
+                    TweenStartOffsetValue = CurOffsetValue;
+                }
+
+                if (IsTweening)
+                    TweenToFix(FixOffsetValue);
             }
         }
+
         //如果是用惯性和滑动中，计算脱手前的速度
         if (IsDragging)
         {
@@ -893,21 +1000,6 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
             Velocity = Vector3.Lerp(Velocity, newVelocity, deltaTime * 10);
             PreCursorPosition = LastCursorStartPosition;
         }
-
-        //需要修正位置
-        if (!IsDragging && Velocity == Vector2.zero && IsNeedTweenToFix)
-        {
-            if (!IsTweening && CurOffsetValue != FixOffsetValue)
-            {
-                IsTweening = true;
-                CurrentDuration = 0.0f;
-                TweenStartOffsetValue = CurOffsetValue;
-            }
-
-            if (IsTweening)
-                TweenToFix(FixOffsetValue);
-        }
-
     }
 
 
@@ -919,14 +1011,14 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     private float CalculateOffset(float delta)
     {
         float offset = 0.0f;
-
-        if (CurOffsetValue < 0)
+        float preOffsetValue = CurOffsetValue + delta;
+        if (preOffsetValue < 0)
         {
-            offset = CurOffsetValue - 0 + delta;
+            offset = preOffsetValue - 0;
         }
-        else if (CurOffsetValue > TotalOffsetValue)
+        else if (preOffsetValue > TotalOffsetValue)
         {
-            offset = CurOffsetValue + delta - TotalOffsetValue;
+            offset = preOffsetValue - TotalOffsetValue;
         }
 
         return offset;

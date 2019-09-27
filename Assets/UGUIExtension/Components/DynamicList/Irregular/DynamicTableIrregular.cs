@@ -297,13 +297,6 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
 
         }
 
-        //Debug.LogError("offset:" + offset.ToString());
-        Debug.LogError("rubb:" + rubb.ToString());
-
-        //Debug.LogError("Content:" + Content.anchoredPosition.ToString());
-        //Debug.LogError("position:" + position.ToString());
-        //Debug.LogError("ViewBounds.size.y:" + ViewBounds.size.y.ToString());
-
         SetContentAnchoredPosition(position);
     }
 

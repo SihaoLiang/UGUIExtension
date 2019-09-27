@@ -59,7 +59,7 @@ public class ExampleDynamicTableCurve : MonoBehaviour
         DynamicTableCurveExample1.gameObject.SetActive(false);
         DynamicTableCurve1Example2.gameObject.SetActive(true);
 
-        DynamicTableCurve1Example2.SetTotalCount(100);
+        DynamicTableCurve1Example2.SetTotalCount(10);
         DynamicTableCurve1Example2.ReloadData(-1);
     }
 }

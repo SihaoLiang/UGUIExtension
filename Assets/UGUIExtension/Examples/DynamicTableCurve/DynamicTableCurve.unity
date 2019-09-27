@@ -275,7 +275,9 @@ MonoBehaviour:
   Direction: 0
   Order: 0
   MoveType: 0
+  FixMoveType: 0
   Elasticity: 0.1
+  ElasticRate: 1
   ScaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -358,6 +360,8 @@ MonoBehaviour:
   GridStretching: 1
   GridSize: {x: 1, y: 1}
   IsNeedTweenToFix: 1
+  ForceTween: 1
+  ForceTweenVelocity: 0
   LerpDuration: 0.2
   Inertia: 1
   UseViewportSize: 1
@@ -606,7 +610,9 @@ MonoBehaviour:
   Direction: 0
   Order: 0
   MoveType: 0
+  FixMoveType: 1
   Elasticity: 0.1
+  ElasticRate: 1
   ScaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -689,8 +695,10 @@ MonoBehaviour:
   GridStretching: 0
   GridSize: {x: 1500, y: 650}
   IsNeedTweenToFix: 1
+  ForceTween: 1
+  ForceTweenVelocity: 10
   LerpDuration: 0.2
-  Inertia: 0
+  Inertia: 1
   UseViewportSize: 1
   DecelerationRate: 0.135
 --- !u!114 &638029196

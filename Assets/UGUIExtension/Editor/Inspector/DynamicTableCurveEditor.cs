@@ -14,6 +14,9 @@ public class DynamicTableCurveEditor : Editor
 
     protected SerializedProperty Direction;
     protected SerializedProperty Order;
+    protected SerializedProperty MoveType;
+    protected SerializedProperty Elasticity;
+    protected SerializedProperty ElasticRate;
 
     protected SerializedProperty ViewSize;
     protected SerializedProperty TotalCount;
@@ -35,6 +38,9 @@ public class DynamicTableCurveEditor : Editor
     protected SerializedProperty LerpDuration;
 
     protected SerializedProperty Inertia;
+    protected SerializedProperty FixMoveType;
+    protected SerializedProperty ForceTweenVelocity;
+
     protected SerializedProperty DecelerationRate;
     protected SerializedProperty SpaceRate;
     protected SerializedProperty UseViewportSize;
@@ -43,6 +49,9 @@ public class DynamicTableCurveEditor : Editor
     protected GUIContent PositionCurveContent;
     protected GUIContent ScaleCurveContent;
     protected GUIContent DepthCurveContent;
+    protected GUIContent MoveTypeContent;
+    protected GUIContent ElasticityContent;
+    protected GUIContent ElasticRateContent;
 
     protected GUIContent ContentContent;
     protected GUIContent ViewportContent;
@@ -65,6 +74,9 @@ public class DynamicTableCurveEditor : Editor
     protected GUIContent IsNeedTweenToFixContent;
     protected GUIContent LerpDurationContent;
 
+
+    protected GUIContent FixMoveTypeContent;
+    protected GUIContent ForceTweenVelocityContent;
     protected GUIContent InertiaContent;
     protected GUIContent DecelerationRateContent;
     protected GUIContent SpaceRateContent;
@@ -83,6 +95,9 @@ public class DynamicTableCurveEditor : Editor
         Viewport = serializedObject.FindProperty("Viewport");
         Direction = serializedObject.FindProperty("Direction");
         Order = serializedObject.FindProperty("Order");
+        MoveType = serializedObject.FindProperty("MoveType");
+        Elasticity = serializedObject.FindProperty("Elasticity");
+        ElasticRate = serializedObject.FindProperty("ElasticRate");
 
         TotalCount = serializedObject.FindProperty("TotalCount");
         ViewSize = serializedObject.FindProperty("ViewSize");
@@ -104,6 +119,10 @@ public class DynamicTableCurveEditor : Editor
         LerpDuration = serializedObject.FindProperty("LerpDuration");
 
         Inertia = serializedObject.FindProperty("Inertia");
+
+        FixMoveType = serializedObject.FindProperty("FixMoveType");
+        ForceTweenVelocity = serializedObject.FindProperty("ForceTweenVelocity");
+
         DecelerationRate = serializedObject.FindProperty("DecelerationRate");
         SpaceRate = serializedObject.FindProperty("SpaceRate");
         UseViewportSize = serializedObject.FindProperty("UseViewportSize");
@@ -115,6 +134,10 @@ public class DynamicTableCurveEditor : Editor
         DirectionContent = new GUIContent("布局方向");
         OrderContent = new GUIContent("正反向");
 
+        ElasticityContent = new GUIContent("弹力系数");
+        ElasticRateContent = new GUIContent("反弹边界系数");
+
+        MoveTypeContent = new GUIContent("滑动类型");
         ContentContent = new GUIContent("内容");
         ViewportContent = new GUIContent("视窗");
         ViewSizeContent = new GUIContent("可视区域");
@@ -135,6 +158,9 @@ public class DynamicTableCurveEditor : Editor
         LerpDurationContent = new GUIContent("修正时间");
 
         InertiaContent = new GUIContent("使用惯性");
+        ForceTweenVelocityContent = new GUIContent("强制修正速度");
+        FixMoveTypeContent = new GUIContent("修正类型");
+
         DecelerationRateContent = new GUIContent("摩擦系数");
         SpaceRateContent = new GUIContent("间隙因子（影响间隔）");
         UseViewportSizeContent = new GUIContent("使用视图大小");
@@ -198,6 +224,15 @@ public class DynamicTableCurveEditor : Editor
         EditorGUILayout.PropertyField(ViewSize, ViewSizeContent, true);
         EditorGUILayout.PropertyField(Direction, DirectionContent, true);
         EditorGUILayout.PropertyField(Order, OrderContent, true);
+        EditorGUILayout.PropertyField(MoveType, MoveTypeContent, true);
+        if (MoveType.enumValueIndex == 0)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(Elasticity, ElasticityContent, true);
+            EditorGUILayout.PropertyField(ElasticRate, ElasticRateContent, true);
+
+            EditorGUI.indentLevel--;
+        }
 
         EditorGUILayout.PropertyField(StartIndex, StartIndexContent, true);
         EditorGUILayout.PropertyField(CentralIndex, CentralIndexContent, true);
@@ -209,18 +244,32 @@ public class DynamicTableCurveEditor : Editor
 
         EditorGUILayout.BeginVertical("box");
         GUILayout.Label("修正", "ShurikenModuleTitle");
+
+
+        //EditorGUILayout.BeginVertical("box");
+        //GUILayout.Label("惯性", "ShurikenModuleTitle");
+        EditorGUILayout.PropertyField(FixMoveType, FixMoveTypeContent, true);
+
+       // EditorGUILayout.PropertyField(Inertia, InertiaContent, true);
+        if (FixMoveType.enumValueIndex == 0)
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(DecelerationRate, DecelerationRateContent, true);
+            EditorGUI.indentLevel--;
+        }
+        else
+        {
+            EditorGUI.indentLevel++;
+            EditorGUILayout.PropertyField(ForceTweenVelocity, ForceTweenVelocityContent, true);
+            EditorGUI.indentLevel--;
+        }
+        //EditorGUILayout.EndVertical();
+
         EditorGUILayout.PropertyField(IsNeedTweenToFix, IsNeedTweenToFixContent, true);
-        if(IsNeedTweenToFix.boolValue)
+        if (IsNeedTweenToFix.boolValue)
             EditorGUILayout.PropertyField(LerpDuration, LerpDurationContent, true);
         EditorGUILayout.EndVertical();
 
-
-        EditorGUILayout.BeginVertical("box");
-        GUILayout.Label("惯性", "ShurikenModuleTitle");
-        EditorGUILayout.PropertyField(Inertia, InertiaContent, true);
-        if (Inertia.boolValue)
-            EditorGUILayout.PropertyField(DecelerationRate, DecelerationRateContent, true);
-        EditorGUILayout.EndVertical();
 
 
         EditorGUILayout.BeginHorizontal();
