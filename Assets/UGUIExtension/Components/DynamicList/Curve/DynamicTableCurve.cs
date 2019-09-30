@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -201,6 +200,12 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
     /// 修正偏移
     /// </summary>
     private float FixOffsetValue;
+
+
+    /// <summary>
+    /// 修正偏移
+    /// </summary>
+    private float LastFixOffsetValue;
 
     /// <summary>
     /// 修正开始位置
@@ -455,6 +460,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         StartIndex = Mathf.Clamp(startIndex, 0, TotalCount - 1);
         CurOffsetValue = StartIndex * InteralFactor;
         FixOffsetValue = CurOffsetValue;
+        LastFixOffsetValue = FixOffsetValue;
     }
 
     void StopMovement()
@@ -842,7 +848,9 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         float axisValue = delta[axis];
         //拖拽速度相关
         DragFactor = DragFactor <= 0 ? 1 : DragFactor;
-        float dt = (axisValue / ViewSize[axis]) * InteralFactor * GetShowingCount() * DragFactor;
+        float dt = (axisValue / ViewSize[axis]) * InteralFactor * GetShowingCount() * DragFactor * 0.5f;
+        Debug.LogError(axisValue / ViewSize[axis]);
+        Debug.LogError(dt);
         //正反向
         int order = Order == LayoutRule.Order.Positive ? 1 : -1;
 
@@ -937,10 +945,12 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
                     float speed = Velocity[axis];
                     float current = offset < 0 ? CurOffsetValue * ViewSize[axis] : offset * ViewSize[axis];
                     float target = 0;
-
+                    int order = Order == LayoutRule.Order.Positive ? 1 : -1;
 
                     //平滑阻尼，类似弹簧
-                    position[axis] = Mathf.SmoothDamp(current, target, ref speed, Elasticity, Mathf.Infinity, deltaTime);
+                    position[axis] = Mathf.SmoothDamp(current, target, ref speed, Elasticity, Mathf.Infinity, deltaTime) ;
+                    position[axis] *= order;
+
                     if (Mathf.Abs(speed) < 1)
                     {
                         speed = 0;
@@ -970,7 +980,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
                 OnUnDragGridMove(position);
 
                 //强制修正对齐
-                if (FixMoveType == FixType.ForeTween && lastVelocity != 0.0f && Mathf.Abs(lastVelocity * deltaTime) >= ForceTweenVelocity)
+                if (FixMoveType == FixType.ForeTween && lastVelocity != 0.0f && Mathf.Abs(lastVelocity * deltaTime) >= ForceTweenVelocity && LastFixOffsetValue == FixOffsetValue)
                 {
                     int velocityOrder = lastVelocity > 0 ? 1 : -1;
                     int order = Order == LayoutRule.Order.Positive ? 1 : -1;
@@ -1043,6 +1053,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         if (CurOffsetValue == FixOffsetValue || CurrentDuration >= LerpDuration)
         {
             TweenStartOffsetValue = 0;
+            LastFixOffsetValue = FixOffsetValue;
             CurrentDuration = 0.0f;
             IsTweening = false;
             OnTweenOver();

@@ -21,8 +21,8 @@ namespace TextExtend
         /// 图集数据
         /// </summary>
         [SerializeField]
-        public TextExSpriteAsset m_SpriteAsset;
-        public TextExSpriteAsset spriteAsset
+        public TexturePackSpriteAsset m_SpriteAsset;
+        public TexturePackSpriteAsset spriteAsset
         {
             get { return m_SpriteAsset; }
             set

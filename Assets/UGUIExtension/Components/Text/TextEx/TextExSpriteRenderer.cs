@@ -22,8 +22,8 @@ namespace TextExtend
         Mesh m_SpriteMesh;
 
         [SerializeField]
-        private TextExSpriteAsset m_TextSpriteAssett;
-        public TextExSpriteAsset textSpriteAsset
+        private TexturePackSpriteAsset m_TextSpriteAssett;
+        public TexturePackSpriteAsset textSpriteAsset
         {
             get { return m_TextSpriteAssett; }
             set { m_TextSpriteAssett = value; }
@@ -84,7 +84,7 @@ namespace TextExtend
         /// 设置图集
         /// </summary>
         /// <param name="spriteAsset"></param>
-        public void SetSpriteAsset(TextExSpriteAsset spriteAsset)
+        public void SetSpriteAsset(TexturePackSpriteAsset spriteAsset)
         {
             m_TextSpriteAssett = spriteAsset;
         }
@@ -147,10 +147,10 @@ namespace TextExtend
             tempUv.vertices[3] = new Vector3(0, info.size.y, 0) + tempUv.startPos;
 
 
-            TextExSprite sprite = null;
+            TexturePackSprite sprite = null;
             if (info.isAnimate)
             {
-                TextExAnimate textAnimate = textSpriteAsset.GetAnimateListByName(info.animateName);
+                TexturePackAnimate textAnimate = textSpriteAsset.GetAnimateListByName(info.animateName);
                 if (textAnimate != null)
                     sprite = textAnimate.spriteList[0];
             }
@@ -205,7 +205,7 @@ namespace TextExtend
         /// <param name="sprite"></param>
         /// <param name="tempUv"></param>
         /// <returns></returns>
-        protected TextMeshInfo GenerateNewUv(TextExSprite sprite, ref TextMeshInfo tempUv)
+        protected TextMeshInfo GenerateNewUv(TexturePackSprite sprite, ref TextMeshInfo tempUv)
         {
             //TexUvInfo tempUv = new TexUvInfo();
             //计算其uv
@@ -236,8 +236,8 @@ namespace TextExtend
                     {
                         int frame = rendererInfo.curFrame + 1;
                         string animateName = rendererInfo.placeholder.animateName;
-                        TextExAnimate textExAnimate = textSpriteAsset.GetAnimateListByName(animateName);
-                        List<TextExSprite> sprites = textExAnimate.spriteList;
+                        TexturePackAnimate texturePackAnimate = textSpriteAsset.GetAnimateListByName(animateName);
+                        List<TexturePackSprite> sprites = texturePackAnimate.spriteList;
 
                         if (frame >= sprites.Count)
                             frame = 0;
