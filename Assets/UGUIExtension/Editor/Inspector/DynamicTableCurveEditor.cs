@@ -248,6 +248,7 @@ public class DynamicTableCurveEditor : Editor
         //GUILayout.Label("惯性", "ShurikenModuleTitle");
         EditorGUILayout.PropertyField(FixMoveType, FixMoveTypeContent, true);
 
+
        // EditorGUILayout.PropertyField(Inertia, InertiaContent, true);
         if (FixMoveType.enumValueIndex == 0)
         {

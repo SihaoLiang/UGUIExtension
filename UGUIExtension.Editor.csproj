@@ -13,14 +13,12 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Editor:5</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.4.32f1</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -294,12 +292,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Editor\BMFontAssetEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Editor\BMFontAssetGenWindow.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Editor\BMFontMultTextEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Editor\BMFontTextEditor.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Text\TextEx\Editor\TextExEditor.cs" />
     <Compile Include="Assets\UGUIExtension\Editor\Inspector\DynamicTableCurveEditor.cs" />
     <Compile Include="Assets\UGUIExtension\Editor\Inspector\DynamicTableIrregularEditor.cs" />
     <Compile Include="Assets\UGUIExtension\Editor\Inspector\DynamicTableNormalEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\Inspector\TextExSpriteAssetAssetEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\TexturePackTool.cs" />
     <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\TexturePackWindow.cs" />
-    <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\TextExSpriteAssetAssetEditor.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

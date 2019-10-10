@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/UGUIExtension/Examples/DynamicTableCurve/DynamicTableCurve.unity
+- path: Assets/UGUIExtension/Examples/CustomBMFont/BMFontMultText.unity
   isLoaded: 1
   isActive: 1

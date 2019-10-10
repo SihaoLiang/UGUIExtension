@@ -806,7 +806,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         {
             if (overStretching != 0)
             {
-                value = value + RubberDelta(overStretching, InteralFactor * ElasticRate) / SpaceRate;
+                value = value + RubberDelta(overStretching, InteralFactor * ElasticRate);
             }
         }
 
@@ -848,9 +848,10 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         float axisValue = delta[axis];
         //拖拽速度相关
         DragFactor = DragFactor <= 0 ? 1 : DragFactor;
-        float dt = (axisValue / ViewSize[axis]) * InteralFactor * GetShowingCount() * DragFactor * 0.5f;
-        Debug.LogError(axisValue / ViewSize[axis]);
-        Debug.LogError(dt);
+        SpaceRate = SpaceRate <= 0 ? 1 : SpaceRate;
+
+        float dt = (axisValue / ViewSize[axis]) * InteralFactor * GetShowingCount() * DragFactor / SpaceRate;
+
         //正反向
         int order = Order == LayoutRule.Order.Positive ? 1 : -1;
 
@@ -949,7 +950,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
                     //平滑阻尼，类似弹簧
                     position[axis] = Mathf.SmoothDamp(current, target, ref speed, Elasticity, Mathf.Infinity, deltaTime) ;
-                    position[axis] *= order;
+                    position[axis] *= order * SpaceRate;
 
                     if (Mathf.Abs(speed) < 1)
                     {
@@ -996,6 +997,7 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
                     IsTweening = true;
                     CurrentDuration = 0.0f;
                     TweenStartOffsetValue = CurOffsetValue;
+                    LastFixOffsetValue = FixOffsetValue;
                 }
 
                 if (IsTweening)
@@ -1053,7 +1055,6 @@ public class DynamicTableCurve : MonoBehaviour, IDragHandler, IBeginDragHandler,
         if (CurOffsetValue == FixOffsetValue || CurrentDuration >= LerpDuration)
         {
             TweenStartOffsetValue = 0;
-            LastFixOffsetValue = FixOffsetValue;
             CurrentDuration = 0.0f;
             IsTweening = false;
             OnTweenOver();

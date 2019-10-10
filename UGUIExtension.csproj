@@ -235,9 +235,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\UGUIExtension\Components\Animate\SpriteAnimation.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Common\DynamicGrid.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Common\DynamicGridClickHelper.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Common\Empty4Raycast.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Script\BMFontMultText.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Script\BMFontText.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Script\Serialize\BMFontAsset.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Script\Serialize\BMFontSprite.cs" />
     <Compile Include="Assets\UGUIExtension\Components\DynamicList\Curve\DynamicTableCurve.cs" />
     <Compile Include="Assets\UGUIExtension\Components\DynamicList\Irregular\DynamicTableIrregular.cs" />
     <Compile Include="Assets\UGUIExtension\Components\DynamicList\Normal\DynamicTableNormal.cs" />
@@ -256,9 +261,11 @@
     <Compile Include="Assets\UGUIExtension\Examples\DynamicTableNormal\TestNormalGrid.cs" />
     <Compile Include="Assets\UGUIExtension\TexturePackTool\Serialize\TexturePackAnimate.cs" />
     <Compile Include="Assets\UGUIExtension\TexturePackTool\Serialize\TexturePackElement.cs" />
-    <Compile Include="Assets\UGUIExtension\TexturePackTool\Serialize\TexturePackJsonData.cs" />
     <Compile Include="Assets\UGUIExtension\TexturePackTool\Serialize\TexturePackSprite.cs" />
     <Compile Include="Assets\UGUIExtension\TexturePackTool\Serialize\TexturePackSpriteAsset.cs" />
+    <Compile Include="Assets\UGUIExtension\TexturePackTool\Serialize\TP\TexturePackJsonData.cs" />
+    <Compile Include="Assets\UGUIExtension\TexturePackTool\Serialize\UnityPack\UnityPackSetting.cs" />
+    <Compile Include="Assets\UGUIExtension\TexturePackTool\Serialize\UnityPack\UnityPackSprite.cs" />
     <Compile Include="Assets\UGUIExtension\Utilitys\ObjectPools\ObjectPools.cs" />
     <Compile Include="Assets\UGUIExtension\Utilitys\ObjectPools\Pool.cs" />
     <Compile Include="Assets\UGUIExtension\Utilitys\ObjectPools\PoolObject.cs" />
