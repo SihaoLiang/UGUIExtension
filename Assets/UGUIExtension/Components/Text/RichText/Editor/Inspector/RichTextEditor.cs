@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
-using TextExtend;
 
-[CustomEditor(typeof(TextEx), true)]
-public class TextExEditor : UnityEditor.UI.TextEditor
+[CustomEditor(typeof(RichText), true)]
+public class RichTextEditor : UnityEditor.UI.TextEditor
 {
     SerializedProperty m_SpriteAsset;
+    SerializedProperty mRichTextSpriteRender;
+
+
     protected override void OnEnable()
     {
         base.OnEnable();
         m_SpriteAsset = serializedObject.FindProperty("m_SpriteAsset");
+        mRichTextSpriteRender = serializedObject.FindProperty("mRichTextSpriteRender");
+
     }
 
     public override void OnInspectorGUI()
@@ -20,6 +23,8 @@ public class TextExEditor : UnityEditor.UI.TextEditor
         base.OnInspectorGUI();
 
         EditorGUILayout.PropertyField(m_SpriteAsset);
+        EditorGUILayout.PropertyField(mRichTextSpriteRender);
+
         serializedObject.ApplyModifiedProperties();
     }
 }

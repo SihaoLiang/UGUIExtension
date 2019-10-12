@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TexturePackSpriteAsset : ScriptableObject
+public class RichTextSpriteAsset : ScriptableObject
 {
     public int hashCode;
 
@@ -32,8 +32,8 @@ public class TexturePackSpriteAsset : ScriptableObject
     /// 所有动画信息
     /// </summary>
     [SerializeField]
-    private List<TexturePackAnimate> m_AnimateList;
-    public List<TexturePackAnimate> animateList
+    private List<RichTextAnimate> m_AnimateList;
+    public List<RichTextAnimate> animateList
     {
         get { return m_AnimateList; }
         set
@@ -52,9 +52,9 @@ public class TexturePackSpriteAsset : ScriptableObject
         set { m_SpriteSheet = value; }
     }
 
-    public TexturePackSpriteAsset()
+    public RichTextSpriteAsset()
     {
-        m_AnimateList = new List<TexturePackAnimate>();
+        m_AnimateList = new List<RichTextAnimate>();
         m_SpriteInfoList = new List<TexturePackSprite>();
     }
 
@@ -63,12 +63,12 @@ public class TexturePackSpriteAsset : ScriptableObject
     /// </summary>
     /// <param name="animateName"></param>
     /// <returns></returns>
-    public TexturePackAnimate GetAnimateListByName(string animateName)
+    public RichTextAnimate GetAnimateListByName(string animateName)
     {
         if (m_AnimateList == null)
             return null;
 
-        TexturePackAnimate textAnimate = null;
+        RichTextAnimate textAnimate = null;
 
         for (int i = 0; i < m_AnimateList.Count; i++)
         {

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/UGUIExtension/Examples/CustomBMFont/BMFontMultText.unity
+- path: Assets/UGUIExtension/Examples/RichText/RichText.unity
   isLoaded: 1
   isActive: 1

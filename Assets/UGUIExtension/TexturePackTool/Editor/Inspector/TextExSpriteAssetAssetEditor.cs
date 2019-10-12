@@ -6,7 +6,7 @@ using UnityEditorInternal;
 
 namespace TextExtend
 {
-    [CustomEditor(typeof(TexturePackSpriteAsset))]
+    [CustomEditor(typeof(RichTextSpriteAsset))]
     [CanEditMultipleObjects]
     public class TexturePackSpriteAssetEditor : Editor
     {

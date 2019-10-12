@@ -11,4 +11,5 @@ public class TexturePackSprite : TexturePackElement
     public string key;
     public string animatGroup;
     public Vector2 offest;
+    public string MD5;
 }

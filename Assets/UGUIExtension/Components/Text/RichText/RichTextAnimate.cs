@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using System.Collections.Generic;
 
 [System.Serializable]
-public class TexturePackAnimate
+public class RichTextAnimate
 {
     public string m_AnimateName;
     public int frameRate { set; get; }
@@ -12,7 +9,7 @@ public class TexturePackAnimate
 
     public List<TexturePackSprite> m_SpriteList;
 
-    public TexturePackAnimate()
+    public RichTextAnimate()
     {
         frameRate = 26;
         frameCount = 0;

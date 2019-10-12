@@ -296,10 +296,11 @@
     <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Editor\BMFontAssetGenWindow.cs" />
     <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Editor\BMFontMultTextEditor.cs" />
     <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Editor\BMFontTextEditor.cs" />
-    <Compile Include="Assets\UGUIExtension\Components\Text\TextEx\Editor\TextExEditor.cs" />
-    <Compile Include="Assets\UGUIExtension\Editor\Inspector\DynamicTableCurveEditor.cs" />
-    <Compile Include="Assets\UGUIExtension\Editor\Inspector\DynamicTableIrregularEditor.cs" />
-    <Compile Include="Assets\UGUIExtension\Editor\Inspector\DynamicTableNormalEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\DynamicList\Editor\Inspector\DynamicTableCurveEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\DynamicList\Editor\Inspector\DynamicTableIrregularEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\DynamicList\Editor\Inspector\DynamicTableNormalEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\Text\RichText\Editor\Inspector\RichTextEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\Text\RichText\Editor\RichTextAssetGenWindow.cs" />
     <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\Inspector\TextExSpriteAssetAssetEditor.cs" />
     <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\TexturePackTool.cs" />
     <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\TexturePackWindow.cs" />

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+
 public struct SpriteFrame
 {
     public float h;
@@ -12,6 +14,7 @@ public struct SpriteFrame
     public override string ToString() { return string.Format("h:{0},w:{1},x:{2},y:{3}", h, w, x, y); }
 }
 
+[System.Serializable]
 public struct UnityPackSprite
 {
     public string filename;
@@ -20,6 +23,9 @@ public struct UnityPackSprite
     public bool rotated;
     public float width;
     public float height;
+    public float x;
+    public float y;
     public SpriteFrame spriteSourceSize;
     public bool trimmed;
+    public int index;
 }

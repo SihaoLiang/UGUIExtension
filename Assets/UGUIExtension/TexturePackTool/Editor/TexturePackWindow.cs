@@ -4,36 +4,21 @@ using UnityEditor;
 using Serialize;
 using System.IO;
 using System;
-using Object = UnityEngine.Object;
 
 public class TexturePackWindow : EditorWindow
 {
 
-    public enum PackingType
-    {
-        TexturePack = 0,
-        UnityPack
-    }
-
-     
-    Texture2D texSource;
-    TextAsset texSheet;
     string genConsole;
     GUIStyle labelStyle;
 
-    List<TexturePackSprite> fontSpriteInfoList = new List<TexturePackSprite>();
-    Dictionary<string, TexturePackAnimate> animateDic = new Dictionary<string, TexturePackAnimate>();
-
-    //精灵资源
-    TexturePackSpriteAsset texturePackAsset;
-
-    //打包类型
-    private PackingType AtlasPacking = PackingType.TexturePack;
+    //scrollview
+    private Vector2 PrePackScrollOffset = Vector2.zero;
+    private Vector2 ScrollOffset = Vector2.zero;
 
     //Unity打包图集配置
     private UnityPackSetting Setting;
 
-    [MenuItem("Assets/TexturePack Asset Creator")]
+    [MenuItem("TexturePackTool/TexturePack Asset Creator")]
     public static void ShowArtFontAssetGenWindow()
     {
         TexturePackWindow window = EditorWindow.GetWindow<TexturePackWindow>();
@@ -44,17 +29,14 @@ public class TexturePackWindow : EditorWindow
     private void OnEnable()
     {
         genConsole = string.Empty;
-        texSource = null;
-        texSheet = null;
-        texturePackAsset = null;
         InitGUIStyle();
+        EditorUtility.ClearProgressBar();
     }
 
 
     void InitGUIStyle()
     {
         labelStyle = new GUIStyle();
-        labelStyle.fontStyle = FontStyle.Bold;
         labelStyle.fontSize = 16;
         labelStyle.richText = true;
     }
@@ -64,340 +46,277 @@ public class TexturePackWindow : EditorWindow
         GUILayout.BeginVertical();
 
         GUILayout.Space(5);
-        AtlasPacking = (PackingType)EditorGUILayout.EnumPopup("打包方式", AtlasPacking);
 
-        if (AtlasPacking == PackingType.TexturePack)
-        {
-            TexturePackGUI();
-        }
-        else
-        {
-            UnityPackGUI();
-        }
-
+        UnityPackGUI();
 
         GUILayout.EndVertical();
     }
 
 
-
-
-    private List<Texture> SelectedTextures = null;
-    Vector2 ScrollOffset = Vector2.zero;
-    private string UnityPackAssetPath = string.Empty;
 
     void UnityPackGUI()
     {
-        GUILayout.BeginVertical();
-
-        GUILayout.BeginHorizontal();
-        //新建图集
-        Setting = EditorGUILayout.ObjectField("图集信息（UnityPack Asset）", Setting, typeof(UnityPackSetting), false, new GUILayoutOption[0]) as UnityPackSetting;
-        EditorGUI.BeginDisabledGroup(Setting != null);
-        if (GUILayout.Button("New", GUILayout.Width(40f)))
+        if (TexturePackTool.DrawHeader("图集信息", true))
         {
-            string path = EditorUtility.SaveFilePanel("新建图集", Application.dataPath, "NewUnityPackAsset", "asset");
-            if (!string.IsNullOrEmpty(path))
-            {
-                string relativePath = path.Substring(path.IndexOf("Assets")).Replace('\\', '/');
-                Setting = ScriptableObject.CreateInstance<UnityPackSetting>();
-                Setting.Name = Path.GetFileNameWithoutExtension(relativePath);
-                Setting.OutputPath = Path.GetDirectoryName(relativePath);
-                Setting.OutputAbsolutelyPath = Path.GetDirectoryName(path);
 
-                AssetDatabase.CreateAsset(Setting, path);
+            GUILayout.BeginVertical("box");
+
+            GUILayout.BeginHorizontal();
+            //新建图集
+            GUILayout.Label("图集信息", GUILayout.Width(80));
+            Setting =
+                EditorGUILayout.ObjectField("", Setting, typeof(UnityPackSetting), false, new GUILayoutOption[0]) as
+                    UnityPackSetting;
+            EditorGUI.BeginDisabledGroup(Setting != null);
+            if (GUILayout.Button("新建", GUILayout.Width(60f)))
+            {
+                string path = EditorUtility.SaveFilePanel("新建图集", Application.dataPath, "NewUnityPackAsset", "asset");
+                if (!string.IsNullOrEmpty(path))
+                {
+                    string relativePath = path.Substring(path.IndexOf("Assets")).Replace('\\', '/');
+                    Setting = ScriptableObject.CreateInstance<UnityPackSetting>();
+                    Setting.Name = Path.GetFileNameWithoutExtension(relativePath);
+                    Setting.OutputPath = Path.GetDirectoryName(relativePath);
+                    Setting.OutputAbsolutelyPath = Path.GetDirectoryName(path);
+
+                    AssetDatabase.CreateAsset(Setting, path);
+                    AssetDatabase.Refresh();
+                    AssetDatabase.SaveAssets();
+                }
+            }
+
+
+            GUILayout.EndHorizontal();
+            EditorGUI.EndDisabledGroup();
+
+
+
+            if (Setting == null)
+            {
+                GUILayout.EndVertical();
+                return;
+            }
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("图集导出路径", GUILayout.Width(80));
+            Setting.OutputPath = GUILayout.TextField(Setting.OutputPath);
+
+            if (GUILayout.Button("...", GUILayout.Width(60f)))
+            {
+                string outputPath = EditorUtility.SaveFolderPanel("选择导出目录", Setting.OutputAbsolutelyPath, "");
+                if (!string.IsNullOrEmpty(outputPath))
+                {
+                    Setting.OutputAbsolutelyPath = outputPath;
+                    Setting.OutputPath = outputPath.Substring(outputPath.IndexOf("Assets")).Replace('\\', '/');
+                }
+            }
+
+            GUILayout.EndHorizontal();
+            //图集设置
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("图集间隙", GUILayout.Width(80));
+            Setting.Padding = EditorGUILayout.IntField(Setting.Padding);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("剔除透明", GUILayout.Width(80));
+            Setting.TrimAlpha = EditorGUILayout.Toggle(Setting.TrimAlpha);
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("剔除相似", GUILayout.Width(80));
+            Setting.TrimSimilar = EditorGUILayout.Toggle(Setting.TrimSimilar);
+            GUILayout.EndHorizontal();
+            GUILayout.EndVertical();
+        }
+
+        if (TexturePackTool.DrawHeader("预打包纹理", true))
+        {
+            if (Setting.PrePackTextures != null && Setting.PrePackTextures.Count > 0)
+            {
+                PrePackScrollOffset = EditorGUILayout.BeginScrollView(PrePackScrollOffset);
+
+                for (int i = 0; i < Setting.PrePackTextures.Count; i++)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    Texture2D texture = Setting.PrePackTextures[i] as Texture2D;
+
+                    EditorGUILayout.ObjectField(texture.name, texture, typeof(UnityEngine.Object), false,
+                        new GUILayoutOption[0]);
+
+                    if (Setting.PrePackTexturesMD5.Count > i)
+                        GUILayout.Label(Setting.PrePackTexturesMD5[i]);
+                    EditorGUILayout.EndHorizontal();
+
+                }
+                EditorGUILayout.EndScrollView();
+            }
+        }
+
+        if (TexturePackTool.DrawHeader("控制台", true))
+        {
+            GUILayout.BeginVertical("box");
+
+            GUILayout.BeginHorizontal();
+
+            if (GUILayout.Button("导入纹理", GUILayout.Height(30)))
+            {
+                Setting.PrePackTextures.Clear();
+                Setting.PrePackTexturesMD5.Clear();
+                string selectPath = EditorUtility.SaveFolderPanel("选择导入纹理目录", Application.dataPath, "");
+                if (!string.IsNullOrEmpty(selectPath))
+                {
+                    Setting.PrePackTextures = TexturePackTool.GetTexturesFromPath(selectPath);
+                    Setting.PrePackTextures.Sort((a, b) => string.Compare(a.name, b.name));
+                    System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                    try
+                    {
+                        for (int i = 0; i < Setting.PrePackTextures.Count; i++)
+                        {
+
+                            Texture2D texture = Setting.PrePackTextures[i] as Texture2D;
+                            bool isCancle = EditorUtility.DisplayCancelableProgressBar("导入纹理.", texture.name, (float)i / Setting.PrePackTextures.Count);
+                            if (isCancle)
+                            {
+                                EditorUtility.ClearProgressBar();
+                                break;
+                            }
+
+                            string filePath = AssetDatabase.GetAssetPath(texture);
+                            TexturePackTool.MakeTextureReadable(filePath, false);
+
+                            byte[] bytes = texture.EncodeToPNG();
+                            string texMd5 = System.BitConverter.ToString(md5.ComputeHash(bytes));
+                            Setting.PrePackTexturesMD5.Add(texMd5);
+                        }
+
+                        md5.Clear();
+                    }
+                    catch (Exception e)
+                    {
+                        EditorUtility.ClearProgressBar();
+                    }
+                    EditorUtility.ClearProgressBar();
+                }
+            }
+
+            if (GUILayout.Button("导出图集", GUILayout.Height(30)) && Setting.PrePackTextures != null)
+            {
+                if (Setting.PrePackTextures.Count <= 0)
+                {
+                    ShowNotification(new GUIContent("打包图集不能为空"));
+                    return;
+                }
+
+                Setting.PackTextures.Clear();
+                Setting.PackTexturesMD5Dic.Clear();
+                Setting.TexturePackSprite.Clear();
+                int index = 0;
+
+                for (int i = 0; i < Setting.PrePackTextures.Count; i++)
+                {
+                    Texture2D tex = Setting.PrePackTextures[i] as Texture2D;
+                    UnityPackSprite sprite = new UnityPackSprite();
+                    sprite.filename = tex.name;
+                    sprite.index = index;
+                    Setting.TexturePackSprite.Add(sprite);
+                    //如果是相同的图片建立关联
+                    if (Setting.TrimSimilar)
+                    {
+                        string md5 = Setting.PrePackTexturesMD5[i];
+                        if (Setting.PackTexturesMD5Dic.ContainsKey(md5))
+                        {
+                            sprite.index = Setting.PackTexturesMD5Dic[md5].index;
+                            continue;
+                        }
+                        else
+                        {
+                       
+                            Setting.PackTexturesMD5Dic.Add(md5, sprite);
+                        }
+                    }
+             
+                    Setting.PackTextures.Add(tex);
+                    index++;
+                }
+
+                bool newAtlas = false;
+
+                //打包图集
+                Texture2D texture = Setting.Atlas as Texture2D;
+                if (Setting.Atlas == null)
+                {
+                    newAtlas = true;
+                    texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
+                }
+
+                Rect[] rects = TexturePackTool.PackTextures(texture, Setting.PackTextures, Setting.Padding);
+
+                if (rects != null)
+                {
+                    for (int i = 0; i < Setting.TexturePackSprite.Count; i++)
+                    {
+                        UnityPackSprite sprite = Setting.TexturePackSprite[i];
+                        if (sprite.index >= rects.Length)
+                        {
+                            Debug.LogError("图集信息出错");
+                            return;
+                        }
+
+                        Rect rect = rects[sprite.index];
+                        sprite.x = Mathf.RoundToInt(rect.x * texture.width);
+                        sprite.y = Mathf.RoundToInt(rect.y * texture.width);
+                        sprite.width = Mathf.RoundToInt(rect.width * texture.width);
+                        sprite.height = Mathf.RoundToInt(rect.height * texture.width);
+                        sprite.pivot = Vector2.zero;
+                        sprite.rotated = false;
+                        sprite.spriteSourceSize.h = texture.height;
+                        sprite.spriteSourceSize.w = texture.width;
+                        sprite.spriteSourceSize.x = 0;
+                        sprite.spriteSourceSize.y = 0;
+                        Setting.TexturePackSprite[i] = sprite;
+
+                    }
+                }
+
+
+                string filePath = Setting.OutputPath + "/" + Setting.Name + ".png";
+
+                if (newAtlas)
+                {
+                    byte[] bytes = texture.EncodeToPNG();
+                    System.IO.File.WriteAllBytes(filePath, bytes);
+                    bytes = null;
+                    TexturePackTool.MakeTextureReadable(filePath, true);
+                    Setting.Atlas = AssetDatabase.LoadAssetAtPath<Texture>(filePath);
+                }
+
+                Setting.Width = (int)texture.width;
+                Setting.Height = (int)texture.height;
+
+
+                EditorUtility.SetDirty(Setting);
                 AssetDatabase.Refresh();
                 AssetDatabase.SaveAssets();
             }
-        }
+            GUILayout.EndHorizontal();
 
+            GUILayout.BeginHorizontal();
 
-        GUILayout.EndHorizontal();
-
-        EditorGUI.EndDisabledGroup();
-
-        GUILayout.EndVertical();
-
-
-        if (Setting == null)
-            return;
-
-        GUILayout.BeginVertical();
-
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("图集导出路径");
-        Setting.OutputPath = GUILayout.TextField(Setting.OutputPath); 
-        
-        if(GUILayout.Button("..."))
-        {
-            string outputPath = EditorUtility.SaveFolderPanel("选择导出目录", Setting.OutputAbsolutelyPath,"");
-            Setting.OutputAbsolutelyPath = outputPath;
-            Setting.OutputPath = outputPath.Substring(outputPath.IndexOf("Assets")).Replace('\\', '/');
-        }
-
-        GUILayout.EndHorizontal();
-
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("图集间隙");
-        Setting.Padding = EditorGUILayout.IntField(Setting.Padding);
-        GUILayout.EndHorizontal();
-
-        GUILayout.BeginHorizontal();
-        GUILayout.Label("剔除透明");
-        Setting.AtlasTrimming = EditorGUILayout.Toggle(Setting.AtlasTrimming);
-        GUILayout.EndHorizontal();
-
-
-        if (GUILayout.Button("导入选中文件夹"))
-        {
-            Setting.PrePackTextures = TexturePackTool.GetSelectedTextures();
-            Setting.PrePackTextures.Sort((a, b) => string.Compare(a.name, b.name));
-        }
-
-        ScrollOffset = EditorGUILayout.BeginScrollView(ScrollOffset);
-
-        if (Setting.PrePackTextures != null && Setting.PrePackTextures.Count > 0)
-        {
-            for (int i = 0; i < Setting.PrePackTextures.Count; i++)
+            this.genConsole = string.Concat(new object[]
             {
-                Texture texture = Setting.PrePackTextures[i];
-                EditorGUILayout.ObjectField(texture.name, texture, typeof(UnityEngine.Object), false, new GUILayoutOption[0]);
-            }
+                string.Format( "打包纹理数:{0}", Setting.PackTextures.Count),
+                "\n",
+                string.Format( "预打包纹理数:{0}", Setting.PrePackTextures.Count),
+            });
+
+            EditorGUILayout.LabelField(this.genConsole, labelStyle, GUILayout.Height(80));
+
+            EditorGUILayout.ObjectField(Setting.Name, Setting.Atlas, typeof(Texture2D), false, GUILayout.Height(80));
+            GUILayout.EndHorizontal();
+
+            GUILayout.EndVertical();
+
         }
-
-
-        EditorGUILayout.EndScrollView();
-
-        //导出图集
-        if (GUILayout.Button("导出") && Setting.PrePackTextures != null)
-        {
-            Setting.PackTextures.Clear(); ;
-            for (int i = 0; i < Setting.PrePackTextures.Count; i++)
-            {
-                Texture2D tex = Setting.PrePackTextures[i] as Texture2D;
-                string texPath = AssetDatabase.GetAssetPath(tex.GetInstanceID());
-                TexturePackTool.MakeTextureReadable(texPath, true);
-                Setting.PackTextures.Add(tex);
-            }
-            Setting.Atlas = new Texture2D(1, 1, TextureFormat.ARGB32, false);
-            PackTextures(Setting.Atlas, Setting.PackTextures);
-
-            byte[] bytes = Setting.Atlas.EncodeToPNG();
-            System.IO.File.WriteAllBytes(Setting.OutputPath + "/" + Setting.Name + ".png", bytes);
-            bytes = null;
-
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
-        }
-
-        GUILayout.EndVertical();
-
-    }
-   
-
-    bool PackTextures(Texture2D tex, List<Texture2D> textures)
-    {
-        Rect[] rects;
-
-        int maxSize = SystemInfo.maxTextureSize;
-        rects = tex.PackTextures(textures.ToArray(), Setting.Padding, maxSize);
-        
-       
-        for (int i = 0; i < rects.Length; ++i)
-        {
-            TexturePackSprite se = new TexturePackSprite();
-            se.x = Mathf.RoundToInt(rects[i].x);
-            se.y = Mathf.RoundToInt(rects[i].y);
-            se.width = Mathf.RoundToInt(rects[i].width);
-            se.height = Mathf.RoundToInt(rects[i].height);
-        }
-        return true;
-    }
-
-
-    void TexturePackGUI()
-    {
-        EditorGUI.BeginChangeCheck();
-        this.texSheet = (EditorGUILayout.ObjectField("Texture Data(Json)", this.texSheet, typeof(TextAsset), false, new GUILayoutOption[0]) as TextAsset);
-        this.texSource = (EditorGUILayout.ObjectField("Texture Atlas", this.texSource, typeof(Texture2D), false, new GUILayoutOption[0]) as Texture2D);
-        if (EditorGUI.EndChangeCheck())
-        {
-            this.genConsole = string.Empty;
-        }
-
-        if (texSheet == null || texSource == null)
-        {
-            return;
-        }
-
-        GUILayout.Space(10f);
-        if (GUILayout.Button("Create Sprite Asset", new GUILayoutOption[0]))
-        {
-            this.genConsole = string.Empty;
-            TP.TexturePackJsonData spriteDataObject = JsonUtility.FromJson<TP.TexturePackJsonData>(this.texSheet.text);
-            if (spriteDataObject != null && spriteDataObject.frames != null && spriteDataObject.frames.Count > 0)
-            {
-                int count = spriteDataObject.frames.Count;
-                this.genConsole = "<b>Import Results</b>\n-----------------------------\n";
-                string str = this.genConsole;
-                this.genConsole = string.Concat(new object[]
-                {
-                            str,
-                            "<color=#C0ffff><b>",
-                            count,
-                            "</b></color> Sprites were imported from file."
-                });
-            }
-            animateDic = new Dictionary<string, TexturePackAnimate>();
-            fontSpriteInfoList = CreateSpriteInfoList(spriteDataObject);
-        }
-
-        GUILayout.Space(5f);
-        GUI.enabled = (this.fontSpriteInfoList != null);
-        if (GUILayout.Button("Save Sprite Asset", new GUILayoutOption[0]))
-        {
-            string text = string.Empty;
-            text = EditorUtility.SaveFilePanel("Save Sprite Asset File", new FileInfo(AssetDatabase.GetAssetPath(this.texSheet)).DirectoryName, this.texSheet.name, "asset");
-            if (text.Length == 0)
-            {
-                return;
-            }
-            this.SaveSpriteAsset(text);
-        }
-
-        GUILayout.Space(5f);
-        GUILayout.BeginVertical("box", new GUILayoutOption[]
-        {
-            GUILayout.Height(60f)
-        });
-
-        EditorGUILayout.LabelField(this.genConsole, labelStyle, new GUILayoutOption[0]);
-        GUILayout.EndVertical();
-
-        GUILayout.Space(5f);
-    }
-
-    private List<TexturePackSprite> CreateSpriteInfoList(TP.TexturePackJsonData spriteDataObject)
-    {
-        List<TP.SpriteData> frames = spriteDataObject.frames;
-        List<TexturePackSprite> list = new List<TexturePackSprite>();
-        for (int i = 0; i < frames.Count; i++)
-        {
-            TexturePackSprite spriteData = new TexturePackSprite();
-            spriteData.id = i;
-            spriteData.name = Path.GetFileNameWithoutExtension(frames[i].filename);
-            spriteData.hashCode = spriteData.name.GetHashCode();
-            int num = spriteData.name.IndexOf('-');
-
-            // int ascii;
-
-            int pos = spriteData.name.LastIndexOf("_");
-
-            if (pos == -1)
-                Debug.LogError("图集命名不合法，不存在 '_'");
-
-            string key = spriteData.name.Substring(0, pos);
-            if (!animateDic.ContainsKey(key))
-            {
-                TexturePackAnimate texturePackAnimate = new TexturePackAnimate();
-                animateDic.Add(key, texturePackAnimate);
-            }
-
-            //fontData.key = key;
-            spriteData.animatGroup = key;
-            spriteData.x = frames[i].frame.x;
-            spriteData.y = (float)this.texSource.height - (frames[i].frame.y + frames[i].frame.h);
-            spriteData.width = frames[i].frame.w;
-            spriteData.height = frames[i].frame.h;
-            spriteData.pivot = frames[i].pivot;
-            spriteData.rotated = frames[i].rotated;
-            spriteData.xAdvance = spriteData.width;
-            spriteData.scale = 1f;
-            spriteData.xOffset = 0f - spriteData.width * spriteData.pivot.x;
-            spriteData.yOffset = spriteData.height - spriteData.height * spriteData.pivot.y;
-            Rect texCoords;
-
-     
-            texCoords = new Rect(frames[i].frame.x / (float)texSource.width, frames[i].frame.y / (float)texSource.height, frames[i].frame.w / (float)texSource.width, frames[i].frame.h / (float)texSource.height);
-      
-            Sprite sprite = Sprite.Create((Texture2D)texSource, texCoords, frames[i].pivot);
-            spriteData.sprite = sprite;
-
-            list.Add(spriteData);
-
-            animateDic[key].animateName = key;
-            animateDic[key].frameCount++;
-            animateDic[key].spriteList.Add(spriteData);
-        }
-        return list;
-    }
-
-    private void SaveSpriteAsset(string filePath)
-    {
-        filePath = filePath.Substring(0, filePath.Length - 6);
-        string dataPath = Application.dataPath;
-        if (filePath.IndexOf(dataPath, StringComparison.InvariantCultureIgnoreCase) == -1)
-        {
-            Debug.LogError("You're saving the font asset in a directory outside of this project folder. This is not supported. Please select a directory under \"" + dataPath + "\"");
-            return;
-        }
-        string path = filePath.Substring(dataPath.Length - 6);
-        string directoryName = Path.GetDirectoryName(path);
-        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(path);
-        string str = directoryName + "/" + fileNameWithoutExtension;
-
-        if (!File.Exists(filePath + ".asset"))
-        {
-            this.texturePackAsset = ScriptableObject.CreateInstance<TexturePackSpriteAsset>();
-            AssetDatabase.CreateAsset(this.texturePackAsset, str + ".asset");
-        }
-        else
-        {
-            this.texturePackAsset = AssetDatabase.LoadAssetAtPath<TexturePackSpriteAsset>(str + ".asset");
-            if (this.texturePackAsset == null)
-            {
-                this.texturePackAsset = ScriptableObject.CreateInstance<TexturePackSpriteAsset>();
-                AssetDatabase.CreateAsset(this.texturePackAsset, str + ".asset");
-            }
-        }
-
-        this.texturePackAsset.hashCode = this.texturePackAsset.name.GetHashCode();
-        this.texturePackAsset.spriteSheet = this.texSource;
-        this.texturePackAsset.spriteInfoList = this.fontSpriteInfoList;
-        if (this.animateDic != null && this.animateDic.Count > 0)
-        {
-            foreach(var keyValue in animateDic)
-            {
-                this.texturePackAsset.animateList.Add(keyValue.Value);
-            }
-        }
-
-        AddDefaultMaterial(this.texturePackAsset);
-
-        EditorUtility.SetDirty(this.texturePackAsset);
-        AssetDatabase.Refresh();
-        AssetDatabase.SaveAssets();
-        if (Application.isPlaying)
-            UnityEditor.SceneManagement.EditorSceneManager.MarkAllScenesDirty();
-
-        this.animateDic = null;
-        this.fontSpriteInfoList = null;
-    }
-
-    private static void AddDefaultMaterial(TexturePackSpriteAsset spriteAsset)
-    {
-        Shader shader = Shader.Find("UI/Default");
-        Material material = new Material(shader);
-
-        material.SetTexture("_MainTex", spriteAsset.spriteSheet);
-        spriteAsset.material = material;
-        material.hideFlags = HideFlags.HideInHierarchy;
-        AssetDatabase.AddObjectToAsset(material, spriteAsset);
-    }
-
-    private void SetEditorWindowSize()
-    {
-        Vector2 minSize = this.minSize;
-        this.minSize = new Vector2(Mathf.Max(230f, minSize.x), Mathf.Max(300f, minSize.y));
     }
 }
