@@ -167,7 +167,9 @@ public class TextTypewriter : BaseMeshEffect
 
             Speed = Mathf.Max(0, Speed);
 
-            for (int index = OperatingVertices.Count; index < CurIndex; index++)
+            OperatingVertices.Clear();//防止播放中出现字体uv更新花屏
+
+            for (int index = 0; index < CurIndex; index++)
             {
                 OperatingVertices.Add(FitterVertices[index]);
             }

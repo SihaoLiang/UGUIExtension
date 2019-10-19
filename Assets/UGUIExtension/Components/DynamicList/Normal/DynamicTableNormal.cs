@@ -630,7 +630,7 @@ public class DynamicTableNormal : UIBehaviour
         if (TotalCount == 0)
             return;
 
-        Vector3 vec3 = CalulateStartPosByIndex(Mathf.Clamp(index, START_INDEX, TotalCount));
+        Vector3 vec3 = CalculateStartPosByIndex(Mathf.Clamp(index, START_INDEX, TotalCount));
         ContentOffset = new Vector2(vec3.x, vec3.y);
         StartIndex = (int)vec3.z;
     }
@@ -1033,7 +1033,7 @@ public class DynamicTableNormal : UIBehaviour
     /// </summary>
     /// <param name="index"></param>
     /// <returns></returns>
-    public virtual Vector3 CalulateStartPosByIndex(int index)
+    public virtual Vector3 CalculateStartPosByIndex(int index)
     {
         float startIndex = 1;
 
@@ -1071,17 +1071,13 @@ public class DynamicTableNormal : UIBehaviour
         {
             posOffest.y = 0;
             //如果是倒序，需要添加视觉大小的偏移，前半部分算出是超出屏幕的部分 cellSize.x + spacing.x) + startOffset.x 
-            inerNum = ViewSize.x / (GridSize.x + Spacing.x) * GridCountPerMainAxis;
-            if (TotalCount < inerNum)
-                index = 1;
-            else
-                index = Mathf.Min(index, Mathf.CeilToInt(TotalCount - inerNum) + 1);
-
+          
+            float leftSpace = positionX * (GridSize.x + Spacing.x) / (ScrRect.content.rect.size.x - ViewSize.x);
 
             if (cornerX == 1)
-                posOffest.x = 1.0f - (float)(index - 1) / ((float)TotalCount - inerNum);
+                posOffest.x = 1.0f - leftSpace;
             else
-                posOffest.x = (float)(index - 1) / ((float)TotalCount - inerNum);
+                posOffest.x = leftSpace;
 
             //如果没有超出
             startIndex = positionX * ActualRow + 1;
@@ -1097,18 +1093,15 @@ public class DynamicTableNormal : UIBehaviour
         else if (Direction == LayoutRule.Direction.Vertical)
         {
             posOffest.x = 0;
-            inerNum = ViewSize.y / (GridSize.y + Spacing.y) * GridCountPerMainAxis;
 
-            if (TotalCount < inerNum)
-                index = 1;
-            else
-                index = Mathf.Min(index, Mathf.CeilToInt(TotalCount - inerNum) + 1);
+            float leftSpace = positionY * (GridSize.y + Spacing.y) / (ScrRect.content.rect.size.y - ViewSize.y);
 
             //如果是倒序，需要添加视觉大小的偏移，前半部分算出是超出屏幕的部分 cellSize.x + spacing.x) + startOffset.x 
             if (cornerY == 1)
-                posOffest.y = (float)(index - 1) / ((float)TotalCount - inerNum);
+                posOffest.y = leftSpace;
             else
-                posOffest.y = 1.0f - (float)(index - 1) / ((float)TotalCount - inerNum);
+                posOffest.y = 1.0f - leftSpace;
+
             //如果没有超出
             startIndex = positionY * ActualColumn + 1;
             /*对齐起始点*/

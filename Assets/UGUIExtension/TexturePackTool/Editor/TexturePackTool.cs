@@ -21,7 +21,8 @@ public class TexturePackTool
         TextureImporterSettings settings = new TextureImporterSettings();
         ti.ReadTextureSettings(settings);
 
-        if (force || !settings.readable || settings.npotScale != TextureImporterNPOTScale.None || ti.textureCompression != TextureImporterCompression.Uncompressed)
+        if (force || !settings.readable || settings.npotScale != TextureImporterNPOTScale.None ||
+            ti.textureCompression != TextureImporterCompression.Uncompressed)
         {
             settings.readable = true;
             ti.textureCompression = TextureImporterCompression.Uncompressed;
@@ -31,17 +32,107 @@ public class TexturePackTool
             settings.npotScale = TextureImporterNPOTScale.None;
             settings.mipmapEnabled = false;
             ti.SetTextureSettings(settings);
-           
+
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
         }
+
         return true;
     }
 
 
-    public static Rect[] PackTextures(Texture2D tex, List<Texture2D> textures,int padding,int maxSize = 4096)
+    public static Rect[] PackTextures(Texture2D tex, List<Texture2D> textures, int padding, int maxSize = 4096)
     {
-        Rect[] rects = tex.PackTextures(textures.ToArray(), padding, maxSize);
+        //Rect[] rects = tex.PackTextures(textures.ToArray(), padding, maxSize);
+        Rect[] rects = UITexturePacker.PackTextures(tex, textures.ToArray(), 4, 4, padding, maxSize);
         return rects;
+    }
+
+    /// <summary>
+    /// 剔除像素
+    /// </summary>
+
+    static public List<Texture2D> TexturesTrimAlpha(List<Texture2D> textures)
+    {
+        List<Texture2D> list = new List<Texture2D>();
+
+        foreach (Texture2D tex in textures)
+        {
+            Texture2D oldTex = tex;
+
+            // If we want to trim transparent pixels, there is more work to be done
+            Color32[] pixels = oldTex.GetPixels32();
+
+            int xmin = oldTex.width;
+            int xmax = 0;
+            int ymin = oldTex.height;
+            int ymax = 0;
+            int oldWidth = oldTex.width;
+            int oldHeight = oldTex.height;
+
+            // Find solid pixels
+
+            for (int y = 0, yw = oldHeight; y < yw; ++y)
+            {
+                for (int x = 0, xw = oldWidth; x < xw; ++x)
+                {
+                    Color32 c = pixels[y * xw + x];
+
+                    if (c.a != 0)
+                    {
+                        if (y < ymin) ymin = y;
+                        if (y > ymax) ymax = y;
+                        if (x < xmin) xmin = x;
+                        if (x > xmax) xmax = x;
+                    }
+                }
+            }
+
+            int newWidth = (xmax - xmin) + 1;
+            int newHeight = (ymax - ymin) + 1;
+
+            if (newWidth > 0 && newHeight > 0)
+            {
+                Texture2D sprite;
+
+                // If the dimensions match, then nothing was actually trimmed
+                if (newWidth == oldWidth && newHeight == oldHeight)
+                {
+                    sprite = oldTex;
+                }
+                else
+                {
+                    // Copy the non-trimmed texture data into a temporary buffer
+                    Color32[] newPixels = new Color32[newWidth * newHeight];
+
+                    for (int y = 0; y < newHeight; ++y)
+                    {
+                        for (int x = 0; x < newWidth; ++x)
+                        {
+                            int newIndex = y * newWidth + x;
+                            int oldIndex = (ymin + y) * oldWidth + (xmin + x);
+                            //if (NGUISettings.atlasPMA)
+                            //    newPixels[newIndex] = NGUITools.ApplyPMA(pixels[oldIndex]);
+                            //else
+                            newPixels[newIndex] = pixels[oldIndex];
+                        }
+                    }
+
+                    // Create a new texture
+                    sprite = new Texture2D(newWidth, newHeight);
+                    sprite.name = oldTex.name;
+
+                    sprite.SetPixels32(newPixels);
+                    sprite.Apply();
+
+                    // Remember the padding offset
+                    //sprite.SetPadding(xmin, ymin, oldWidth - newWidth - xmin, oldHeight - newHeight - ymin);
+                }
+
+                list.Add(sprite);
+            }
+        }
+
+        return list;
     }
 
 
@@ -57,9 +148,9 @@ public class TexturePackTool
         if (Directory.Exists(path))
         {
             DirectoryInfo direction = new DirectoryInfo(path);
-            
+
             FileInfo[] files = direction.GetFiles("*.png", SearchOption.AllDirectories);
-           
+
             for (int i = 0; i < files.Length; i++)
             {
                 string filePath = files[i].FullName;
@@ -100,10 +191,11 @@ public class TexturePackTool
                 continue;
             }
         }
+
         return textures;
     }
 
-    
+
     public static bool DrawHeader(string text, bool detailed)
     {
         return DrawHeader(text, text, detailed, !detailed);
@@ -121,8 +213,8 @@ public class TexturePackTool
 
         if (minimalistic)
         {
-            if (state) text = "\u25BC" + (char)0x200a + text;
-            else text = "\u25BA" + (char)0x200a + text;
+            if (state) text = "\u25BC" + (char) 0x200a + text;
+            else text = "\u25BA" + (char) 0x200a + text;
 
             GUILayout.BeginHorizontal();
             GUI.contentColor = EditorGUIUtility.isProSkin ? new Color(1f, 1f, 1f, 0.7f) : new Color(0f, 0f, 0f, 0.7f);
@@ -146,4 +238,8 @@ public class TexturePackTool
         if (!forceOn && !state) GUILayout.Space(3f);
         return state;
     }
+    
+    
 }
+
+

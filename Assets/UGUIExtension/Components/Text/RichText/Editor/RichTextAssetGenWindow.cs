@@ -30,7 +30,7 @@ public class RichTextAssetGenWindow : EditorWindow
     //打包类型
     private PackingType AtlasPacking = PackingType.TexturePack;
 
-
+    
     private UnityPackSetting SettingAsset;
 
     //输出信息
@@ -42,7 +42,7 @@ public class RichTextAssetGenWindow : EditorWindow
     public static void ShowArtFontAssetGenWindow()
     {
         RichTextAssetGenWindow window = EditorWindow.GetWindow<RichTextAssetGenWindow>();
-        window.titleContent = new GUIContent("RichTextAsset Creator");
+        window.titleContent = new GUIContent("富文本图集");
         window.Focus();
     }
 
@@ -134,6 +134,7 @@ public class RichTextAssetGenWindow : EditorWindow
     private List<TexturePackSprite> CreateSpriteFromUnityPackSetting(UnityPackSetting setting)
     {
         List<TexturePackSprite> list = new List<TexturePackSprite>();
+        RichTextAnimateDic.Clear();
         for (int i = 0; i < setting.TexturePackSprite.Count; i++)
         {
             UnityPackSprite frame = setting.TexturePackSprite[i];
@@ -142,25 +143,26 @@ public class RichTextAssetGenWindow : EditorWindow
             spriteData.id = i;
             spriteData.name = frame.filename;
             spriteData.hashCode = spriteData.name.GetHashCode();
-            int num = spriteData.name.IndexOf('-');
 
-            // int ascii;
             int pos = spriteData.name.LastIndexOf("_");
 
             if (pos == -1)
                 Debug.LogError("图集命名不合法，不存在 '_'");
 
             string key = spriteData.name.Substring(0, pos);
+            string aniIndex = spriteData.name.Substring(pos + 1, spriteData.name.Length - pos - 1);
+
             if (!RichTextAnimateDic.ContainsKey(key))
             {
                 RichTextAnimate richTextAnimate = new RichTextAnimate();
                 RichTextAnimateDic.Add(key, richTextAnimate);
             }
 
-            //fontData.key = key;
             spriteData.animatGroup = key;
+            spriteData.animatIndex = int.Parse(aniIndex);
+
             spriteData.x = frame.x;
-            spriteData.y = (float)this.TextureSource.height - (frame.y + frame.height);
+            spriteData.y = frame.y;
             spriteData.width = frame.width;
             spriteData.height = frame.height;
             spriteData.pivot = frame.pivot;
@@ -260,9 +262,6 @@ public class RichTextAssetGenWindow : EditorWindow
             spriteData.id = i;
             spriteData.name = Path.GetFileNameWithoutExtension(frames[i].filename);
             spriteData.hashCode = spriteData.name.GetHashCode();
-            int num = spriteData.name.IndexOf('-');
-
-            // int ascii;
 
             int pos = spriteData.name.LastIndexOf("_");
 
@@ -270,14 +269,18 @@ public class RichTextAssetGenWindow : EditorWindow
                 Debug.LogError("图集命名不合法，不存在 '_'");
 
             string key = spriteData.name.Substring(0, pos);
+            string aniIndex = spriteData.name.Substring(pos+1, spriteData.name.Length);
+
             if (!RichTextAnimateDic.ContainsKey(key))
             {
                 RichTextAnimate richTextAnimate = new RichTextAnimate();
                 RichTextAnimateDic.Add(key, richTextAnimate);
             }
 
-            //fontData.key = key;
+            //动画
             spriteData.animatGroup = key;
+            spriteData.animatIndex = int.Parse(aniIndex);
+
             spriteData.x = frames[i].frame.x;
             spriteData.y = (float)this.TextureSource.height - (frames[i].frame.y + frames[i].frame.h);
             spriteData.width = frames[i].frame.w;
@@ -337,10 +340,16 @@ public class RichTextAssetGenWindow : EditorWindow
         this.RichTextAsset.hashCode = this.RichTextAsset.name.GetHashCode();
         this.RichTextAsset.spriteSheet = this.TextureSource;
         this.RichTextAsset.spriteInfoList = this.RichTextSpriteInfoList;
+        this.RichTextAsset.animateList.Clear();
         if (this.RichTextAnimateDic != null && this.RichTextAnimateDic.Count > 0)
         {
             foreach (var keyValue in RichTextAnimateDic)
             {
+                keyValue.Value.m_SpriteList.Sort((a, b) =>
+                {
+                    if (a.animatIndex == b.animatIndex) return 0;
+                    return a.animatIndex > b.animatIndex ? 1 : -1;
+                });
                 this.RichTextAsset.animateList.Add(keyValue.Value);
             }
         }

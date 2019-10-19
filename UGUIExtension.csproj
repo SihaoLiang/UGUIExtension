@@ -236,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\UGUIExtension\Components\Animate\SpriteAnimation.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\Animate\UguiFrameAnimation.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Common\DynamicGrid.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Common\DynamicGridClickHelper.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Common\Empty4Raycast.cs" />

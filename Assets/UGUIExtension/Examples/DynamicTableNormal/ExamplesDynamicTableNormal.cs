@@ -33,12 +33,12 @@ public class ExamplesDynamicTableNormal : MonoBehaviour
     void OnBtnHorizontalClick()
     {
         HorizontalDynamicTableNormal.SetTotalCount(100);
-        HorizontalDynamicTableNormal.ReloadDataAsync(-1);
+        HorizontalDynamicTableNormal.ReloadDataAsync();
     }
 
     void OnBtnVerticalClick()
     {
         VerticalDynamicTableNormal.SetTotalCount(100);
-        VerticalDynamicTableNormal.ReloadDataAsync(-1);
+        VerticalDynamicTableNormal.ReloadDataAsync();
     }
 }

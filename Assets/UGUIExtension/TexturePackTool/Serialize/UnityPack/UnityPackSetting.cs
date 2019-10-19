@@ -16,20 +16,8 @@ public class UnityPackSetting : ScriptableObject
     public string OutputPath;
 
     //大图集
-    [SerializeField]
     public Texture Atlas;
 
-    //打包的图片
-    [NonSerialized]
-    public List<Texture2D> PackTextures = new List<Texture2D>();
-
-    //预打包的图片
-    [NonSerialized]
-    public List<Texture> PrePackTextures = new List<Texture>();
-
-    //预打包的图片
-    [NonSerialized]
-    public List<string> PrePackTexturesMD5 = new List<string>();
     //图集信息
     public List<UnityPackSprite> TexturePackSprite = new List<UnityPackSprite>();
 
@@ -37,7 +25,7 @@ public class UnityPackSetting : ScriptableObject
     public int Padding = 0;
 
     //剔除透明
-    public bool TrimAlpha;
+    public bool TrimAlpha = false;
 
     //剔除相似
     public bool TrimSimilar = true;
@@ -49,9 +37,5 @@ public class UnityPackSetting : ScriptableObject
     public int Height;
 
     //最大尺寸
-    public int MaxSize;
-
-    //用于剔除相似
-    [NonSerialized]
-    public Dictionary<string,UnityPackSprite> PackTexturesMD5Dic = new Dictionary<string, UnityPackSprite>();
+    public int MaxSize = 4096;
 }

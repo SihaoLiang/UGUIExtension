@@ -10,6 +10,7 @@ public class TexturePackSprite : TexturePackElement
     public Sprite sprite;
     public string key;
     public string animatGroup;
+    public int animatIndex;
     public Vector2 offest;
     public string MD5;
 }

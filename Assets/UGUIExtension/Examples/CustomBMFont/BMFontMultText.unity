@@ -399,7 +399,7 @@ MonoBehaviour:
   - m_Text: 123323456789
     m_CurrentGroup: Atlas_Num_ZhiLiao
   m_FontAsset: {fileID: 11400000, guid: c8a31638810b3e84a9849bb04a360085, type: 2}
-  m_Gap: 0.1
+  m_Gap: 3.97
   m_FontGroups:
   - Atlas_BaoJi
   - Atlas_GeDang

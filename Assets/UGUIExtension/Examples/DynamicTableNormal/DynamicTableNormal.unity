@@ -163,8 +163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Index: -1
-  LuaTable: CSProxy
-  CS: CSProxy
   m_Text: {fileID: 1329014015}
 --- !u!114 &59950173
 MonoBehaviour:
@@ -385,8 +383,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1812378127}
   m_HandleRect: {fileID: 1812378126}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.93265694
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -501,8 +499,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1110257291}
   m_HandleRect: {fileID: 1110257290}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 0.6940312
+  m_Value: 0.99999964
+  m_Size: 0.7725
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -671,7 +669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -366.14194, y: 454.5}
+  m_AnchoredPosition: {x: -365.79498, y: 454.5}
   m_SizeDelta: {x: 596, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &581900742
@@ -858,7 +856,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1012325195}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.8984223
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -965,15 +963,15 @@ MonoBehaviour:
   GridLoadRule: 0
   StartCorner: 0
   StartAxis: 0
-  Constraint: 0
-  ConstraintCount: 0
+  Constraint: 1
+  ConstraintCount: 3
   Padding:
     m_Left: 5
     m_Right: 5
     m_Top: 5
     m_Bottom: 5
   ChildAlignment: 4
-  Spacing: {x: 5, y: 5}
+  Spacing: {x: 5, y: 10}
 --- !u!114 &818914004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1736,7 +1734,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -586.6644, y: 180.58025}
+  m_AnchoredPosition: {x: -587.55, y: 180.4}
   m_SizeDelta: {x: 596, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1340279062
