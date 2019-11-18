@@ -302,9 +302,10 @@
     <Compile Include="Assets\UGUIExtension\Components\Text\RichText\Editor\Inspector\RichTextEditor.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Text\RichText\Editor\RichTextAssetGenWindow.cs" />
     <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\Inspector\TextExSpriteAssetAssetEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\Inspector\UnityPackSettingInspertorEditor.cs" />
+    <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\NewUITexturePacker.cs" />
     <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\TexturePackTool.cs" />
     <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\TexturePackWindow.cs" />
-    <Compile Include="Assets\UGUIExtension\TexturePackTool\Editor\UITexturePacker.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

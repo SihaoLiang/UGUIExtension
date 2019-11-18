@@ -184,10 +184,10 @@ public class TexturePackWindow : EditorWindow
             if (Setting.Atlas == null)
             {
                 newAtlas = true;
-                texture = new Texture2D(1, 1, TextureFormat.ARGB32, false);
+                texture = new Texture2D(4, 4, TextureFormat.ARGB32, false);
             }
 
-            Rect[] rects = TexturePackTool.PackTextures(texture, textures, Setting.Padding, Setting.MaxSize);
+            Rect[] rects = TexturePackTool.PackTextures(texture, textures, Setting.Padding, Setting.MaxSize,Setting.ForeSquare);
 
             int totalSize = 0;
 
@@ -229,19 +229,25 @@ public class TexturePackWindow : EditorWindow
 
             byte[] bytes = texture.EncodeToPNG();
             System.IO.File.WriteAllBytes(filePath, bytes);
+            AssetDatabase.Refresh();
+
             bytes = null;
             TexturePackTool.MakeTextureReadable(filePath, true);
-            Setting.Atlas = AssetDatabase.LoadAssetAtPath<Texture>(filePath);
 
 
-            Setting.Width = (int)texture.width;
-            Setting.Height = (int)texture.height;
+            EditorApplication.delayCall = (EditorApplication.CallbackFunction)Delegate.Combine(EditorApplication.delayCall, new EditorApplication.CallbackFunction(delegate ()
+            {
+                Setting.Atlas = AssetDatabase.LoadAssetAtPath<Texture>(filePath);
 
+                Setting.Width = (int)texture.width;
+                Setting.Height = (int)texture.height;
 
-            EditorUtility.SetDirty(Setting);
-            AssetDatabase.Refresh();
-            AssetDatabase.SaveAssets();
+                EditorUtility.SetDirty(Setting);
+                AssetDatabase.Refresh();
+                AssetDatabase.SaveAssets();
 
+            }));
+         
             if (totalSize > texture.width * texture.height)
                 genConsole = "导出图集成功，图集最大尺寸不足,图集已压缩";
             else
@@ -314,6 +320,12 @@ public class TexturePackWindow : EditorWindow
             Setting.TrimSimilar = EditorGUILayout.Toggle(Setting.TrimSimilar);
             GUILayout.EndHorizontal();
 
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("强制正方形", GUILayout.Width(80));
+            Setting.ForeSquare = EditorGUILayout.Toggle(Setting.ForeSquare);
+            GUILayout.EndHorizontal();
+
             GUILayout.BeginHorizontal();
             GUILayout.Label("最大尺寸", GUILayout.Width(80));
             Setting.MaxSize = EditorGUILayout.IntField(Setting.MaxSize);
@@ -369,6 +381,11 @@ public class TexturePackWindow : EditorWindow
             ImportTextures();
             //导出图集
             PackingTextures();
+
+            if (GUILayout.Button("生成精灵"))
+            {
+                TexturePackTool.SetupSpriteMetaData(Setting);
+            }
 
             GUILayout.BeginHorizontal("box");
 

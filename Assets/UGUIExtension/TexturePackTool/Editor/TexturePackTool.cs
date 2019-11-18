@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Serialize;
@@ -40,10 +41,11 @@ public class TexturePackTool
     }
 
 
-    public static Rect[] PackTextures(Texture2D tex, List<Texture2D> textures, int padding, int maxSize = 4096)
+    public static Rect[] PackTextures(Texture2D tex, List<Texture2D> textures, int padding, int maxSize = 4096, bool foreSquare = true)
     {
         //Rect[] rects = tex.PackTextures(textures.ToArray(), padding, maxSize);
-        Rect[] rects = UITexturePacker.PackTextures(tex, textures.ToArray(), 4, 4, padding, maxSize);
+        Rect[] rects = NewUITexturePacker.PackTextures(tex, textures.ToArray(), 4, 4, 1, maxSize, foreSquare);
+        //Rect[] rects = UITexturePacker.PackTextures(tex, textures.ToArray(), 4, 4, padding, maxSize);
         return rects;
     }
 
@@ -213,8 +215,8 @@ public class TexturePackTool
 
         if (minimalistic)
         {
-            if (state) text = "\u25BC" + (char) 0x200a + text;
-            else text = "\u25BA" + (char) 0x200a + text;
+            if (state) text = "\u25BC" + (char)0x200a + text;
+            else text = "\u25BA" + (char)0x200a + text;
 
             GUILayout.BeginHorizontal();
             GUI.contentColor = EditorGUIUtility.isProSkin ? new Color(1f, 1f, 1f, 0.7f) : new Color(0f, 0f, 0f, 0.7f);
@@ -238,8 +240,151 @@ public class TexturePackTool
         if (!forceOn && !state) GUILayout.Space(3f);
         return state;
     }
+
+    /// <summary>
+    /// 生成精灵
+    /// </summary>
+    /// <param name="sheetInfo"></param>
+    public static void SetupSpriteMetaData(UnityPackSetting sheetInfo)
+    {
+        if (sheetInfo == null || sheetInfo.Atlas == null)
+            return;
+
+        TextureImporter importer = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(sheetInfo.Atlas)) as TextureImporter;
+
+        if (importer.textureType != TextureImporterType.Sprite)
+        {
+            importer.textureType = TextureImporterType.Sprite;
+            importer.SaveAndReimport();
+        }
+
+        if (importer.spriteImportMode != SpriteImportMode.Multiple)
+        {
+            importer.spriteImportMode = SpriteImportMode.Multiple;
+            importer.SaveAndReimport();
+        }
+
+        SpriteMetaData[] metadata = sheetInfo.GetSpriteMetaData();
+        CopyOldAttributes(importer.spritesheet, metadata, true, true);
+
+        if (!AreEqual(importer.spritesheet, metadata))
+        {
+            importer.spritesheet = metadata;
+            EditorUtility.SetDirty(importer);
+            EditorUtility.SetDirty(sheetInfo.Atlas);
+            AssetDatabase.WriteImportSettingsIfDirty(importer.assetPath);
+
+            EditorApplication.delayCall = (EditorApplication.CallbackFunction)Delegate.Combine(EditorApplication.delayCall, new EditorApplication.CallbackFunction(delegate ()
+            {
+                AssetDatabase.Refresh();
+                AssetDatabase.SaveAssets();
+            }));
+        }
+        else
+        {
+            Debug.Log("Meta data hasn't changed");
+        }
+    }
+
+    /// <summary>
+    /// 对比
+    /// </summary>
+    /// <param name="meta1"></param>
+    /// <param name="meta2"></param>
+    /// <returns></returns>
+    public static bool AreEqual(SpriteMetaData[] meta1, SpriteMetaData[] meta2)
+    {
+        bool flag = meta1.Length == meta2.Length;
+        int num = 0;
+        while (flag && num < meta1.Length)
+        {
+            flag = (flag && meta1[num].name.Equals(meta2[num].name));
+            flag = (flag && meta1[num].rect.Equals(meta2[num].rect));
+            flag = (flag && meta1[num].border.Equals(meta2[num].border));
+            flag = (flag && meta1[num].pivot.Equals(meta2[num].pivot));
+            flag = (flag && meta1[num].alignment == meta2[num].alignment);
+            num++;
+        }
+        return flag;
+    }
+
+    /// <summary>
+    /// 复制在编辑器上的修改
+    /// </summary>
+    /// <param name="oldMeta"></param>
+    /// <param name="newMeta"></param>
+    /// <param name="copyPivotPoints"></param>
+    /// <param name="copyBorders"></param>
+    public static void CopyOldAttributes(SpriteMetaData[] oldMeta, SpriteMetaData[] newMeta, bool copyPivotPoints, bool copyBorders)
+    {
+        for (int i = 0; i < newMeta.Length; i++)
+        {
+            foreach (SpriteMetaData spriteMetaData in oldMeta)
+            {
+                if (spriteMetaData.name == newMeta[i].name)
+                {
+                    if (copyPivotPoints)
+                    {
+                        newMeta[i].pivot = spriteMetaData.pivot;
+                        newMeta[i].alignment = spriteMetaData.alignment;
+                    }
+                    if (copyBorders)
+                    {
+                        newMeta[i].border = spriteMetaData.border;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="offset"></param>
+    /// <param name="totalNum"></param>
+    /// <param name="size"></param>
+    /// <param name="showCount"></param>
+    /// <param name="space"></param>
+    /// <param name="IndexDelegate"></param>
+    /// <param name="options"></param>
+    /// <returns></returns>
+    public static Vector2 BeginScrollViewEx(Vector2 offset, int totalNum,int size,int showCount,int space,Action<int> IndexDelegate, params GUILayoutOption[] options)
+    {
+
+        if (totalNum < showCount)
+        {
+            int temp = showCount;
+            showCount = totalNum;
+           // totalNum = temp;
+        }
+
+        float totalSize = (totalNum) * (size + space);
+        float viewSpace = (showCount * (space + size));
+        float dir = offset.x - 0 < 0.0001f ? offset.y : offset.x;
+        int startIndex = Mathf.FloorToInt(dir / (size + space)) - 1;// Mathf.FloorToInt((totalNum - showCount) * dir / totalSize);
+        startIndex = Mathf.Clamp(startIndex, 0, totalNum - showCount);
+        offset = EditorGUILayout.BeginScrollView(offset, options);
+
+        float upSpace = (startIndex - 1) * (space + size);
+        upSpace = Mathf.Clamp(upSpace, 0, totalSize);
+        float downSpace = totalSize - upSpace - (showCount * (space + size)); //(totalNum - (startIndex + showCount)) * (space + size) - space;
+
+        GUILayout.Space(upSpace);
+        for (int i = 0; i < showCount; i++)
+        {
+            if (IndexDelegate != null)
+            {
+                IndexDelegate(i + startIndex);
+            }
+        }
     
-    
+        GUILayout.Space(downSpace);
+        EditorGUILayout.EndScrollView();
+
+        return offset;
+    }
+
 }
 
 

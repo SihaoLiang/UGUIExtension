@@ -108,7 +108,7 @@ namespace TextExtend
                 if (sprite1 == null)
                     sprite1 = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(512,512),100,0,SpriteMeshType.FullRect);
                 
-                EditorGUILayout.ObjectField("", sprite1.texture, typeof(Texture2D), false);
+                EditorGUILayout.ObjectField("", sprite1, typeof(Sprite), false);
                 EditorGUILayout.ObjectField("", texture2D, typeof(Texture2D), false);
 
 

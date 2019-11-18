@@ -31,6 +31,16 @@ public class AutoLayoutGroup : AutoLayout
     protected float totalWidth, totalHeight;
 
     /// <summary>
+    /// 子节点控制大小
+    /// </summary>
+    public bool ChildControlWidth = true;
+
+    /// <summary>
+    /// 子节点控制大小
+    /// </summary>
+    public bool ChildControlHeight = true;
+
+    /// <summary>
     /// 最小
     /// </summary>
     [SerializeField]
@@ -40,7 +50,6 @@ public class AutoLayoutGroup : AutoLayout
         set { SetProperty(ref m_MinSize, value); }
         get { return m_MinSize; }
     }
-
 
     /// <summary>
     /// 计算来自于停靠，对齐的坐标偏移
@@ -128,8 +137,12 @@ public class AutoLayoutGroup : AutoLayout
         }
 
         vec2 = Vector2.Max(minSize, vec2);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, vec2.x);
-        rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, vec2.y);
+
+        if(ChildControlWidth)
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, vec2.x);
+
+        if(ChildControlHeight)
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, vec2.y);
     }
 
     /// <summary>

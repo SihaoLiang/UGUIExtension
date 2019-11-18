@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Networking;
 
 [System.Serializable]
 public class UnityPackSetting : ScriptableObject
@@ -30,6 +32,9 @@ public class UnityPackSetting : ScriptableObject
     //剔除相似
     public bool TrimSimilar = true;
 
+    //强制方形
+    public bool ForeSquare = true;
+
     //宽
     public int Width;
 
@@ -38,4 +43,28 @@ public class UnityPackSetting : ScriptableObject
 
     //最大尺寸
     public int MaxSize = 4096;
+
+
+    public SpriteMetaData[] GetSpriteMetaData()
+    {
+        if (Atlas == null || TexturePackSprite == null || TexturePackSprite.Count <= 0)
+            return null;
+
+        SpriteMetaData[] spriteMetaDatas = new SpriteMetaData[TexturePackSprite.Count];
+
+        for (int index = 0; index < TexturePackSprite.Count; index++)
+        {
+            SpriteMetaData data = new SpriteMetaData();
+            UnityPackSprite sprite = TexturePackSprite[index];
+            data.rect = new Rect(sprite.x,sprite.y,sprite.width,sprite.height);
+            data.alignment = (int)SpriteAlignment.Custom;
+            data.border = Vector4.zero;
+            data.pivot = sprite.pivot;
+            data.name = sprite.filename;
+            spriteMetaDatas[index] = data;
+        }
+
+        return spriteMetaDatas;
+
+    }
 }

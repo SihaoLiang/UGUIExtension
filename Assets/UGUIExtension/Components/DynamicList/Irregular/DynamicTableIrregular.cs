@@ -1036,6 +1036,64 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         return trans;
     }
 
+
+
+    /// <summary>
+    /// 从池中预加载,此方法在Hotfix中调用，必须对应 预加载->加载的索引
+    /// </summary>
+    /// <param name="poolName"></param>
+    /// <param name="obj"></param>
+    public virtual DynamicGrid PreDequeueDynamicGrid(string poolName, int index)
+    {
+        GameObject obj = null;
+        PoolObject poolObject = ObjectPool.Spawn(poolName);
+
+        if (poolObject != null)
+            obj = poolObject.gameObject;
+
+        if (obj == null)
+        {
+            Debug.LogErrorFormat("ObjectPool of Key:{0} init fail.", poolName);
+            return null;
+        }
+
+        RectTransform trans = (RectTransform)obj.transform;
+        DynamicGrid grid = obj.GetComponent<DynamicGrid>();
+        if (grid == null)
+            grid = obj.AddComponent<DynamicGrid>();
+
+        grid.Index = index;
+
+        trans.SetParent(Content, false);
+        trans.localPosition = Vector3.zero;
+        obj.SetActive(true);
+
+        //内嵌套点击事件 Ps:不规则列表建议点击事件在对应节点上做，当然只是建议
+        if (IsGridTouchEventEnable)
+        {
+            DynamicGridClickHelper trigger = grid.GetComponent<DynamicGridClickHelper>();
+            if (trigger == null)
+                trigger = grid.gameObject.AddComponent<DynamicGridClickHelper>();
+
+            trigger.SetupClickEnable(true, delegate (PointerEventData eventData)
+            {
+                OnTableGridTouched(grid, eventData);
+            });
+        }
+        else
+        {
+            DynamicGridClickHelper trigger = grid.GetComponent<DynamicGridClickHelper>();
+            if (trigger != null)
+                trigger.SetupClickEnable(false);
+        }
+
+        PreLoadStack.Push(grid);
+
+        return grid;
+    }
+
+
+
     /// <summary>
     /// 回收所有节点
     /// </summary>

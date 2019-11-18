@@ -72,6 +72,11 @@ public class DynamicTableNormal : UIBehaviour
     private int StartIndex = START_INDEX;
 
     /// <summary>
+    /// 检查数据源是否更新
+    /// </summary>
+    private bool IsDataDirty = true;
+
+    /// <summary>
     /// 方向
     /// </summary>
     public LayoutRule.Direction Direction = LayoutRule.Direction.Vertical;
@@ -286,6 +291,10 @@ public class DynamicTableNormal : UIBehaviour
             Debug.Log("Table Request TotalCellCount at least 0.");
             return;
         }
+
+        if (TotalCount != count)
+            IsDataDirty = true;
+
         TotalCount = count;
     }
 
@@ -605,10 +614,12 @@ public class DynamicTableNormal : UIBehaviour
         StartIndex = StartIndex < START_INDEX ? START_INDEX : StartIndex;
 
         //保持当前位置，只更新当前显示的Grid
-        if (startIndex < START_INDEX && IsInitCompeleted)
+        if (startIndex < START_INDEX && IsInitCompeleted && !IsDataDirty)
             return;
 
-        StartIndex = startIndex < START_INDEX ? START_INDEX : startIndex;
+        IsDataDirty = false;
+        StartIndex = startIndex < START_INDEX ? StartIndex : startIndex;
+
 
         //填不满内容框
         if ((ScrRect.content.rect.size.y < ViewSize.y && Direction == LayoutRule.Direction.Vertical)
@@ -1062,8 +1073,6 @@ public class DynamicTableNormal : UIBehaviour
 
         //容器偏移的百分比
         Vector2 posOffest = Vector2.zero;
-        //在视野中数量
-        float inerNum = 1.0f;
 
         int indexOff = 0;
         //水平
