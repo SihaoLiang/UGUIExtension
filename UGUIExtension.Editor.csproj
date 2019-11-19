@@ -292,6 +292,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\EditorStyleViewer.cs" />
     <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Editor\BMFontAssetEditor.cs" />
     <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Editor\BMFontAssetGenWindow.cs" />
     <Compile Include="Assets\UGUIExtension\Components\CustomBMFont\Editor\BMFontMultTextEditor.cs" />

@@ -36,6 +36,8 @@ public class UnityPackSettingInspertorEditor : Editor
     private GUIContent ForeSquareContent;
 
     private Vector2 Scroll;
+    private string SearchText;
+    private List<UnityPackSprite> Sprites = new List<UnityPackSprite>();
 
     public Dictionary<string, Texture2D> SpriteDic = new Dictionary<string, Texture2D>();
     public void OnEnable()
@@ -70,8 +72,14 @@ public class UnityPackSettingInspertorEditor : Editor
         TrimSimilarContent = new GUIContent("去除重复");
         ForeSquareContent = new GUIContent("强制正方形");
         SpriteDic.Clear();
+
     }
 
+    public void OnDisable()
+    {
+        Sprites.Clear();
+        SpriteDic.Clear();
+    }
 
     public override void OnInspectorGUI()
     {
@@ -102,24 +110,67 @@ public class UnityPackSettingInspertorEditor : Editor
             UnityPackSetting setting = target as UnityPackSetting;
             Texture2D tex2D = setting.Atlas as Texture2D;
 
-            Scroll = TexturePackTool.BeginScrollViewEx(Scroll, setting.TexturePackSprite.Count, 150, 10, 2,
+            GUILayout.BeginHorizontal("box");
+            SearchText = EditorGUILayout.TextField("", SearchText, "SearchTextField");
+
+            if (string.IsNullOrEmpty(SearchText))
+            {
+                GUILayout.Label("", "SearchCancelButtonEmpty");
+            }
+            else
+            {
+                if (GUILayout.Button("", "SearchCancelButton"))
+                {
+                    SearchText = string.Empty;
+                }
+            }
+
+          
+            Sprites.Clear();
+
+            for (int i = 0; i < setting.TexturePackSprite.Count; i++)
+            {
+                UnityPackSprite uSprite = setting.TexturePackSprite[i];
+
+                if (!string.IsNullOrEmpty(SearchText))
+                {
+                    if (!uSprite.filename.ToString().Contains(SearchText) && !i.ToString().Contains(SearchText))
+                        continue;
+                }
+
+                Sprites.Add(uSprite);
+            }
+
+            GUILayout.EndHorizontal();
+            Scroll = TexturePackTool.BeginScrollViewEx(Scroll, Sprites.Count, 150, 10, 2,
             delegate (int index)
             {
                 GUILayout.BeginVertical("box", GUILayout.Height(150));
-                UnityPackSprite uSprite = setting.TexturePackSprite[index];
-                GUILayout.TextField(uSprite.filename);
-
+                UnityPackSprite uSprite = Sprites[index];
 
                 Texture2D tex = null;
-        
-                tex = new Texture2D((int)uSprite.width,(int)uSprite.height);
-                Color[] colors = tex2D.GetPixels((int)uSprite.x, (int)uSprite.y, (int)uSprite.width, (int)uSprite.height);
-                tex.SetPixels(0,0, (int)uSprite.width, (int)uSprite.height, colors);
-            
-                GUILayout.TextField(index.ToString());
-                EditorGUI.DrawPreviewTexture(new Rect(350, 50 + index * (150 + 4), 80, 80), tex);
 
+                if (SpriteDic.ContainsKey(uSprite.filename))
+                {
+                    tex = SpriteDic[uSprite.filename];
+                    Color[] colors = tex2D.GetPixels((int)uSprite.x, (int)uSprite.y, (int)uSprite.width, (int)uSprite.height);
+                    tex.SetPixels(0, 0, (int)uSprite.width, (int)uSprite.height, colors);
+                }
+                else
+                {
+                    tex = new Texture2D((int)uSprite.width, (int)uSprite.height);
+                    Color[] colors = tex2D.GetPixels((int)uSprite.x, (int)uSprite.y, (int)uSprite.width, (int)uSprite.height);
+                    tex.SetPixels(0, 0, (int)uSprite.width, (int)uSprite.height, colors);
+                    tex.Apply();
+                    SpriteDic.Add(uSprite.filename,tex);
+                }
 
+                GUILayout.Label("序号："+index.ToString(),new GUIStyle("BoldLabel"));
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("图片名称："+uSprite.filename);
+                GUILayout.FlexibleSpace();
+                GUILayout.Label(tex);
+                GUILayout.EndHorizontal();
                 GUILayout.EndVertical();
                 GUILayout.Space(2);
 

@@ -356,7 +356,17 @@ public class TexturePackTool
         {
             int temp = showCount;
             showCount = totalNum;
-           // totalNum = temp;
+            offset = EditorGUILayout.BeginScrollView(offset, options);
+            for (int i = 0; i < totalNum; i++)
+            {
+                if (IndexDelegate != null)
+                {
+                    IndexDelegate(i);
+                }
+            }
+
+            EditorGUILayout.EndScrollView();
+            return offset;
         }
 
         float totalSize = (totalNum) * (size + space);
