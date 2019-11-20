@@ -44,7 +44,7 @@ public class TexturePackTool
     public static Rect[] PackTextures(Texture2D tex, List<Texture2D> textures, int padding, int maxSize = 4096, bool foreSquare = true)
     {
         //Rect[] rects = tex.PackTextures(textures.ToArray(), padding, maxSize);
-        Rect[] rects = NewUITexturePacker.PackTextures(tex, textures.ToArray(), 4, 4, 1, maxSize, foreSquare);
+        Rect[] rects = NewUITexturePacker.PackTextures(tex, textures.ToArray(), 4, 4, padding, maxSize, foreSquare);
         //Rect[] rects = UITexturePacker.PackTextures(tex, textures.ToArray(), 4, 4, padding, maxSize);
         return rects;
     }
@@ -339,17 +339,17 @@ public class TexturePackTool
     }
 
     /// <summary>
-    /// 
+    /// 动态ScrollView
     /// </summary>
-    /// <param name="offset"></param>
-    /// <param name="totalNum"></param>
-    /// <param name="size"></param>
-    /// <param name="showCount"></param>
-    /// <param name="space"></param>
-    /// <param name="IndexDelegate"></param>
-    /// <param name="options"></param>
+    /// <param name="offset">进度</param>
+    /// <param name="totalNum">总数</param>
+    /// <param name="gridSize">节点大小</param>
+    /// <param name="showCount">动态个数</param>
+    /// <param name="space">间隔</param>
+    /// <param name="IndexDelegate">回调</param>
+    /// <param name="options">样式</param>
     /// <returns></returns>
-    public static Vector2 BeginScrollViewEx(Vector2 offset, int totalNum,int size,int showCount,int space,Action<int> IndexDelegate, params GUILayoutOption[] options)
+    public static Vector2 BeginScrollViewEx(Vector2 offset, int totalNum,int gridSize,int showCount,int space,Action<int> IndexDelegate, params GUILayoutOption[] options)
     {
 
         if (totalNum < showCount)
@@ -369,16 +369,15 @@ public class TexturePackTool
             return offset;
         }
 
-        float totalSize = (totalNum) * (size + space);
-        float viewSpace = (showCount * (space + size));
+        float totalSize = (totalNum) * (gridSize + space);
         float dir = offset.x - 0 < 0.0001f ? offset.y : offset.x;
-        int startIndex = Mathf.FloorToInt(dir / (size + space)) - 1;// Mathf.FloorToInt((totalNum - showCount) * dir / totalSize);
+        int startIndex = Mathf.FloorToInt(dir / (gridSize + space)) - 1;// Mathf.FloorToInt((totalNum - showCount) * dir / totalSize);
         startIndex = Mathf.Clamp(startIndex, 0, totalNum - showCount);
         offset = EditorGUILayout.BeginScrollView(offset, options);
 
-        float upSpace = (startIndex - 1) * (space + size);
+        float upSpace = (startIndex - 1) * (space + gridSize);
         upSpace = Mathf.Clamp(upSpace, 0, totalSize);
-        float downSpace = totalSize - upSpace - (showCount * (space + size)); //(totalNum - (startIndex + showCount)) * (space + size) - space;
+        float downSpace = totalSize - upSpace - (showCount * (space + gridSize)); //(totalNum - (startIndex + showCount)) * (space + gridSize) - space;
 
         GUILayout.Space(upSpace);
         for (int i = 0; i < showCount; i++)
@@ -395,6 +394,53 @@ public class TexturePackTool
         return offset;
     }
 
+    /// <summary>
+    /// 线性插值放大纹理
+    /// </summary>
+    /// <param name="originalTexture"></param>
+    /// <param name="scaleFactor"></param>
+    /// <returns></returns>
+    public  static  Texture2D ScaleTextureBilinear(Texture2D originalTexture, float scaleFactor)
+    {
+        Texture2D newTexture = new Texture2D(Mathf.CeilToInt(originalTexture.width * scaleFactor),
+            Mathf.CeilToInt(originalTexture.height * scaleFactor));
+        float scale = 1.0f / scaleFactor;
+        int maxX = originalTexture.width - 1;
+        int maxY = originalTexture.height - 1;
+        for (int y = 0; y < newTexture.height; y++)
+        {
+            for (int x = 0; x < newTexture.width; x++)
+            {
+                // Bilinear Interpolation
+                float targetX = x * scale;
+                float targetY = y * scale;
+                int x1 = Mathf.Min(maxX, Mathf.FloorToInt(targetX));
+                int y1 = Mathf.Min(maxY, Mathf.FloorToInt(targetY));
+                int x2 = Mathf.Min(maxX, x1 + 1);
+                int y2 = Mathf.Min(maxY, y1 + 1);
+
+                float u = targetX - x1;
+                float v = targetY - y1;
+                float w1 = (1 - u) * (1 - v);
+                float w2 = u * (1 - v);
+                float w3 = (1 - u) * v;
+                float w4 = u * v;
+                Color color1 = originalTexture.GetPixel(x1, y1);
+                Color color2 = originalTexture.GetPixel(x2, y1);
+                Color color3 = originalTexture.GetPixel(x1, y2);
+                Color color4 = originalTexture.GetPixel(x2, y2);
+                Color color = new Color(Mathf.Clamp01(color1.r * w1 + color2.r * w2 + color3.r * w3 + color4.r * w4),
+                    Mathf.Clamp01(color1.g * w1 + color2.g * w2 + color3.g * w3 + color4.g * w4),
+                    Mathf.Clamp01(color1.b * w1 + color2.b * w2 + color3.b * w3 + color4.b * w4),
+                    Mathf.Clamp01(color1.a * w1 + color2.a * w2 + color3.a * w3 + color4.a * w4)
+                );
+                newTexture.SetPixel(x, y, color);
+            }
+        }
+
+        return newTexture;
+
+    }
 }
 
 

@@ -38,7 +38,8 @@ public class UnityPackSettingInspertorEditor : Editor
     private Vector2 Scroll;
     private string SearchText;
     private List<UnityPackSprite> Sprites = new List<UnityPackSprite>();
-
+    private int TotalSpriteCount = 0;
+    private int GridHeight = 130;
     public Dictionary<string, Texture2D> SpriteDic = new Dictionary<string, Texture2D>();
     public void OnEnable()
     {
@@ -88,6 +89,13 @@ public class UnityPackSettingInspertorEditor : Editor
         EditorGUILayout.BeginVertical("box");
         EditorGUILayout.PropertyField(Name, NameContent, true);
         EditorGUILayout.PropertyField(Atlas, AtlasContent, true);
+
+        UnityPackSetting setting = target as UnityPackSetting;
+        if (GUILayout.Button("生成图集精灵"))
+        {
+            TexturePackTool.SetupSpriteMetaData(setting);
+        }
+
         GUI.enabled = false;
 
 
@@ -105,13 +113,13 @@ public class UnityPackSettingInspertorEditor : Editor
         GUI.enabled = true;
 
 
-        if (TexturePackTool.DrawHeader("图集精灵", true))
+        if (TexturePackTool.DrawHeader(string.Format("图集精灵({0})",TotalSpriteCount), true))
         {
-            UnityPackSetting setting = target as UnityPackSetting;
             Texture2D tex2D = setting.Atlas as Texture2D;
 
             GUILayout.BeginHorizontal("box");
             SearchText = EditorGUILayout.TextField("", SearchText, "SearchTextField");
+            TotalSpriteCount = setting.TexturePackSprite.Count;
 
             if (string.IsNullOrEmpty(SearchText))
             {
@@ -125,7 +133,7 @@ public class UnityPackSettingInspertorEditor : Editor
                 }
             }
 
-          
+
             Sprites.Clear();
 
             for (int i = 0; i < setting.TexturePackSprite.Count; i++)
@@ -142,10 +150,10 @@ public class UnityPackSettingInspertorEditor : Editor
             }
 
             GUILayout.EndHorizontal();
-            Scroll = TexturePackTool.BeginScrollViewEx(Scroll, Sprites.Count, 150, 10, 2,
+            Scroll = TexturePackTool.BeginScrollViewEx(Scroll, Sprites.Count, GridHeight, 10, 2,
             delegate (int index)
             {
-                GUILayout.BeginVertical("box", GUILayout.Height(150));
+                GUILayout.BeginVertical("box", GUILayout.Height(GridHeight));
                 UnityPackSprite uSprite = Sprites[index];
 
                 Texture2D tex = null;
@@ -153,29 +161,61 @@ public class UnityPackSettingInspertorEditor : Editor
                 if (SpriteDic.ContainsKey(uSprite.filename))
                 {
                     tex = SpriteDic[uSprite.filename];
-                    Color[] colors = tex2D.GetPixels((int)uSprite.x, (int)uSprite.y, (int)uSprite.width, (int)uSprite.height);
-                    tex.SetPixels(0, 0, (int)uSprite.width, (int)uSprite.height, colors);
                 }
                 else
                 {
                     tex = new Texture2D((int)uSprite.width, (int)uSprite.height);
                     Color[] colors = tex2D.GetPixels((int)uSprite.x, (int)uSprite.y, (int)uSprite.width, (int)uSprite.height);
                     tex.SetPixels(0, 0, (int)uSprite.width, (int)uSprite.height, colors);
+
+                    tex = TexturePackTool.ScaleTextureBilinear(tex, 2);
                     tex.Apply();
-                    SpriteDic.Add(uSprite.filename,tex);
+                    SpriteDic.Add(uSprite.filename, tex);
                 }
 
-                GUILayout.Label("序号："+index.ToString(),new GUIStyle("BoldLabel"));
+                GUILayout.Label("序号：" + index.ToString(), new GUIStyle("AppToolbar"));
+                GUILayout.Label("图片名称：" + uSprite.filename, new GUIStyle("BoldLabel"));
+
                 GUILayout.BeginHorizontal();
-                GUILayout.Label("图片名称："+uSprite.filename);
-                GUILayout.FlexibleSpace();
-                GUILayout.Label(tex);
+                GUILayout.Label(tex, GUILayout.Width(80), GUILayout.Height(80));
+                EditorGUILayout.BeginVertical("box");
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("纹理位置(uv)", GUILayout.Width(80));
+                EditorGUILayout.FloatField(uSprite.x);
+                EditorGUILayout.FloatField(uSprite.y);
+                GUILayout.EndHorizontal();
+
+                GUILayout.Space(2);
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("纹理尺寸", GUILayout.Width(80));
+                EditorGUILayout.FloatField(uSprite.width);
+                EditorGUILayout.FloatField(uSprite.height);
+                GUILayout.EndHorizontal();
+                GUILayout.Space(2);
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("中心点", GUILayout.Width(80));
+                EditorGUILayout.FloatField(uSprite.pivot.x);
+                EditorGUILayout.FloatField(uSprite.pivot.y);
+                GUILayout.EndHorizontal();
+                GUILayout.Space(2);
+
+                GUILayout.BeginHorizontal();
+                GUILayout.Label("九宫格(LBRT)", GUILayout.Width(80));
+                EditorGUILayout.Vector4Field("",uSprite.border);
+                GUILayout.EndHorizontal();
+
+                EditorGUILayout.EndVertical();
+
                 GUILayout.EndHorizontal();
                 GUILayout.EndVertical();
                 GUILayout.Space(2);
 
             }
             );
+
+         
         }
 
 

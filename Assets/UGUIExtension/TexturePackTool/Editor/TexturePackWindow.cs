@@ -249,7 +249,7 @@ public class TexturePackWindow : EditorWindow
             }));
          
             if (totalSize > texture.width * texture.height)
-                genConsole = "导出图集成功，图集最大尺寸不足,图集已压缩";
+                genConsole = "导出图集失败，图集最大尺寸不足";
             else
                 genConsole = "导出图集成功";
         }
@@ -382,7 +382,7 @@ public class TexturePackWindow : EditorWindow
             //导出图集
             PackingTextures();
 
-            if (GUILayout.Button("生成精灵"))
+            if (GUILayout.Button("生成精灵",GUILayout.Height(30)))
             {
                 TexturePackTool.SetupSpriteMetaData(Setting);
             }

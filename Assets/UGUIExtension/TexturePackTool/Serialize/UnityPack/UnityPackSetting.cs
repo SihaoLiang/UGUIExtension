@@ -58,7 +58,7 @@ public class UnityPackSetting : ScriptableObject
             UnityPackSprite sprite = TexturePackSprite[index];
             data.rect = new Rect(sprite.x,sprite.y,sprite.width,sprite.height);
             data.alignment = (int)SpriteAlignment.Custom;
-            data.border = Vector4.zero;
+            data.border = sprite.border;
             data.pivot = sprite.pivot;
             data.name = sprite.filename;
             spriteMetaDatas[index] = data;

@@ -15,7 +15,7 @@ public struct SpriteFrame
 }
 
 [System.Serializable]
-public struct UnityPackSprite
+public class UnityPackSprite
 {
     public string filename;
     public SpriteFrame frame;
@@ -28,4 +28,5 @@ public struct UnityPackSprite
     public SpriteFrame spriteSourceSize;
     public bool trimmed;
     public int index;
+    public Vector4 border;
 }

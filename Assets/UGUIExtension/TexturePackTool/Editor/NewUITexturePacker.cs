@@ -123,6 +123,10 @@ public class NewUITexturePacker
                 width = height;
         }
 
+
+        if (width > maxSize || height > maxSize)
+            return null;
+
         //所有节点
         AllTNode = new AtlasNode[textures.Length];
 
