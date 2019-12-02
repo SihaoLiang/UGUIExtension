@@ -102,10 +102,26 @@ public class RichTextConst
     /// <summary>
     /// 下划线
     /// </summary>
-    public static readonly Regex UnderLineRegex = new Regex(@"<u>(.*?)</u>", RegexOptions.Singleline);
+    public static readonly Regex UnderLineRegex = new Regex(@"<quad u width=0>(.*?)<quad u width=0>", RegexOptions.Singleline);
 
     /// <summary>
     /// 用正则取超链接 文本 匹配类型 颜色
     /// </summary>
-    public static readonly Regex LinkRegex = new Regex(@"<link=(\w*\.?\w)>(.*?)(</link>)", RegexOptions.Singleline);
+    public static readonly Regex LinkRegex = new Regex(@"<quad width=0 link=(\w*\.?\w)>(.*?)(<quad link width=0>)", RegexOptions.Singleline);
+
+    /// <summary>
+    /// 剔除嵌套
+    /// </summary>
+    public static readonly Regex FitterRegex = new Regex(@"<(.*?)>", RegexOptions.Singleline);
+
+    //用来剔除嵌套
+    public static string UnderLineShowStr = "<u>";
+    public static string UnderLineStr = "<quad u width=0>";
+
+    public static string LinkStartShowStr = "<link=";
+    public static string LinkStartStr = "<quad width=0 link=";
+
+    public static string LinkEndShowStr = "</link>";
+    public static string LinkEndStr = "<quad link width=0>";
+
 }

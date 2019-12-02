@@ -10,7 +10,7 @@ using UnityEngine.UI;
 /// <summary>
 /// 图文混拼
 /// </summary>
- [RequireComponent(typeof(RichTextSpriteRenderer))]
+[RequireComponent(typeof(RichTextSpriteRenderer))]
 public class RichText : Text, ILayoutGroup, IPointerClickHandler
 {
     private DrivenRectTransformTracker m_Tracker;
@@ -147,11 +147,18 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
     {
 
         m_Content = text;
-
+        ReplaceShowRegexStr();
         m_Content = ParsingUnderLine(m_Content);
         m_Content = ParsingLinker(m_Content);
 
         ParsingSprite(m_Content);
+    }
+
+    public void ReplaceShowRegexStr()
+    {
+        m_Content = m_Content.Replace(RichTextConst.UnderLineShowStr, RichTextConst.UnderLineStr);
+        m_Content = m_Content.Replace(RichTextConst.LinkStartShowStr, RichTextConst.LinkStartStr);
+        m_Content = m_Content.Replace(RichTextConst.LinkEndShowStr, RichTextConst.LinkEndStr);
     }
 
     public void SetLayoutHorizontal()
@@ -230,6 +237,57 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
     }
 
 
+
+    /// <summary>
+    /// 下划线解析器
+    /// </summary>
+    /// <param name="str">原字符串</param>
+    /// <returns></returns>
+    public string ParsingUnderLineEx(string content)
+    {
+        m_UnderLineInfos.Clear();
+
+
+        string str = content;
+        string combineText = string.Empty;
+
+        while (RichTextConst.UnderLineRegex.IsMatch(str))
+        {
+            Match match = RichTextConst.UnderLineRegex.Match(str);
+
+            //前半截
+            combineText = str.Substring(0, match.Index - 0);
+            //下划线的内容
+            string tempStr = match.Groups[1].Value;
+            Debug.LogError(str);
+
+            int fitterLen = 0;
+
+            foreach (Match matchFitter in RichTextConst.FitterRegex.Matches(tempStr))
+            {
+                if (matchFitter.Value.Contains("link"))
+                {
+                    fitterLen += matchFitter.Length * 4;
+                }
+            }
+
+            var _underLineInfo = new UnderLineInfo
+            {
+                startIndex = combineText.Length * 4, // 超链接里的文本起始顶点索引
+                endIndex = (tempStr.Length + combineText.Length) * 4 //- fitterLen, //终点索引
+            };
+            m_UnderLineInfos.Add(_underLineInfo);
+
+            //拼接内容
+            combineText += tempStr;
+            int index = match.Index + match.Length;
+            str = combineText + str.Substring(index, str.Length - index);
+            combineText = string.Empty;
+        }
+
+        return str;;
+    }
+
     /// <summary>
     /// 下划线解析器
     /// </summary>
@@ -239,32 +297,46 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
     {
         m_UnderLineInfos.Clear();
 
-        int index = 0; //处理的位置索引
-        string combineText = string.Empty;
+
+
         //取出下划线位置
         foreach (Match match in RichTextConst.UnderLineRegex.Matches(content))
         {
-            //前半截
-            combineText += content.Substring(index, match.Index - index);
-            //下划线的内容
-            string tempStr = match.Groups[1].Value;
+            //计算嵌套剔除的内容
+            int fitterLen = 0;
+
+            string temp = match.Value;
+            string combineText = string.Empty;
+
+            int index = 0; //处理的位置索引
+            int cor = match.Index;
+
+            while (temp.Contains("\n"))
+            {
+                int length = temp.IndexOf("\n");
+                combineText = temp.Substring(0, length);
+
+                var _underLineInfo = new UnderLineInfo
+                {
+                    startIndex = cor  * 4, // 超链接里的文本起始顶点索引
+                    endIndex = (combineText.Length + cor) * 4, //终点索引
+                };
+                m_UnderLineInfos.Add(_underLineInfo);
+                length += 1;
+                cor += length;
+                temp = temp.Substring(length, temp.Length - length);
+            }
 
             //信息
-            var _underLineInfo = new UnderLineInfo
+            var underLineInfo = new UnderLineInfo
             {
-                startIndex = combineText.Length * 4, // 超链接里的文本起始顶点索引
-                endIndex = (tempStr.Length + combineText.Length) * 4, //终点索引
+                startIndex = cor * 4, // 超链接里的文本起始顶点索引
+                endIndex = (temp.Length + cor) * 4, //终点索引
             };
-            m_UnderLineInfos.Add(_underLineInfo);
-
-            //拼接内容
-            combineText += tempStr;
-            index = match.Index + match.Length;
+            m_UnderLineInfos.Add(underLineInfo);
         }
-        //拼接后半截
-        combineText += content.Substring(index, content.Length - index);
 
-        return combineText;
+        return content;
     }
 
 
@@ -278,28 +350,27 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
         var index = 0;
         string combineText = string.Empty;
         m_LinkInfos.Clear();
+
+
+
         foreach (Match match in RichTextConst.LinkRegex.Matches(content))
         {
-            combineText += content.Substring(index, match.Index - index);
+
+            string tempStr = match.Groups[2].Value;
 
             //超链接的内容
-            string tempStr = match.Groups[2].Value;
             var linkInfo = new LinkInfo
             {
                 id = match.Groups[1].Value,
-                startIndex = combineText.Length * 4, // 超链接里的文本起始顶点索引
-                endIndex = (tempStr.Length + combineText.Length) * 4, //终点索引
+                startIndex = match.Index * 4, // 超链接里的文本起始顶点索引
+                endIndex = (match.Index + match.Length) * 4, //终点索引
                 content = tempStr
             };
 
             m_LinkInfos.Add(linkInfo);
 
-            //拼接内容
-            combineText += tempStr;
-            index = match.Index + match.Length;
         }
-        combineText += content.Substring(index, content.Length - index);
-        return combineText;
+        return content;
     }
 
 
@@ -476,10 +547,10 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
     void AddUnderlineQuad(VertexHelper toFill, IList<UIVertex> vertexs, Vector3 starPos, Vector3 endPos, Color32 color)
     {
         //厚度 0.1f * fontSize
-        _underlinePos[0] = new Vector3(starPos.x, -fontSize * 0.5f, 0); ;
-        _underlinePos[1] = new Vector3(endPos.x, -fontSize * 0.5f, 0); ;
-        _underlinePos[2] = new Vector3(endPos.x, fontSize * -0.6f, 0);
-        _underlinePos[3] = new Vector3(starPos.x, fontSize * -0.6f, 0);
+        _underlinePos[0] = new Vector3(starPos.x, starPos.y -8f, 0); ;
+        _underlinePos[1] = new Vector3(endPos.x, starPos.y - 8f, 0); ;
+        _underlinePos[2] = new Vector3(endPos.x, starPos.y + fontSize * -0.15f - 8f, 0);
+        _underlinePos[3] = new Vector3(starPos.x, starPos.y + fontSize * -0.15f - 8f, 0);
 
         for (int i = 0; i < 4; ++i)
         {

@@ -4,13 +4,15 @@ using UnityEditor;
 using Serialize;
 using System.IO;
 using System;
+using UnityEngine.U2D;
 
 public class RichTextAssetGenWindow : EditorWindow
 {
     public enum PackingType
     {
         TexturePack = 0,
-        UnityPack
+        UnityPack,
+        Custom
     }
 
     //原图
@@ -30,15 +32,16 @@ public class RichTextAssetGenWindow : EditorWindow
     //打包类型
     private PackingType AtlasPacking = PackingType.TexturePack;
 
-    
+
     private UnityPackSetting SettingAsset;
 
     //输出信息
     string ConsoleContent;
     //字体样式
     GUIStyle LabelStyle;
+    GUIStyle TitleLabelStyle;
 
-    [MenuItem("RichText/RichText Asset Creator")]
+    [MenuItem("图集工具/生成富文本图集")]
     public static void ShowArtFontAssetGenWindow()
     {
         RichTextAssetGenWindow window = EditorWindow.GetWindow<RichTextAssetGenWindow>();
@@ -60,6 +63,12 @@ public class RichTextAssetGenWindow : EditorWindow
         LabelStyle = new GUIStyle();
         LabelStyle.fontSize = 16;
         LabelStyle.richText = true;
+
+
+        TitleLabelStyle = new GUIStyle("IN TitleText");
+        TitleLabelStyle.fontSize = 30;
+        TitleLabelStyle.richText = true;
+
     }
 
     void OnGUI()
@@ -67,17 +76,65 @@ public class RichTextAssetGenWindow : EditorWindow
         GUILayout.BeginVertical();
 
         GUILayout.Space(5);
-        AtlasPacking = (PackingType)EditorGUILayout.EnumPopup("打包方式", AtlasPacking);
 
+        if (AtlasPacking == PackingType.TexturePack)
+        {
+            EditorGUILayout.HelpBox("使用外部插件Texture Packer 打包的图集(Json)生成可用于富文本的图集数据", MessageType.Info);
+        }
+        else if (AtlasPacking == PackingType.Custom)
+        {
+            EditorGUILayout.HelpBox("使用自定义打包的图集生成可用于富文本的图集数据", MessageType.Info);
+        }
+        else if (AtlasPacking == PackingType.UnityPack)
+        {
+            EditorGUILayout.HelpBox("使用Unity Sprite Edtor打包的图集生成可用于富文本的图集数据", MessageType.Info);
+        }
+
+        AtlasPacking = (PackingType)EditorGUILayout.EnumPopup("生成方式", AtlasPacking);
         if (AtlasPacking == PackingType.TexturePack)
         {
             TexturePackGUI();
         }
-        else
+        else if (AtlasPacking == PackingType.Custom)
+        {
+            CustomPackGUI();
+        }
+        else if (AtlasPacking == PackingType.UnityPack)
         {
             UnityPackGUI();
         }
 
+        if (RichTextAsset != null)
+        {
+            this.ConsoleContent = string.Concat(new object[]
+            {
+                "生成富文本图集成功\n",
+                string.Format("本次生成精灵数量：{0}\n", RichTextAsset.spriteInfoList.Count),
+                string.Format("本次生成动画数量：{0}\n", RichTextAsset.animateList.Count),
+            });
+
+        }
+        else
+        {
+            this.ConsoleContent = string.Concat(new object[]
+            {
+                "未生成富文本图集",
+            });
+
+        }
+
+
+        GUILayout.Space(5f);
+        GUILayout.BeginVertical("box", new GUILayoutOption[]
+        {
+            GUILayout.Height(80)
+        });
+
+
+
+        EditorGUILayout.LabelField(this.ConsoleContent, LabelStyle, new GUILayoutOption[0]);
+        GUILayout.EndVertical();
+        GUILayout.Space(5f);
         GUILayout.EndVertical();
     }
 
@@ -88,8 +145,55 @@ public class RichTextAssetGenWindow : EditorWindow
     void UnityPackGUI()
     {
         EditorGUI.BeginChangeCheck();
-        SettingAsset =
-            (EditorGUILayout.ObjectField("图集信息", this.SettingAsset, typeof(UnityPackSetting), false,
+        TextureSource = (EditorGUILayout.ObjectField("图集", this.TextureSource, typeof(Texture2D), false,
+            new GUILayoutOption[0]) as Texture2D);
+        if (EditorGUI.EndChangeCheck())
+        {
+            this.ConsoleContent = string.Empty;
+        }
+
+        if (TextureSource == null)
+        {
+            return;
+        }
+
+
+        GUILayout.Space(5f);
+        if (GUILayout.Button("生成", new GUILayoutOption[0]))
+        {
+            TextureImporter importer = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(TextureSource)) as TextureImporter;
+
+            if (importer.spriteImportMode != SpriteImportMode.Multiple)
+            {
+                ShowNotification(new GUIContent("SpriteImportMode not equal SpriteImportMode.Multiple"));
+                return; ;
+            }
+
+
+            RichTextAnimateDic = new Dictionary<string, RichTextAnimate>();
+            RichTextSpriteInfoList = CreateSpriteFromUnityPackSetting(importer);
+
+
+            string text = string.Empty;
+            text = EditorUtility.SaveFilePanel("Save Sprite Asset File", new FileInfo(AssetDatabase.GetAssetPath(this.TextureSource)).DirectoryName, this.TextureSource.name, "asset");
+            if (text.Length == 0)
+            {
+                return;
+            }
+            this.SaveSpriteAsset(text);
+        }
+
+        GUILayout.Space(5f);
+    }
+
+
+    /// <summary>
+    /// 利用Unity打包的图集
+    /// </summary>
+    void CustomPackGUI()
+    {
+        EditorGUI.BeginChangeCheck();
+        SettingAsset = (EditorGUILayout.ObjectField("图集信息", this.SettingAsset, typeof(UnityPackSetting), false,
                 new GUILayoutOption[0]) as UnityPackSetting);
         if (EditorGUI.EndChangeCheck())
         {
@@ -101,16 +205,16 @@ public class RichTextAssetGenWindow : EditorWindow
             return;
         }
 
-        TextureSource = SettingAsset.Atlas as Texture2D;
-        RichTextAnimateDic = new Dictionary<string, RichTextAnimate>();
-        RichTextSpriteInfoList = CreateSpriteFromUnityPackSetting(SettingAsset);
 
-        GUILayout.Space(5f);
-        GUI.enabled = (this.RichTextSpriteInfoList != null);
-        if (GUILayout.Button("Save Sprite Asset", new GUILayoutOption[0]))
+        if (GUILayout.Button("生成", new GUILayoutOption[0]))
         {
+            TextureSource = SettingAsset.Atlas as Texture2D;
+            RichTextAnimateDic = new Dictionary<string, RichTextAnimate>();
+            RichTextSpriteInfoList = CreateSpriteFromCustomPackSetting(SettingAsset);
+
+
             string text = string.Empty;
-            text = EditorUtility.SaveFilePanel("Save Sprite Asset File", SettingAsset.OutputAbsolutelyPath, SettingAsset.Name, "asset");
+            text = EditorUtility.SaveFilePanel("保存富文本数据", SettingAsset.OutputAbsolutelyPath, SettingAsset.Name, "asset");
             if (text.Length == 0)
             {
                 return;
@@ -119,19 +223,10 @@ public class RichTextAssetGenWindow : EditorWindow
         }
 
         GUILayout.Space(5f);
-        GUILayout.BeginVertical("box", new GUILayoutOption[]
-        {
-            GUILayout.Height(60f)
-        });
-
-        EditorGUILayout.LabelField(this.ConsoleContent, LabelStyle, new GUILayoutOption[0]);
-        GUILayout.EndVertical();
-
-        GUILayout.Space(5f);
     }
 
 
-    private List<TexturePackSprite> CreateSpriteFromUnityPackSetting(UnityPackSetting setting)
+    private List<TexturePackSprite> CreateSpriteFromCustomPackSetting(UnityPackSetting setting)
     {
         List<TexturePackSprite> list = new List<TexturePackSprite>();
         RichTextAnimateDic.Clear();
@@ -144,23 +239,6 @@ public class RichTextAssetGenWindow : EditorWindow
             spriteData.name = frame.filename;
             spriteData.hashCode = spriteData.name.GetHashCode();
 
-            int pos = spriteData.name.LastIndexOf("_");
-
-            if (pos == -1)
-                Debug.LogError("图集命名不合法，不存在 '_'");
-
-            string key = spriteData.name.Substring(0, pos);
-            string aniIndex = spriteData.name.Substring(pos + 1, spriteData.name.Length - pos - 1);
-
-            if (!RichTextAnimateDic.ContainsKey(key))
-            {
-                RichTextAnimate richTextAnimate = new RichTextAnimate();
-                RichTextAnimateDic.Add(key, richTextAnimate);
-            }
-
-            spriteData.animatGroup = key;
-            spriteData.animatIndex = int.Parse(aniIndex);
-
             spriteData.x = frame.x;
             spriteData.y = frame.y;
             spriteData.width = frame.width;
@@ -172,15 +250,95 @@ public class RichTextAssetGenWindow : EditorWindow
             spriteData.xOffset = 0f - spriteData.width * spriteData.pivot.x;
             spriteData.yOffset = spriteData.height - spriteData.height * spriteData.pivot.y;
 
-            Rect texCoords = new Rect(frame.x / (float)TextureSource.width, frame.y / (float)TextureSource.height, frame.width / (float)TextureSource.width, frame.height / (float)TextureSource.height);
+            Rect texCoords = new Rect(frame.x / (float) TextureSource.width, frame.y / (float) TextureSource.height,
+                frame.width / (float) TextureSource.width, frame.height / (float) TextureSource.height);
+            Sprite sprite = Sprite.Create((Texture2D) TextureSource, texCoords, frame.pivot);
+            spriteData.sprite = sprite;
+
+            list.Add(spriteData);
+
+            int pos = spriteData.name.LastIndexOf("_");
+
+            if (pos > 0)
+            {
+                Debug.LogError("图集命名不合法，不存在 '_'");
+
+                string key = spriteData.name.Substring(0, pos);
+                string aniIndex = spriteData.name.Substring(pos + 1, spriteData.name.Length - pos - 1);
+
+                if (!RichTextAnimateDic.ContainsKey(key))
+                {
+                    RichTextAnimate richTextAnimate = new RichTextAnimate();
+                    RichTextAnimateDic.Add(key, richTextAnimate);
+                }
+
+                spriteData.animatGroup = key;
+                spriteData.animatIndex = int.Parse(aniIndex);
+
+                RichTextAnimateDic[key].animateName = key;
+                RichTextAnimateDic[key].frameCount++;
+                RichTextAnimateDic[key].spriteList.Add(spriteData);
+            }
+        }
+
+        return list;
+    }
+
+
+    private List<TexturePackSprite> CreateSpriteFromUnityPackSetting(TextureImporter importer)
+    {
+        List<TexturePackSprite> list = new List<TexturePackSprite>();
+        RichTextAnimateDic.Clear();
+        for (int i = 0; i < importer.spritesheet.Length; i++)
+        {
+            SpriteMetaData frame = importer.spritesheet[i];
+
+            TexturePackSprite spriteData = new TexturePackSprite();
+            spriteData.id = i;
+            spriteData.name = frame.name;
+            spriteData.hashCode = spriteData.name.GetHashCode();
+
+
+            spriteData.x = frame.rect.x;
+            spriteData.y = frame.rect.y;
+            spriteData.width = frame.rect.width;
+            spriteData.height = frame.rect.height;
+            spriteData.pivot = frame.pivot;
+            spriteData.rotated = false;
+            spriteData.xAdvance = spriteData.width;
+            spriteData.scale = 1f;
+            spriteData.xOffset = 0f - spriteData.width * spriteData.pivot.x;
+            spriteData.yOffset = spriteData.height - spriteData.height * spriteData.pivot.y;
+
+            Rect texCoords = new Rect(frame.rect.x / (float)TextureSource.width, frame.rect.y / (float)TextureSource.height, frame.rect.width / (float)TextureSource.width, frame.rect.height / (float)TextureSource.height);
             Sprite sprite = Sprite.Create((Texture2D)TextureSource, texCoords, frame.pivot);
             spriteData.sprite = sprite;
 
             list.Add(spriteData);
 
-            RichTextAnimateDic[key].animateName = key;
-            RichTextAnimateDic[key].frameCount++;
-            RichTextAnimateDic[key].spriteList.Add(spriteData);
+
+            int pos = spriteData.name.LastIndexOf("_");
+
+            if (pos > 0)
+            {
+
+                string key = spriteData.name.Substring(0, pos);
+                string aniIndex = spriteData.name.Substring(pos + 1, spriteData.name.Length - pos - 1);
+
+                if (!RichTextAnimateDic.ContainsKey(key))
+                {
+                    RichTextAnimate richTextAnimate = new RichTextAnimate();
+                    RichTextAnimateDic.Add(key, richTextAnimate);
+                }
+
+                spriteData.animatGroup = key;
+                spriteData.animatIndex = int.Parse(aniIndex);
+
+
+                RichTextAnimateDic[key].animateName = key;
+                RichTextAnimateDic[key].frameCount++;
+                RichTextAnimateDic[key].spriteList.Add(spriteData);
+            }
         }
         return list;
     }
@@ -193,8 +351,10 @@ public class RichTextAssetGenWindow : EditorWindow
     void TexturePackGUI()
     {
         EditorGUI.BeginChangeCheck();
-        this.TPTextSheet = (EditorGUILayout.ObjectField("Texture Data(Json)", this.TPTextSheet, typeof(TextAsset), false, new GUILayoutOption[0]) as TextAsset);
-        this.TextureSource = (EditorGUILayout.ObjectField("Texture Atlas", this.TextureSource, typeof(Texture2D), false, new GUILayoutOption[0]) as Texture2D);
+        this.TPTextSheet = (EditorGUILayout.ObjectField("TP数据(Json)", this.TPTextSheet, typeof(TextAsset), false, new GUILayoutOption[0]) as TextAsset);
+        GUILayout.Space(5);
+
+        this.TextureSource = (EditorGUILayout.ObjectField("TP合图", this.TextureSource, typeof(Texture2D), false, new GUILayoutOption[0]) as Texture2D);
         if (EditorGUI.EndChangeCheck())
         {
             this.ConsoleContent = string.Empty;
@@ -206,50 +366,24 @@ public class RichTextAssetGenWindow : EditorWindow
         }
 
         GUILayout.Space(10f);
-        if (GUILayout.Button("Create Sprite Asset", new GUILayoutOption[0]))
+
+        if (GUILayout.Button("生成", new GUILayoutOption[0]))
         {
+
             this.ConsoleContent = string.Empty;
             TP.TexturePackJsonData spriteDataObject = JsonUtility.FromJson<TP.TexturePackJsonData>(this.TPTextSheet.text);
-            if (spriteDataObject != null && spriteDataObject.frames != null && spriteDataObject.frames.Count > 0)
-            {
-                int count = spriteDataObject.frames.Count;
-                this.ConsoleContent = "<b>Import Results</b>\n-----------------------------\n";
-                string str = this.ConsoleContent;
-                this.ConsoleContent = string.Concat(new object[]
-                {
-                            str,
-                            "<color=#C0ffff><b>",
-                            count,
-                            "</b></color> Sprites were imported from file."
-                });
-            }
+
             RichTextAnimateDic = new Dictionary<string, RichTextAnimate>();
             RichTextSpriteInfoList = CreateSpriteInfoList(spriteDataObject);
-        }
 
-        GUILayout.Space(5f);
-        GUI.enabled = (this.RichTextSpriteInfoList != null);
-        if (GUILayout.Button("Save Sprite Asset", new GUILayoutOption[0]))
-        {
             string text = string.Empty;
-            text = EditorUtility.SaveFilePanel("Save Sprite Asset File", new FileInfo(AssetDatabase.GetAssetPath(this.TPTextSheet)).DirectoryName, this.TPTextSheet.name, "asset");
+            text = EditorUtility.SaveFilePanel("保存富文本数据", new FileInfo(AssetDatabase.GetAssetPath(this.TPTextSheet)).DirectoryName, this.TPTextSheet.name, "asset");
             if (text.Length == 0)
             {
                 return;
             }
             this.SaveSpriteAsset(text);
         }
-
-        GUILayout.Space(5f);
-        GUILayout.BeginVertical("box", new GUILayoutOption[]
-        {
-            GUILayout.Height(60f)
-        });
-
-        EditorGUILayout.LabelField(this.ConsoleContent, LabelStyle, new GUILayoutOption[0]);
-        GUILayout.EndVertical();
-
-        GUILayout.Space(5f);
     }
 
     private List<TexturePackSprite> CreateSpriteInfoList(TP.TexturePackJsonData spriteDataObject)
@@ -262,24 +396,6 @@ public class RichTextAssetGenWindow : EditorWindow
             spriteData.id = i;
             spriteData.name = Path.GetFileNameWithoutExtension(frames[i].filename);
             spriteData.hashCode = spriteData.name.GetHashCode();
-
-            int pos = spriteData.name.LastIndexOf("_");
-
-            if (pos == -1)
-                Debug.LogError("图集命名不合法，不存在 '_'");
-
-            string key = spriteData.name.Substring(0, pos);
-            string aniIndex = spriteData.name.Substring(pos+1, spriteData.name.Length);
-
-            if (!RichTextAnimateDic.ContainsKey(key))
-            {
-                RichTextAnimate richTextAnimate = new RichTextAnimate();
-                RichTextAnimateDic.Add(key, richTextAnimate);
-            }
-
-            //动画
-            spriteData.animatGroup = key;
-            spriteData.animatIndex = int.Parse(aniIndex);
 
             spriteData.x = frames[i].frame.x;
             spriteData.y = (float)this.TextureSource.height - (frames[i].frame.y + frames[i].frame.h);
@@ -301,9 +417,31 @@ public class RichTextAssetGenWindow : EditorWindow
 
             list.Add(spriteData);
 
-            RichTextAnimateDic[key].animateName = key;
-            RichTextAnimateDic[key].frameCount++;
-            RichTextAnimateDic[key].spriteList.Add(spriteData);
+            int pos = spriteData.name.LastIndexOf("_");
+
+            if (pos > 0)
+            {
+                string key = spriteData.name.Substring(0, pos);
+                string aniIndex = spriteData.name.Substring(pos + 1, spriteData.name.Length - pos - 1);
+
+                if (!RichTextAnimateDic.ContainsKey(key))
+                {
+                    RichTextAnimate richTextAnimate = new RichTextAnimate();
+                    RichTextAnimateDic.Add(key, richTextAnimate);
+                }
+
+                //动画
+                spriteData.animatGroup = key;
+                spriteData.animatIndex = int.Parse(aniIndex);
+
+
+                RichTextAnimateDic[key].animateName = key;
+                RichTextAnimateDic[key].frameCount++;
+                RichTextAnimateDic[key].spriteList.Add(spriteData);
+            }
+
+
+
         }
         return list;
     }
