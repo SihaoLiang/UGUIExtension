@@ -206,7 +206,13 @@ public class BMFontText : MaskableGraphic, ILayoutElement
                 m_FontGroups.Add(group);
                 m_AllGroup.Add(group, new Dictionary<string, BMFontSprite>());
             }
-            m_AllGroup[group].Add(sprite.key, sprite);
+
+            if(!m_AllGroup[group].ContainsKey(sprite.key))
+                m_AllGroup[group].Add(sprite.key, sprite);
+            else
+            {
+                Debug.LogError(string.Format("组{0},键值{1}冲突",group,sprite.key));
+            }
         }
 
         if (!m_FontGroups.Contains(m_CurrentGroup) || m_CurrentGroup == string.Empty)

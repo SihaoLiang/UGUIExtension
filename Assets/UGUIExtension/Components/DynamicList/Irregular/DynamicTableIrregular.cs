@@ -846,7 +846,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         while (containerSize < GetAxis(ViewSize))
         {
             //没有铺满可视区域
-            if (TotalCount < index)
+            if (TotalCount <= index)
             {
                 IsGridFillToFull = false;
                 break;

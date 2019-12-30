@@ -5,7 +5,20 @@ public class RichTextAnimate
 {
     public string m_AnimateName;
     public int frameRate { set; get; }
-    public int frameCount { set; get; }
+    public int m_FrameCount { set; get; }
+
+    public int frameCount {
+        set
+        {
+            m_FrameCount = value;
+
+        }
+        get
+        {
+            return m_FrameCount;
+
+        }
+    }
 
     public List<TexturePackSprite> m_SpriteList;
 

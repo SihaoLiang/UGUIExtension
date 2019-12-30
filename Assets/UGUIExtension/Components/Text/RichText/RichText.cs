@@ -10,27 +10,17 @@ using UnityEngine.UI;
 /// <summary>
 /// 图文混拼
 /// </summary>
-[RequireComponent(typeof(RichTextSpriteRenderer))]
+//[RequireComponent(typeof(RichTextSpriteRenderer))]
 public class RichText : Text, ILayoutGroup, IPointerClickHandler
 {
     private DrivenRectTransformTracker m_Tracker;
 
-    /// <summary>
-    /// 图集数据
-    /// </summary>
-    [SerializeField]
-    public RichTextSpriteAsset m_SpriteAsset;
     public RichTextSpriteAsset spriteAsset
     {
-        get { return m_SpriteAsset; }
         set
         {
-            if (m_SpriteAsset == null)
-            {
-                m_SpriteAsset = value;
-                if (mRichTextSpriteRender != null)
-                    mRichTextSpriteRender.SetSpriteAsset(m_SpriteAsset);
-            }
+            if (m_RichTextSpriteRender != null)
+                m_RichTextSpriteRender.SetSpriteAsset(value);
         }
     }
 
@@ -39,11 +29,11 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
     /// 表情渲染
     /// </summary>
     [SerializeField]
-    public RichTextSpriteRenderer mRichTextSpriteRender;
+    public RichTextSpriteRenderer m_RichTextSpriteRender;
     protected RichTextSpriteRenderer richTextSpriteRender
     {
-        get { return mRichTextSpriteRender; }
-        set { mRichTextSpriteRender = value; }
+        get { return m_RichTextSpriteRender; }
+        set { m_RichTextSpriteRender = value; }
     }
 
 
@@ -164,18 +154,18 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
     public void SetLayoutHorizontal()
     {
         m_Tracker.Clear();
-        if (mRichTextSpriteRender != null)
+        if (m_RichTextSpriteRender != null)
         {
-            m_Tracker.Add(this, mRichTextSpriteRender.rectTransform,
+            m_Tracker.Add(this, m_RichTextSpriteRender.rectTransform,
                 DrivenTransformProperties.All);
 
             // Make view full size to see if content fits.
-            mRichTextSpriteRender.rectTransform.anchorMin = Vector2.zero;
-            mRichTextSpriteRender.rectTransform.anchorMax = Vector2.one;
-            mRichTextSpriteRender.rectTransform.sizeDelta = Vector2.zero;
-            mRichTextSpriteRender.rectTransform.anchoredPosition = Vector2.zero;
-            mRichTextSpriteRender.rectTransform.localScale = Vector2.one;
-            mRichTextSpriteRender.rectTransform.pivot = rectTransform.pivot;
+            m_RichTextSpriteRender.rectTransform.anchorMin = Vector2.zero;
+            m_RichTextSpriteRender.rectTransform.anchorMax = Vector2.one;
+            m_RichTextSpriteRender.rectTransform.sizeDelta = Vector2.zero;
+            m_RichTextSpriteRender.rectTransform.anchoredPosition = Vector2.zero;
+            m_RichTextSpriteRender.rectTransform.localScale = Vector2.one;
+            m_RichTextSpriteRender.rectTransform.pivot = rectTransform.pivot;
 
 
         }
@@ -186,20 +176,16 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
     /// </summary>
     protected void SetupTextRender()
     {
-        if (spriteAsset == null)
-            return;
+        m_RichTextSpriteRender = GetComponentInChildren<RichTextSpriteRenderer>();
 
-        mRichTextSpriteRender = GetComponentInChildren<RichTextSpriteRenderer>();
-
-        if (mRichTextSpriteRender == null)
+        if (m_RichTextSpriteRender == null)
         {
-            GameObject textExRender = new GameObject("TextExRender", typeof(RichTextSpriteRenderer));
+            GameObject textExRender = new GameObject("RichTextSpriteRender", typeof(RichTextSpriteRenderer));
             textExRender.transform.SetParent(transform);
-            mRichTextSpriteRender = textExRender.GetComponent<RichTextSpriteRenderer>();
-            mRichTextSpriteRender.SetSpriteAsset(spriteAsset);
+            m_RichTextSpriteRender = textExRender.GetComponent<RichTextSpriteRenderer>();
         }
 
-        mRichTextSpriteRender.InitCanvasRenderer();
+        m_RichTextSpriteRender.InitCanvasRenderer();
     }
 
 
@@ -303,12 +289,9 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
         foreach (Match match in RichTextConst.UnderLineRegex.Matches(content))
         {
             //计算嵌套剔除的内容
-            int fitterLen = 0;
-
             string temp = match.Value;
             string combineText = string.Empty;
 
-            int index = 0; //处理的位置索引
             int cor = match.Index;
 
             while (temp.Contains("\n"))
@@ -347,7 +330,6 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
     /// <returns></returns>
     public string ParsingLinker(string content)
     {
-        var index = 0;
         string combineText = string.Empty;
         m_LinkInfos.Clear();
 
@@ -422,17 +404,20 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
         else
         {   //绘制表情替换占位符的顶点
             m_TextureUvInfos.Clear();
-            mRichTextSpriteRender.Clear();
+
+            if(m_RichTextSpriteRender != null)
+                m_RichTextSpriteRender.Clear();
+
             for (int idx = 0; idx < vertCount; idx++)
             {
                 QuadPlaceholder info = null;
-                if (mRichTextSpriteRender != null && supportRichText && m_QuadPlaceHolderInfos.TryGetValue(idx, out info))
+                if (m_RichTextSpriteRender != null && supportRichText && m_QuadPlaceHolderInfos.TryGetValue(idx, out info))
                 {
                     //占位符的其实定点在左上角，+3 第四个顶点在左下角
                     if (verts.Count <= info.index + 3)
                         continue;
 
-                    idx = mRichTextSpriteRender.GenerateVertices(info, verts[info.index + 3].position, idx, unitsPerPixel);
+                    idx = m_RichTextSpriteRender.GenerateVertices(info, verts[info.index + 3].position, idx, unitsPerPixel);
                 }
                 else
                 {   //继续绘制字体
@@ -460,9 +445,9 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
         }
 
         //网格重绘
-        if (spriteAsset != null && m_TextureUvInfos != null)
+        if (m_TextureUvInfos != null && m_RichTextSpriteRender != null)
         {
-            mRichTextSpriteRender.Draw();
+            m_RichTextSpriteRender.Draw();
         }
     }
 
@@ -547,10 +532,10 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
     void AddUnderlineQuad(VertexHelper toFill, IList<UIVertex> vertexs, Vector3 starPos, Vector3 endPos, Color32 color)
     {
         //厚度 0.1f * fontSize
-        _underlinePos[0] = new Vector3(starPos.x, starPos.y -8f, 0); ;
-        _underlinePos[1] = new Vector3(endPos.x, starPos.y - 8f, 0); ;
-        _underlinePos[2] = new Vector3(endPos.x, starPos.y + fontSize * -0.15f - 8f, 0);
-        _underlinePos[3] = new Vector3(starPos.x, starPos.y + fontSize * -0.15f - 8f, 0);
+        _underlinePos[0] = new Vector3(starPos.x, starPos.y -1f, 0); ;
+        _underlinePos[1] = new Vector3(endPos.x, starPos.y - 1f, 0); ;
+        _underlinePos[2] = new Vector3(endPos.x, starPos.y + fontSize * -0.15f - 1f, 0);
+        _underlinePos[3] = new Vector3(starPos.x, starPos.y + fontSize * -0.15f - 1f, 0);
 
         for (int i = 0; i < 4; ++i)
         {
@@ -571,7 +556,7 @@ public class RichText : Text, ILayoutGroup, IPointerClickHandler
 
     protected override void OnDestroy()
     {
-        mRichTextSpriteRender.Clear();
+        m_RichTextSpriteRender.Clear();
     }
     /// <summary>
     /// 点击到超链接

@@ -250,19 +250,12 @@ public class RichTextAssetGenWindow : EditorWindow
             spriteData.xOffset = 0f - spriteData.width * spriteData.pivot.x;
             spriteData.yOffset = spriteData.height - spriteData.height * spriteData.pivot.y;
 
-            Rect texCoords = new Rect(frame.x / (float) TextureSource.width, frame.y / (float) TextureSource.height,
-                frame.width / (float) TextureSource.width, frame.height / (float) TextureSource.height);
-            Sprite sprite = Sprite.Create((Texture2D) TextureSource, texCoords, frame.pivot);
-            spriteData.sprite = sprite;
-
             list.Add(spriteData);
 
             int pos = spriteData.name.LastIndexOf("_");
 
             if (pos > 0)
             {
-                Debug.LogError("图集命名不合法，不存在 '_'");
-
                 string key = spriteData.name.Substring(0, pos);
                 string aniIndex = spriteData.name.Substring(pos + 1, spriteData.name.Length - pos - 1);
 
@@ -310,18 +303,12 @@ public class RichTextAssetGenWindow : EditorWindow
             spriteData.xOffset = 0f - spriteData.width * spriteData.pivot.x;
             spriteData.yOffset = spriteData.height - spriteData.height * spriteData.pivot.y;
 
-            Rect texCoords = new Rect(frame.rect.x / (float)TextureSource.width, frame.rect.y / (float)TextureSource.height, frame.rect.width / (float)TextureSource.width, frame.rect.height / (float)TextureSource.height);
-            Sprite sprite = Sprite.Create((Texture2D)TextureSource, texCoords, frame.pivot);
-            spriteData.sprite = sprite;
-
             list.Add(spriteData);
-
 
             int pos = spriteData.name.LastIndexOf("_");
 
             if (pos > 0)
             {
-
                 string key = spriteData.name.Substring(0, pos);
                 string aniIndex = spriteData.name.Substring(pos + 1, spriteData.name.Length - pos - 1);
 
@@ -407,13 +394,6 @@ public class RichTextAssetGenWindow : EditorWindow
             spriteData.scale = 1f;
             spriteData.xOffset = 0f - spriteData.width * spriteData.pivot.x;
             spriteData.yOffset = spriteData.height - spriteData.height * spriteData.pivot.y;
-            Rect texCoords;
-
-
-            texCoords = new Rect(frames[i].frame.x / (float)TextureSource.width, frames[i].frame.y / (float)TextureSource.height, frames[i].frame.w / (float)TextureSource.width, frames[i].frame.h / (float)TextureSource.height);
-
-            Sprite sprite = Sprite.Create((Texture2D)TextureSource, texCoords, frames[i].pivot);
-            spriteData.sprite = sprite;
 
             list.Add(spriteData);
 

@@ -8,95 +8,104 @@ using UnityEditorInternal;
 [CanEditMultipleObjects]
 public class FontAssetEditor : Editor
 {
-    private SerializedProperty m_spriteAtlas_prop;
-    private SerializedProperty m_material_prop;
+    private SerializedProperty m_SpriteAtlas;
+    private SerializedProperty m_Material;
     private SerializedProperty m_spriteInfoList_prop;
-    private List<string> groupOption;
-    private Dictionary<string, List<SerializedProperty>> fontSpriteListDic;
+    private List<string> m_GroupOption = new List<string>();
+    private Dictionary<string, List<BMFontSprite>> m_FontSpriteListDic = new Dictionary<string, List<BMFontSprite>>();
+    private List<BMFontSprite> m_FontNotGroupSpriteList = new List<BMFontSprite>();
+    public Dictionary<string, Texture2D> SpriteDic = new Dictionary<string, Texture2D>();
+
     Vector2 texPos = Vector2.zero;
     int selectGroup = 0;
     Vector2 scrollPos = Vector2.zero;
-
-
-    GUIStyle labelStyle;
-    GUIStyle labelStyle2;
-
+    private BMFontAsset m_BMFontAsset;
+    private string m_PreKey;
     public void OnEnable()
     {
-        this.m_spriteAtlas_prop = base.serializedObject.FindProperty("spriteSheet");
-        this.m_material_prop = base.serializedObject.FindProperty("material");
+        this.m_SpriteAtlas = base.serializedObject.FindProperty("spriteSheet");
+        this.m_Material = base.serializedObject.FindProperty("material");
         this.m_spriteInfoList_prop = base.serializedObject.FindProperty("spriteInfoList");
 
-        if (fontSpriteListDic != null)
-            fontSpriteListDic.Clear();
 
-        groupOption = new List<string>();
-        fontSpriteListDic = new Dictionary<string, List<SerializedProperty>>();
-        int len = this.m_spriteInfoList_prop.arraySize;
-        for (int index = 0; index < len; index++)
-        {
-            SerializedProperty element = this.m_spriteInfoList_prop.GetArrayElementAtIndex(index);
-            string group = element.FindPropertyRelative("group").stringValue;
-            if (!fontSpriteListDic.ContainsKey(group))
-            {
-                groupOption.Add(group);
-                fontSpriteListDic.Add(group, new List<SerializedProperty>());
-            }
-            fontSpriteListDic[group].Add(element);
-        }
+        m_BMFontAsset = target as BMFontAsset;
 
-     
+        if (m_BMFontAsset == null)
+            return;
+
+        SetupGroup();
     }
 
-    void initFontStyle()
+
+    private void SetupGroup()
     {
-        labelStyle = new GUIStyle("BoldLabel");
-        labelStyle.normal.textColor = new Color(1, 1, 1, 1);
-        labelStyle.fontStyle = FontStyle.Bold;
-        labelStyle.contentOffset = new Vector2(0,-5);
+        if (m_BMFontAsset == null)
+            return;
 
-        labelStyle2 = new GUIStyle("BoldLabel");
-        labelStyle2.fontStyle = FontStyle.Bold;
-        labelStyle2.contentOffset = new Vector2(0, -5);
+        m_FontNotGroupSpriteList.Clear();
+        m_FontSpriteListDic.Clear();
 
+        int len = this.m_BMFontAsset.spriteInfoList.Count;
+        for (int index = 0; index < len; index++)
+        {
+            BMFontSprite element = m_BMFontAsset.spriteInfoList[index];
+            string group = element.group;
+            if (string.IsNullOrEmpty(group))
+                m_FontNotGroupSpriteList.Add(element);
+            else
+            {
+                if (!m_FontSpriteListDic.ContainsKey(group))
+                {
+                    m_GroupOption.Add(group);
+                    m_FontSpriteListDic.Add(group, new List<BMFontSprite>());
+                }
+                m_FontSpriteListDic[group].Add(element);
+            }
+        }
     }
 
     public override void OnInspectorGUI()
     {
-        initFontStyle();
         Event current = Event.current;
         base.serializedObject.Update();
-        if (DrawTextToggle("Sprite Info"))
+
+        if (TexturePackTool.DrawHeader("基础信息", true))
         {
-            EditorGUI.indentLevel = 1;
-            EditorGUI.BeginChangeCheck();
-            EditorGUILayout.PropertyField(this.m_spriteAtlas_prop, new GUIContent("Sprite Atlas"));
-            if (EditorGUI.EndChangeCheck())
-            {
-                Texture2D texture2D = this.m_spriteAtlas_prop.objectReferenceValue as Texture2D;
-                if (texture2D != null)
-                {
-                    Material material = this.m_material_prop.objectReferenceValue as Material;
-                    if (material != null)
-                    {
-                        material.mainTexture = texture2D;
-                    }
-                }
-            }
-            GUI.enabled = true;
-            EditorGUILayout.PropertyField(this.m_material_prop, new GUIContent("Default Material"), new GUILayoutOption[0]);
+            EditorGUILayout.PropertyField(this.m_SpriteAtlas, new GUIContent("合图"));
+            EditorGUILayout.PropertyField(this.m_Material, new GUIContent("材质球"));
         }
 
-        if (DrawTextToggle("Group Info"))
-        {
-            selectGroup = EditorGUILayout.Popup("Group", selectGroup, groupOption.ToArray());
-            string groupKey = groupOption[selectGroup];
-            if (string.IsNullOrEmpty(groupKey) || !fontSpriteListDic.ContainsKey(groupKey))
-                return;
-            texPos = new Vector2(8,30);
-            List<SerializedProperty> list = fontSpriteListDic[groupKey];
+        //if (DrawTextToggle("Sprite Info"))
+        //{
+        //    EditorGUI.indentLevel = 1;
+        //    EditorGUI.BeginChangeCheck();
+        //    EditorGUILayout.PropertyField(this.m_SpriteAtlas, new GUIContent("Sprite Atlas"));
+        //    if (EditorGUI.EndChangeCheck())
+        //    {
+        //        Texture2D texture2D = this.m_SpriteAtlas.objectReferenceValue as Texture2D;
+        //        if (texture2D != null)
+        //        {
+        //            Material material = this.m_Material.objectReferenceValue as Material;
+        //            if (material != null)
+        //            {
+        //                material.mainTexture = texture2D;
+        //            }
+        //        }
+        //    }
+        //    GUI.enabled = true;
+        //    EditorGUILayout.PropertyField(this.m_Material, new GUIContent("Default Material"), new GUILayoutOption[0]);
+        //}
 
-            scrollPos = GUILayout.BeginScrollView(scrollPos,new GUIStyle("AnimationKeyframeBackground"));
+        if (TexturePackTool.DrawHeader("已分组", true))
+        {
+            selectGroup = EditorGUILayout.Popup("分组", selectGroup, m_GroupOption.ToArray());
+            string groupKey = m_GroupOption[selectGroup];
+            if (string.IsNullOrEmpty(groupKey) || !m_FontSpriteListDic.ContainsKey(groupKey))
+                return;
+            texPos = new Vector2(8, 30);
+            List<BMFontSprite> list = m_FontSpriteListDic[groupKey];
+
+            scrollPos = GUILayout.BeginScrollView(scrollPos, new GUIStyle("box"));
             for (int idx = 0; idx < list.Count; idx++)
             {
                 OnFontSpriteElementGUI(list[idx]);
@@ -104,75 +113,92 @@ public class FontAssetEditor : Editor
 
             GUILayout.EndScrollView();
         }
-
-
-        //    EditorGUILayout.PropertyField(this.m_spriteInfoList_prop, true);
-
-        // Dictionary<string, List<FontSprite>> fontSpriteGroupDic = this.m_spriteInfoList_prop.objectReferenceValue as Dictionary<string, List<FontSprite>>;
     }
 
 
-    private void OnFontSpriteElementGUI(SerializedProperty element)
+    private void OnFontSpriteElementGUI(BMFontSprite element)
     {
-        Rect rect = EditorGUILayout.BeginVertical("GroupBox");
-        int  id = element.FindPropertyRelative("id").intValue;
-        string name = element.FindPropertyRelative("name").stringValue;
-        int hashCode = element.FindPropertyRelative("hashCode").intValue;
-        float x = element.FindPropertyRelative("x").floatValue;
-        float y = element.FindPropertyRelative("y").floatValue;
-        float width = element.FindPropertyRelative("width").floatValue;
-        float height = element.FindPropertyRelative("height").floatValue;
-        Vector2 pivot = element.FindPropertyRelative("pivot").vector2Value;
-        string key = element.FindPropertyRelative("key").stringValue;
-        Vector2 offest = element.FindPropertyRelative("offest").vector2Value;
+        Rect rect = EditorGUILayout.BeginVertical("box");
+        float x = element.x;
+        float y = element.y;
+        float width = element.width;
+        float height = element.height;
+        Vector2 pivot = element.pivot;
+        string key = element.key;
 
-        Texture spriteSheet = this.m_spriteAtlas_prop.objectReferenceValue as Texture2D;
+        Texture2D spriteSheet = this.m_SpriteAtlas.objectReferenceValue as Texture2D;
         if (spriteSheet == null)
         {
             Debug.LogWarning("Please assign a valid Sprite Atlas texture to the [" + serializedObject.targetObject.name + "] Sprite Asset.", serializedObject.targetObject);
             return;
         }
 
+        Texture2D tex = null;
 
-        Vector2 vector2 = new Vector2(65f, 65f);
-        if (width>= height)
+        if (SpriteDic.ContainsKey(element.name))
         {
-            vector2.y = height * vector2.x / width;
+            tex = SpriteDic[element.name];
         }
         else
         {
-            vector2.x = width * vector2.y / height;
+            tex = new Texture2D((int)element.width, (int)element.height);
+            Color[] colors = spriteSheet.GetPixels((int)element.x, (int)element.y, (int)element.width, (int)element.height);
+            tex.SetPixels(0, 0, (int)element.width, (int)element.height, colors);
+
+            tex = TexturePackTool.ScaleTextureBilinear(tex, 2);
+            tex.Apply();
+            SpriteDic.Add(element.name, tex);
         }
 
-        Rect texCoords = new Rect(x/ (float)spriteSheet.width, y / (float)spriteSheet.height, width / (float)spriteSheet.width, height / (float)spriteSheet.height);
-        GUI.DrawTextureWithTexCoords(new Rect(texPos.x + 20, texPos.y + 18, vector2.x, vector2.y), spriteSheet, texCoords);
 
         EditorGUILayout.BeginHorizontal();
-        GUILayout.Label("ID: " + id, labelStyle);
+        GUILayout.Label("ID: " + element.id);
         GUILayout.Space(10);
-        GUILayout.Label(name, labelStyle2);
+        GUILayout.Label(element.name);
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginHorizontal();
-        GUILayout.Box("", new GUILayoutOption[2] { GUILayout.Width(80), GUILayout.Height(80)});
+        GUILayout.Label(tex, GUILayout.Width(80), GUILayout.Height(80));
         EditorGUILayout.BeginVertical();
         GUILayout.Space(8);
+
+
         EditorGUILayout.BeginHorizontal();
-        GUILayout.Label(" Key: ", labelStyle2); GUILayout.TextField(key);
+        GUILayout.Label(" Group: ");
+        GUILayout.TextField(element.group);
         EditorGUILayout.EndHorizontal();
 
-        GUILayout.Label(string.Format(" Size  : W: {0}    H: {1}", width,height) , labelStyle2);
-        GUILayout.Label(string.Format(" Pivot : X: {0}    Y: {1}", pivot.x, pivot.y), labelStyle2);
-        GUILayout.Label(string.Format(" UV   : X: {0}  Y: {1}  W: {2}  H: {3}",x,y,width, height), labelStyle2);
-       // GUILayout.Label(string.Format(" Offest: X: {0}    Y: {1}", offest.x, offest.y), labelStyle2);
+   
+        EditorGUI.BeginChangeCheck();
+
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.Label(" Key: ");
+        element.key = EditorGUILayout.TextField(element.key);
+        EditorGUILayout.EndHorizontal();
+        if (EditorGUI.EndChangeCheck())
+        {
+            if (m_FontSpriteListDic.ContainsKey(element.group))
+            {
+                List<BMFontSprite> tempGroup = m_FontSpriteListDic[element.group];
+                for (int i = 0; i < tempGroup.Count; i++)
+                {
+                    if (tempGroup[i].key == element.key)
+                    {
+                        Debug.LogError("KEY 冲突");
+                        break;
+                    }
+                }
+            }
+        }
+
+        GUILayout.Label(string.Format(" Size  : W: {0}    H: {1}", element.width, element.height));
+        GUILayout.Label(string.Format(" Pivot : X: {0}    Y: {1}", element.pivot.x, element.pivot.y));
+        GUILayout.Label(string.Format(" UV   : X: {0}  Y: {1}  W: {2}  H: {3}", element.x, element.y, element.width, element.height));
 
         EditorGUILayout.EndVertical();
 
         EditorGUILayout.EndHorizontal();
-
-
-        texPos += new Vector2(0, rect.height + 10);
 
         GUILayout.Space(10);
         EditorGUILayout.EndVertical();

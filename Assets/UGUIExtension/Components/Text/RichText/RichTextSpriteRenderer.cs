@@ -249,7 +249,7 @@ public class RichTextSpriteRenderer : MaskableGraphic
     }
 
     /// <summary>
-    /// 绘制当前图集信息
+    /// 播放Uv动画
     /// </summary>
     public void PlayAnimate()
     {
@@ -277,7 +277,7 @@ public class RichTextSpriteRenderer : MaskableGraphic
     }
 
     /// <summary>
-    /// 绘制图片
+    /// 刷新网格
     /// </summary>
     public void RefreshMesh()
     {
@@ -310,7 +310,6 @@ public class RichTextSpriteRenderer : MaskableGraphic
     List<Vector2> m_TempUv = new List<Vector2>();
     List<int> m_TempTriangles = new List<int>();
     Vector2[] m_TempUvArray;
-
 
     /// <summary>
     /// 绘制图片

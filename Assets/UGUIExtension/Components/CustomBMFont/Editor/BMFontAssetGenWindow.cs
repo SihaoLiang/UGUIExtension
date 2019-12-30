@@ -6,107 +6,220 @@ using Serialize;
 using System.IO;
 using System;
 
-public class ArtFontAssetGenWindow : EditorWindow
+public class BMFontAssetGenWindow : EditorWindow
 {
+    public enum PackingType
+    {
+        TexturePack = 0,
+        UnityPack,
+        Custom
+    }
 
-    Texture2D texSource;
-    TextAsset texSheet;
-    string genConsole;
-    GUIStyle labelStyle;
+    private string m_ConsoleContent;
 
-    List<BMFontSprite> fontSpriteInfoList = new List<BMFontSprite>();
-    BMFontAsset fontAsset;
+    private Texture2D m_TextureSource;
+    private TextAsset m_TPTextSheet;
+    GUIStyle m_LabelStyle;
 
-    [MenuItem("Assets/Art Font Asset Creator")]
+    private PackingType AtlasPacking;
+
+    List<BMFontSprite> m_FontSpriteInfoList = new List<BMFontSprite>();
+    BMFontAsset m_FontAsset;
+
+    [MenuItem("图集工具/生成艺术字图集")]
     public static void ShowArtFontAssetGenWindow()
     {
-        ArtFontAssetGenWindow window = EditorWindow.GetWindow<ArtFontAssetGenWindow>();
-        window.titleContent = new GUIContent("ArtFontAsset Creator");
+        BMFontAssetGenWindow window = EditorWindow.GetWindow<BMFontAssetGenWindow>();
+        window.titleContent = new GUIContent("生成艺术字图集");
         window.Focus();
     }
 
     private void OnEnable()
     {
-        genConsole = string.Empty;
-        texSource = null;
-        texSheet = null;
-        fontAsset = null;
-       // SetEditorWindowSize();
+        m_ConsoleContent = string.Empty;
+        m_TextureSource = null;
+        m_TPTextSheet = null;
+        m_FontAsset = null;
         InitGUIStyle();
     }
 
 
     void InitGUIStyle()
     {
-        labelStyle = new GUIStyle();
-        labelStyle.fontStyle = FontStyle.Bold;
-        labelStyle.fontSize = 16;
-        labelStyle.richText = true;
+        m_LabelStyle = new GUIStyle();
+        m_LabelStyle.fontStyle = FontStyle.Bold;
+        m_LabelStyle.fontSize = 16;
+        m_LabelStyle.richText = true;
     }
 
     void OnGUI()
     {
-        GUILayout.BeginVertical(new GUILayoutOption[0]);
-        //   GUILayout.Label("Art Text Generator", "LODRenderersText", new GUILayoutOption[0]);
-        EditorGUI.BeginChangeCheck();
-        this.texSheet = (EditorGUILayout.ObjectField("Texture Data(Json)", this.texSheet, typeof(TextAsset), false, new GUILayoutOption[0]) as TextAsset);
-        this.texSource = (EditorGUILayout.ObjectField("Texture Atlas", this.texSource, typeof(Texture2D), false, new GUILayoutOption[0]) as Texture2D);
-        if (EditorGUI.EndChangeCheck())
+        GUILayout.BeginVertical();
+
+        GUILayout.Space(5);
+
+        if (AtlasPacking == PackingType.TexturePack)
         {
-            this.genConsole = string.Empty;
+            EditorGUILayout.HelpBox("使用外部插件Texture Packer 打包的图集(Json)生成可用于富文本的图集数据", MessageType.Info);
+        }
+        else if (AtlasPacking == PackingType.Custom)
+        {
+            EditorGUILayout.HelpBox("使用自定义打包的图集生成可用于富文本的图集数据", MessageType.Info);
+        }
+        else if (AtlasPacking == PackingType.UnityPack)
+        {
+            EditorGUILayout.HelpBox("使用Unity Sprite Edtor打包的图集生成可用于富文本的图集数据", MessageType.Info);
         }
 
-        if (texSheet == null || texSource == null)
+
+        AtlasPacking = (PackingType)EditorGUILayout.EnumPopup("生成方式", AtlasPacking);
+        if (AtlasPacking == PackingType.TexturePack)
         {
-            GUILayout.EndVertical();
+            TexturePackGUI();
+        }
+        else if (AtlasPacking == PackingType.Custom)
+        {
+            //CustomPackGUI();
+        }
+        else if (AtlasPacking == PackingType.UnityPack)
+        {
+            //UnityPackGUI();
+        }
+
+        if (m_FontAsset != null)
+        {
+            this.m_ConsoleContent = string.Concat(new object[]
+            {
+                "生成富文本图集成功\n",
+                string.Format("本次生成精灵数量：{0}\n", m_FontAsset.spriteInfoList.Count),
+                //string.Format("本次生成动画数量：{0}\n", m_FontAsset.animateList.Count),
+            });
+
+        }
+        else
+        {
+            this.m_ConsoleContent = string.Concat(new object[]
+            {
+                "未生成图集",
+            });
+
+        }
+
+
+        GUILayout.Space(5f);
+        GUILayout.BeginVertical("box", new GUILayoutOption[]
+        {
+            GUILayout.Height(80)
+        });
+
+
+
+        EditorGUILayout.LabelField(this.m_ConsoleContent, m_LabelStyle, new GUILayoutOption[0]);
+        GUILayout.EndVertical();
+        GUILayout.Space(5f);
+        GUILayout.EndVertical();
+
+
+        //EditorGUI.BeginChangeCheck();
+        //this.m_TPTextSheet = (EditorGUILayout.ObjectField("Texture Data(Json)", this.m_TPTextSheet, typeof(TextAsset), false, new GUILayoutOption[0]) as TextAsset);
+        //this.m_TextureSource = (EditorGUILayout.ObjectField("Texture Atlas", this.m_TextureSource, typeof(Texture2D), false, new GUILayoutOption[0]) as Texture2D);
+        //if (EditorGUI.EndChangeCheck())
+        //{
+        //    this.m_ConsoleContent = string.Empty;
+        //}
+
+        //if (m_TPTextSheet == null || m_TextureSource == null)
+        //{
+        //    GUILayout.EndVertical();
+        //    return;
+        //}
+
+        //GUILayout.Space(10f);
+        //if (GUILayout.Button("Create Sprite Asset", new GUILayoutOption[0]))
+        //{
+        //    this.m_ConsoleContent = string.Empty;
+        //    TP.TexturePackJsonData spriteDataObject = JsonUtility.FromJson<TP.TexturePackJsonData>(this.m_TPTextSheet.text);
+        //    if (spriteDataObject != null && spriteDataObject.frames != null && spriteDataObject.frames.Count > 0)
+        //    {
+        //        int count = spriteDataObject.frames.Count;
+        //        this.m_ConsoleContent = "<b>Import Results</b>\n-----------------------------\n";
+        //        string str = this.m_ConsoleContent;
+        //        this.m_ConsoleContent = string.Concat(new object[]
+        //        {
+        //                    str,
+        //                    "<color=#C0ffff><b>",
+        //                    count,
+        //                    "</b></color> Sprites were imported from file."
+        //        });
+        //    }
+        //    m_FontSpriteInfoList = CreateSpriteInfoList(spriteDataObject);
+        //}
+
+        //GUILayout.Space(5f);
+        //GUI.enabled = (this.m_FontSpriteInfoList != null);
+        //if (GUILayout.Button("Save Sprite Asset", new GUILayoutOption[0]))
+        //{
+        //    string text = string.Empty;
+        //    text = EditorUtility.SaveFilePanel("Save Sprite Asset File", new FileInfo(AssetDatabase.GetAssetPath(this.m_TPTextSheet)).DirectoryName, this.m_TPTextSheet.name, "asset");
+        //    if (text.Length == 0)
+        //    {
+        //        return;
+        //    }
+        //    this.SaveSpriteAsset(text);
+        //}
+
+        //GUILayout.Space(5f);
+        //GUILayout.BeginVertical("box", new GUILayoutOption[]
+        //{
+        //    GUILayout.Height(60f)
+        //});
+
+        //EditorGUILayout.LabelField(this.m_ConsoleContent, m_LabelStyle, new GUILayoutOption[0]);
+        //GUILayout.EndVertical();
+
+        //GUILayout.Space(5f);
+        //GUILayout.EndVertical();
+    }
+
+
+    /// <summary>
+    /// 利用TexturePack打包图集信息
+    /// </summary>
+    void TexturePackGUI()
+    {
+        EditorGUI.BeginChangeCheck();
+        this.m_TPTextSheet = (EditorGUILayout.ObjectField("TP数据(Json)", this.m_TPTextSheet, typeof(TextAsset), false, new GUILayoutOption[0]) as TextAsset);
+        GUILayout.Space(5);
+
+        this.m_TextureSource = (EditorGUILayout.ObjectField("TP合图", this.m_TextureSource, typeof(Texture2D), false, new GUILayoutOption[0]) as Texture2D);
+        if (EditorGUI.EndChangeCheck())
+        {
+            this.m_ConsoleContent = string.Empty;
+        }
+
+        if (m_TPTextSheet == null || m_TextureSource == null)
+        {
             return;
         }
 
         GUILayout.Space(10f);
-        if (GUILayout.Button("Create Sprite Asset", new GUILayoutOption[0]))
-        {
-            this.genConsole = string.Empty;
-            TP.TexturePackJsonData spriteDataObject = JsonUtility.FromJson<TP.TexturePackJsonData>(this.texSheet.text);
-            if (spriteDataObject != null && spriteDataObject.frames != null && spriteDataObject.frames.Count > 0)
-            {
-                int count = spriteDataObject.frames.Count;
-                this.genConsole = "<b>Import Results</b>\n-----------------------------\n";
-                string str = this.genConsole;
-                this.genConsole = string.Concat(new object[]
-                {
-                            str,
-                            "<color=#C0ffff><b>",
-                            count,
-                            "</b></color> Sprites were imported from file."
-                });
-            }
-            fontSpriteInfoList = CreateSpriteInfoList(spriteDataObject);
-        }
 
-        GUILayout.Space(5f);
-        GUI.enabled = (this.fontSpriteInfoList != null);
-        if (GUILayout.Button("Save Sprite Asset", new GUILayoutOption[0]))
+        if (GUILayout.Button("生成", new GUILayoutOption[0]))
         {
+
+            this.m_ConsoleContent = string.Empty;
+            TP.TexturePackJsonData spriteDataObject = JsonUtility.FromJson<TP.TexturePackJsonData>(this.m_TPTextSheet.text);
+
+            m_FontSpriteInfoList = CreateSpriteInfoList(spriteDataObject);
+
             string text = string.Empty;
-            text = EditorUtility.SaveFilePanel("Save Sprite Asset File", new FileInfo(AssetDatabase.GetAssetPath(this.texSheet)).DirectoryName, this.texSheet.name, "asset");
+            text = EditorUtility.SaveFilePanel("保存富文本数据", new FileInfo(AssetDatabase.GetAssetPath(this.m_TPTextSheet)).DirectoryName, this.m_TPTextSheet.name, "asset");
             if (text.Length == 0)
             {
                 return;
             }
             this.SaveSpriteAsset(text);
         }
-
-        GUILayout.Space(5f);
-        GUILayout.BeginVertical("box", new GUILayoutOption[]
-        {
-            GUILayout.Height(60f)
-        });
-
-        EditorGUILayout.LabelField(this.genConsole, labelStyle, new GUILayoutOption[0]);
-        GUILayout.EndVertical();
-
-        GUILayout.Space(5f);
-        GUILayout.EndVertical();
     }
 
     private List<BMFontSprite> CreateSpriteInfoList(TP.TexturePackJsonData spriteDataObject)
@@ -122,25 +235,24 @@ public class ArtFontAssetGenWindow : EditorWindow
             int num = fontData.name.IndexOf('-');
 
             // int ascii;
-
+            string key = string.Empty;
             int pos = fontData.name.LastIndexOf("_");
 
             if (pos == -1)
-                Debug.LogError("图集命名不合法，不存在 '_'");
-
-            string key = fontData.name.Substring(pos + 1, fontData.name.Length - pos - 1);
-
-            try{
-                int.Parse(key);
+            {
+                key = fontData.name;
+                pos = fontData.name.Length;
+                //Debug.LogError("图集命名不合法，不存在 '_'");
             }
-            catch(Exception ex) {
-                Debug.LogError(string.Format(" 图片{0}, Key必须数字,{1}",fontData.name, ex));
+            else
+            {
+                key = fontData.name.Substring(pos + 1, fontData.name.Length - pos - 1);
             }
 
             fontData.key = key;
             fontData.group = fontData.name.Substring(0, pos);
             fontData.x = frames[i].frame.x;
-            fontData.y = (float)this.texSource.height - (frames[i].frame.y + frames[i].frame.h);
+            fontData.y = (float)this.m_TextureSource.height - (frames[i].frame.y + frames[i].frame.h);
             fontData.width = frames[i].frame.w;
             fontData.height = frames[i].frame.h;
             fontData.pivot = frames[i].pivot;
@@ -169,28 +281,28 @@ public class ArtFontAssetGenWindow : EditorWindow
 
         if (!File.Exists(filePath + ".asset"))
         {
-            this.fontAsset = ScriptableObject.CreateInstance<BMFontAsset>();
-            AssetDatabase.CreateAsset(this.fontAsset, str + ".asset");
+            this.m_FontAsset = ScriptableObject.CreateInstance<BMFontAsset>();
+            AssetDatabase.CreateAsset(this.m_FontAsset, str + ".asset");
         }
         else
         {
-            this.fontAsset = AssetDatabase.LoadAssetAtPath<BMFontAsset>(str + ".asset");
-            if (this.fontAsset == null)
+            this.m_FontAsset = AssetDatabase.LoadAssetAtPath<BMFontAsset>(str + ".asset");
+            if (this.m_FontAsset == null)
             {
-                this.fontAsset = ScriptableObject.CreateInstance<BMFontAsset>();
-                AssetDatabase.CreateAsset(this.fontAsset, str + ".asset");
+                this.m_FontAsset = ScriptableObject.CreateInstance<BMFontAsset>();
+                AssetDatabase.CreateAsset(this.m_FontAsset, str + ".asset");
             }
         }
 
-        this.fontAsset.hashCode = this.fontAsset.name.GetHashCode();
-        this.fontAsset.spriteSheet = this.texSource;
-        this.fontAsset.spriteInfoList = this.fontSpriteInfoList;
-       // AssetDatabase.CreateAsset(this.fontAsset, str + ".asset");
+        this.m_FontAsset.hashCode = this.m_FontAsset.name.GetHashCode();
+        this.m_FontAsset.spriteSheet = this.m_TextureSource;
+        this.m_FontAsset.spriteInfoList = this.m_FontSpriteInfoList;
+       // AssetDatabase.CreateAsset(this.m_FontAsset, str + ".asset");
 
 
-        AddDefaultMaterial(this.fontAsset);
+        AddDefaultMaterial(this.m_FontAsset);
 
-        EditorUtility.SetDirty(this.fontAsset);
+        EditorUtility.SetDirty(this.m_FontAsset);
         AssetDatabase.Refresh();
         AssetDatabase.SaveAssets();
         if (Application.isPlaying)
