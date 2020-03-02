@@ -256,6 +256,7 @@
     <Compile Include="Assets\UGUIExtension\Components\Text\RichText\RichTextSpriteAsset.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Text\RichText\RichTextSpriteRenderer.cs" />
     <Compile Include="Assets\UGUIExtension\Components\Text\TextTypewriter\TextTypewriter.cs" />
+    <Compile Include="Assets\UGUIExtension\Components\VideoPlayer\XVideoPlayerUGUI.cs" />
     <Compile Include="Assets\UGUIExtension\Examples\AutoLayoutNode\Scripts\LayoutTest.cs" />
     <Compile Include="Assets\UGUIExtension\Examples\DynamicTableCurve\ExampleDynamicTableCurve.cs" />
     <Compile Include="Assets\UGUIExtension\Examples\DynamicTableIrregular\Scripts\ExampleDynamicTableIrregular.cs" />
