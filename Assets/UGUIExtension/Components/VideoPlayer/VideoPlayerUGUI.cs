@@ -5,10 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 
 [RequireComponent(typeof(RawImage))]
-[RequireComponent(typeof(XAspectRatioFitter))]
+[RequireComponent(typeof(AspectRatioFitter))]
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(VideoPlayer))]
-public class XVideoPlayerUGUI : MonoBehaviour
+public class VideoPlayerUGUI : MonoBehaviour
 {
     /// <summary>
     /// 图片
@@ -30,19 +30,19 @@ public class XVideoPlayerUGUI : MonoBehaviour
     /// <summary>
     /// 适配
     /// </summary>
-    public XAspectRatioFitter AspectRatioFitterInst
+    public AspectRatioFitter AspectRatioFitterInst
     {
         get
         {
-            if (XAspectRatio == null)
+            if (AspectRatio == null)
             {
-                XAspectRatio = GetComponent<XAspectRatioFitter>();
+                AspectRatio = GetComponent<AspectRatioFitter>();
             }
-            return XAspectRatio;
+            return AspectRatio;
         }
     }
 
-    private XAspectRatioFitter XAspectRatio;
+    private AspectRatioFitter AspectRatio;
 
     public VideoPlayer VideoPlayerInst
     {
@@ -86,7 +86,6 @@ public class XVideoPlayerUGUI : MonoBehaviour
     public bool PlayOnAwake = true;
     public bool IsPlayAfterPrepare = true;
     public bool IsLooping = false;
-    public bool ControlBgMusicWhenPlaying = true;
 
     [Range(0, 10)]
     public float PlaybackSpeed = 1;
@@ -121,16 +120,12 @@ public class XVideoPlayerUGUI : MonoBehaviour
 
         VideoPlayerInst.playbackSpeed = PlaybackSpeed;
         VideoPlayerInst.isLooping = IsLooping;
-#if CLIENT
-        //XGraphicManager.SetVideoPlayerRTLinear(VideoPlayerInst);
-        AudioSourceInst.volume = XAudioManager.MusicVolume;
-#endif
     }
 
     private void Start()
     {
         Vector2 vector2 = GetRenderTextureSize();
-        RtRenderTexture = XRenderTextureManager.GetTemporary(Mathf.RoundToInt(vector2.x), Mathf.RoundToInt(vector2.y), 0, UnityEngine.RenderTextureFormat.ARGB32, UnityEngine.RenderTextureReadWrite.Default);
+        RtRenderTexture = RenderTexture.GetTemporary(Mathf.RoundToInt(vector2.x), Mathf.RoundToInt(vector2.y), 0, RenderTextureFormat.ARGB32);       
         VideoPlayerInst.targetTexture = RtRenderTexture;
 
         if (RawImageInst != null)
@@ -148,13 +143,9 @@ public class XVideoPlayerUGUI : MonoBehaviour
     {
         if (RtRenderTexture != null)
         {
-            XRenderTextureManager.FillRt(RtRenderTexture, Color.black);
-            XRenderTextureManager.ReleaseTemporary(RtRenderTexture);
+            FillRt(RtRenderTexture,Color.black);
+            RenderTexture.ReleaseTemporary(RtRenderTexture);
         }
-#if CLIENT
-        XGameEventManager.Instance.Notify(XEventId.EVENT_VIDEO_ACTION_DESTROY);
-
-#endif
     }
 
     public void SetSpeed(float speed)
@@ -168,13 +159,9 @@ public class XVideoPlayerUGUI : MonoBehaviour
     /// <returns></returns>
     private Vector2 GetRenderTextureSize()
     {
-#if CLIENT
-        int screenWid = XUiManager.RealScreenWidth;
-        int screenHei = XUiManager.RealScreenHeight;
-#elif RES
         int screenWid = 1920;
         int screenHei = 1080;
-#endif
+
         if (AspectRatioFitterInst == null)
         {
             return new Vector2(screenWid, screenHei);
@@ -199,6 +186,15 @@ public class XVideoPlayerUGUI : MonoBehaviour
         return vector2;
     }
 
+    public void FillRt(RenderTexture renderTexture, Color color)
+    {
+        RenderTexture rt = RenderTexture.active;
+        RenderTexture.active = renderTexture;
+        GL.Clear(true, true, color);
+        RenderTexture.active = rt;
+    }
+
+
     /// <summary>
     /// 准备
     /// </summary>
@@ -209,12 +205,6 @@ public class XVideoPlayerUGUI : MonoBehaviour
 
     public void Play()
     {
-
-        if (ControlBgMusicWhenPlaying)
-        {
-            XAudioManager.PauseMusic();
-        }
-
         if (VideoPlayerInst.isPrepared)
         {
             VideoPlayerInst.Play();
@@ -223,10 +213,6 @@ public class XVideoPlayerUGUI : MonoBehaviour
         {
             Prepare();
         }
-#if CLIENT
-
-        XGameEventManager.Instance.Notify(XEventId.EVENT_VIDEO_ACTION_PLAY);
-#endif
     }
 
     public void Pause()
@@ -237,9 +223,6 @@ public class XVideoPlayerUGUI : MonoBehaviour
     public void Stop()
     {
         VideoPlayerInst.Stop();
-#if CLIENT
-        XGameEventManager.Instance.Notify(XEventId.EVENT_VIDEO_ACTION_STOP);
-#endif
     }
 
     public void SetVideoClip(VideoClip clip)
@@ -280,7 +263,9 @@ public class XVideoPlayerUGUI : MonoBehaviour
 
     private void PrepareCompleted(VideoPlayer player)
     {
-        ActionPrepareCompleted?.Invoke();
+        if (ActionPrepareCompleted != null)
+            ActionPrepareCompleted.Invoke();
+
         if (IsPlayAfterPrepare)
         {
             Play();
@@ -289,11 +274,8 @@ public class XVideoPlayerUGUI : MonoBehaviour
 
     private void LoopPointReached(VideoPlayer player)
     {
-        ActionEnded?.Invoke();
-        if (ControlBgMusicWhenPlaying)
-        {
-            XAudioManager.ResumeMusic();
-        }
+        if (ActionEnded != null)
+            ActionEnded.Invoke();
     }
 
     void FrameDropped(VideoPlayer player)
@@ -313,7 +295,7 @@ public class XVideoPlayerUGUI : MonoBehaviour
 
     private void ErrorReceived(VideoPlayer source, string message)
     {
-        XLog.Error("VideoPlayer ErrorReceived：" + message);
+        Debug.LogError("VideoPlayer ErrorReceived：" + message);
     }
 
 

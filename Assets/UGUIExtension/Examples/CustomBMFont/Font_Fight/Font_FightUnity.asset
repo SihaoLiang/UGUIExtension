@@ -1,0 +1,1680 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f1b2778b58ae144a8c125da9f6ee2bf, type: 3}
+  m_Name: Font_FightUnity
+  m_EditorClassIdentifier: 
+  hashCode: 1338253419
+  material: {fileID: 21058022486174936}
+  materialHashCode: 0
+  spriteInfoList:
+  - height: 38
+    id: 0
+    scale: 1
+    width: 77
+    x: 4
+    xAdvance: 0
+    xOffset: 0
+    y: 470
+    yOffset: 38
+    hashCode: -635719124
+    name: Font_FightUnity_0
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 0
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 38
+    id: 1
+    scale: 1
+    width: 77
+    x: 88
+    xAdvance: 0
+    xOffset: 0
+    y: 470
+    yOffset: 38
+    hashCode: -635719123
+    name: Font_FightUnity_1
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 1
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 40
+    id: 2
+    scale: 1
+    width: 76
+    x: 172
+    xAdvance: 0
+    xOffset: 0
+    y: 470
+    yOffset: 40
+    hashCode: -635719126
+    name: Font_FightUnity_2
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 2
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 40
+    id: 3
+    scale: 1
+    width: 40
+    x: 256
+    xAdvance: 0
+    xOffset: 0
+    y: 468
+    yOffset: 40
+    hashCode: -635719125
+    name: Font_FightUnity_3
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 3
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 36
+    id: 4
+    scale: 1
+    width: 34
+    x: 298
+    xAdvance: 0
+    xOffset: 0
+    y: 469
+    yOffset: 36
+    hashCode: -635719128
+    name: Font_FightUnity_4
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 4
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 41
+    id: 5
+    scale: 1
+    width: 41
+    x: 341
+    xAdvance: 0
+    xOffset: 0
+    y: 468
+    yOffset: 41
+    hashCode: -635719127
+    name: Font_FightUnity_5
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 5
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 35
+    id: 6
+    scale: 1
+    width: 35
+    x: 381
+    xAdvance: 0
+    xOffset: 0
+    y: 470
+    yOffset: 35
+    hashCode: -635719130
+    name: Font_FightUnity_6
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 6
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 38
+    id: 7
+    scale: 1
+    width: 42
+    x: 424
+    xAdvance: 0
+    xOffset: 0
+    y: 469
+    yOffset: 38
+    hashCode: -635719129
+    name: Font_FightUnity_7
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 7
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 10
+    id: 8
+    scale: 1
+    width: 9
+    x: 433
+    xAdvance: 0
+    xOffset: 0
+    y: 499
+    yOffset: 10
+    hashCode: -635719116
+    name: Font_FightUnity_8
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 8
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 34
+    id: 9
+    scale: 1
+    width: 39
+    x: 462
+    xAdvance: 0
+    xOffset: 0
+    y: 471
+    yOffset: 34
+    hashCode: -635719115
+    name: Font_FightUnity_9
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 9
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 10
+    scale: 1
+    width: 34
+    x: 5
+    xAdvance: 0
+    xOffset: 0
+    y: 413
+    yOffset: 49
+    hashCode: -1649500003
+    name: Font_FightUnity_10
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 10
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 38
+    id: 11
+    scale: 1
+    width: 40
+    x: 47
+    xAdvance: 0
+    xOffset: 0
+    y: 424
+    yOffset: 38
+    hashCode: -83416062
+    name: Font_FightUnity_11
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 11
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 35
+    id: 12
+    scale: 1
+    width: 36
+    x: 88
+    xAdvance: 0
+    xOffset: 0
+    y: 424
+    yOffset: 35
+    hashCode: -486700589
+    name: Font_FightUnity_12
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 12
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 13
+    scale: 1
+    width: 33
+    x: 131
+    xAdvance: 0
+    xOffset: 0
+    y: 413
+    yOffset: 50
+    hashCode: 1079383352
+    name: Font_FightUnity_13
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 13
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 14
+    scale: 1
+    width: 34
+    x: 175
+    xAdvance: 0
+    xOffset: 0
+    y: 413
+    yOffset: 49
+    hashCode: 676098825
+    name: Font_FightUnity_14
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 14
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 15
+    scale: 1
+    width: 18
+    x: 226
+    xAdvance: 0
+    xOffset: 0
+    y: 412
+    yOffset: 50
+    hashCode: -2052784530
+    name: Font_FightUnity_15
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 15
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 16
+    scale: 1
+    width: 35
+    x: 260
+    xAdvance: 0
+    xOffset: 0
+    y: 413
+    yOffset: 49
+    hashCode: 1838898239
+    name: Font_FightUnity_16
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 16
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 17
+    scale: 1
+    width: 32
+    x: 305
+    xAdvance: 0
+    xOffset: 0
+    y: 413
+    yOffset: 49
+    hashCode: -889985116
+    name: Font_FightUnity_17
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 17
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 18
+    scale: 1
+    width: 34
+    x: 346
+    xAdvance: 0
+    xOffset: 0
+    y: 413
+    yOffset: 49
+    hashCode: -1293269643
+    name: Font_FightUnity_18
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 18
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 19
+    scale: 1
+    width: 38
+    x: 388
+    xAdvance: 0
+    xOffset: 0
+    y: 413
+    yOffset: 50
+    hashCode: 272814298
+    name: Font_FightUnity_19
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 19
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 20
+    scale: 1
+    width: 33
+    x: 433
+    xAdvance: 0
+    xOffset: 0
+    y: 413
+    yOffset: 50
+    hashCode: -1649500006
+    name: Font_FightUnity_20
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 20
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 42
+    id: 21
+    scale: 1
+    width: 16
+    x: 481
+    xAdvance: 0
+    xOffset: 0
+    y: 420
+    yOffset: 42
+    hashCode: -83416065
+    name: Font_FightUnity_21
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 21
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 22
+    scale: 1
+    width: 18
+    x: 13
+    xAdvance: 0
+    xOffset: 0
+    y: 356
+    yOffset: 50
+    hashCode: -486700592
+    name: Font_FightUnity_22
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 22
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 23
+    scale: 1
+    width: 38
+    x: 44
+    xAdvance: 0
+    xOffset: 0
+    y: 367
+    yOffset: 49
+    hashCode: 1079383349
+    name: Font_FightUnity_23
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 23
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 43
+    id: 24
+    scale: 1
+    width: 29
+    x: 89
+    xAdvance: 0
+    xOffset: 0
+    y: 374
+    yOffset: 43
+    hashCode: 676098822
+    name: Font_FightUnity_24
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 24
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 25
+    scale: 1
+    width: 30
+    x: 131
+    xAdvance: 0
+    xOffset: 0
+    y: 357
+    yOffset: 50
+    hashCode: -2052784533
+    name: Font_FightUnity_25
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 25
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 26
+    scale: 1
+    width: 34
+    x: 168
+    xAdvance: 0
+    xOffset: 0
+    y: 357
+    yOffset: 49
+    hashCode: 1838898236
+    name: Font_FightUnity_26
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 26
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 27
+    scale: 1
+    width: 38
+    x: 210
+    xAdvance: 0
+    xOffset: 0
+    y: 357
+    yOffset: 50
+    hashCode: -889985119
+    name: Font_FightUnity_27
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 27
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 28
+    scale: 1
+    width: 33
+    x: 255
+    xAdvance: 0
+    xOffset: 0
+    y: 357
+    yOffset: 50
+    hashCode: -1293269646
+    name: Font_FightUnity_28
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 28
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 29
+    scale: 1
+    width: 30
+    x: 303
+    xAdvance: 0
+    xOffset: 0
+    y: 357
+    yOffset: 50
+    hashCode: 272814295
+    name: Font_FightUnity_29
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 29
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 30
+    scale: 1
+    width: 33
+    x: 340
+    xAdvance: 0
+    xOffset: 0
+    y: 357
+    yOffset: 50
+    hashCode: -1649500005
+    name: Font_FightUnity_30
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 30
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 31
+    scale: 1
+    width: 35
+    x: 383
+    xAdvance: 0
+    xOffset: 0
+    y: 357
+    yOffset: 49
+    hashCode: -83416064
+    name: Font_FightUnity_31
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 31
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 32
+    scale: 1
+    width: 34
+    x: 427
+    xAdvance: 0
+    xOffset: 0
+    y: 357
+    yOffset: 49
+    hashCode: -486700591
+    name: Font_FightUnity_32
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 32
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 41
+    id: 33
+    scale: 1
+    width: 31
+    x: 473
+    xAdvance: 0
+    xOffset: 0
+    y: 372
+    yOffset: 41
+    hashCode: 1079383350
+    name: Font_FightUnity_33
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 33
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 34
+    scale: 1
+    width: 35
+    x: 4
+    xAdvance: 0
+    xOffset: 0
+    y: 301
+    yOffset: 49
+    hashCode: 676098823
+    name: Font_FightUnity_34
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 34
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 35
+    scale: 1
+    width: 33
+    x: 47
+    xAdvance: 0
+    xOffset: 0
+    y: 311
+    yOffset: 50
+    hashCode: -2052784532
+    name: Font_FightUnity_35
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 35
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 42
+    id: 36
+    scale: 1
+    width: 29
+    x: 89
+    xAdvance: 0
+    xOffset: 0
+    y: 325
+    yOffset: 42
+    hashCode: 1838898237
+    name: Font_FightUnity_36
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 36
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 40
+    id: 37
+    scale: 1
+    width: 57
+    x: 121
+    xAdvance: 0
+    xOffset: 0
+    y: 314
+    yOffset: 40
+    hashCode: -889985118
+    name: Font_FightUnity_37
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 37
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 48
+    id: 38
+    scale: 1
+    width: 35
+    x: 184
+    xAdvance: 0
+    xOffset: 0
+    y: 301
+    yOffset: 48
+    hashCode: -1293269645
+    name: Font_FightUnity_38
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 38
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 39
+    scale: 1
+    width: 32
+    x: 229
+    xAdvance: 0
+    xOffset: 0
+    y: 300
+    yOffset: 50
+    hashCode: 272814296
+    name: Font_FightUnity_39
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 39
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 40
+    scale: 1
+    width: 33
+    x: 270
+    xAdvance: 0
+    xOffset: 0
+    y: 301
+    yOffset: 49
+    hashCode: -1649500008
+    name: Font_FightUnity_40
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 40
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 41
+    scale: 1
+    width: 38
+    x: 312
+    xAdvance: 0
+    xOffset: 0
+    y: 301
+    yOffset: 50
+    hashCode: -83416067
+    name: Font_FightUnity_41
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 41
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 42
+    scale: 1
+    width: 33
+    x: 357
+    xAdvance: 0
+    xOffset: 0
+    y: 301
+    yOffset: 50
+    hashCode: -486700594
+    name: Font_FightUnity_42
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 42
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 43
+    scale: 1
+    width: 30
+    x: 405
+    xAdvance: 0
+    xOffset: 0
+    y: 300
+    yOffset: 50
+    hashCode: 1079383347
+    name: Font_FightUnity_43
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 43
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 44
+    scale: 1
+    width: 18
+    x: 478
+    xAdvance: 0
+    xOffset: 0
+    y: 314
+    yOffset: 50
+    hashCode: 676098820
+    name: Font_FightUnity_44
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 44
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 45
+    scale: 1
+    width: 32
+    x: 6
+    xAdvance: 0
+    xOffset: 0
+    y: 245
+    yOffset: 49
+    hashCode: -2052784535
+    name: Font_FightUnity_45
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 45
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 46
+    scale: 1
+    width: 38
+    x: 44
+    xAdvance: 0
+    xOffset: 0
+    y: 255
+    yOffset: 49
+    hashCode: 1838898234
+    name: Font_FightUnity_46
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 46
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 47
+    scale: 1
+    width: 35
+    x: 90
+    xAdvance: 0
+    xOffset: 0
+    y: 259
+    yOffset: 49
+    hashCode: -889985121
+    name: Font_FightUnity_47
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 47
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 48
+    scale: 1
+    width: 30
+    x: 139
+    xAdvance: 0
+    xOffset: 0
+    y: 259
+    yOffset: 50
+    hashCode: -1293269648
+    name: Font_FightUnity_48
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 48
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 49
+    scale: 1
+    width: 32
+    x: 221
+    xAdvance: 0
+    xOffset: 0
+    y: 245
+    yOffset: 49
+    hashCode: 272814293
+    name: Font_FightUnity_49
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 49
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 50
+    scale: 1
+    width: 34
+    x: 262
+    xAdvance: 0
+    xOffset: 0
+    y: 245
+    yOffset: 49
+    hashCode: -1649500007
+    name: Font_FightUnity_50
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 50
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 51
+    scale: 1
+    width: 38
+    x: 304
+    xAdvance: 0
+    xOffset: 0
+    y: 245
+    yOffset: 50
+    hashCode: -83416066
+    name: Font_FightUnity_51
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 51
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 52
+    scale: 1
+    width: 33
+    x: 349
+    xAdvance: 0
+    xOffset: 0
+    y: 245
+    yOffset: 50
+    hashCode: -486700593
+    name: Font_FightUnity_52
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 52
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 53
+    scale: 1
+    width: 30
+    x: 397
+    xAdvance: 0
+    xOffset: 0
+    y: 245
+    yOffset: 50
+    hashCode: 1079383348
+    name: Font_FightUnity_53
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 53
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 54
+    scale: 1
+    width: 34
+    x: 442
+    xAdvance: 0
+    xOffset: 0
+    y: 259
+    yOffset: 49
+    hashCode: 676098821
+    name: Font_FightUnity_54
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 54
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 8
+    id: 55
+    scale: 1
+    width: 21
+    x: 484
+    xAdvance: 0
+    xOffset: 0
+    y: 291
+    yOffset: 8
+    hashCode: -2052784534
+    name: Font_FightUnity_55
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 55
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 56
+    scale: 1
+    width: 34
+    x: 4
+    xAdvance: 0
+    xOffset: 0
+    y: 189
+    yOffset: 49
+    hashCode: 1838898235
+    name: Font_FightUnity_56
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 56
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 52
+    id: 57
+    scale: 1
+    width: 34
+    x: 48
+    xAdvance: 0
+    xOffset: 0
+    y: 196
+    yOffset: 52
+    hashCode: -889985120
+    name: Font_FightUnity_57
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 57
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 58
+    scale: 1
+    width: 32
+    x: 92
+    xAdvance: 0
+    xOffset: 0
+    y: 203
+    yOffset: 49
+    hashCode: -1293269647
+    name: Font_FightUnity_58
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 58
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 59
+    scale: 1
+    width: 33
+    x: 133
+    xAdvance: 0
+    xOffset: 0
+    y: 203
+    yOffset: 50
+    hashCode: 272814294
+    name: Font_FightUnity_59
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 59
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 60
+    scale: 1
+    width: 34
+    x: 176
+    xAdvance: 0
+    xOffset: 0
+    y: 203
+    yOffset: 49
+    hashCode: -1649500010
+    name: Font_FightUnity_60
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 60
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 43
+    id: 61
+    scale: 1
+    width: 29
+    x: 218
+    xAdvance: 0
+    xOffset: 0
+    y: 196
+    yOffset: 43
+    hashCode: -83416069
+    name: Font_FightUnity_61
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 61
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 43
+    id: 62
+    scale: 1
+    width: 27
+    x: 257
+    xAdvance: 0
+    xOffset: 0
+    y: 196
+    yOffset: 43
+    hashCode: -486700596
+    name: Font_FightUnity_62
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 62
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 42
+    id: 63
+    scale: 1
+    width: 28
+    x: 288
+    xAdvance: 0
+    xOffset: 0
+    y: 196
+    yOffset: 42
+    hashCode: 1079383345
+    name: Font_FightUnity_63
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 63
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 43
+    id: 64
+    scale: 1
+    width: 25
+    x: 327
+    xAdvance: 0
+    xOffset: 0
+    y: 196
+    yOffset: 43
+    hashCode: 676098818
+    name: Font_FightUnity_64
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 64
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 43
+    id: 65
+    scale: 1
+    width: 30
+    x: 355
+    xAdvance: 0
+    xOffset: 0
+    y: 196
+    yOffset: 43
+    hashCode: -2052784537
+    name: Font_FightUnity_65
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 65
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 43
+    id: 66
+    scale: 1
+    width: 29
+    x: 392
+    xAdvance: 0
+    xOffset: 0
+    y: 196
+    yOffset: 43
+    hashCode: 1838898232
+    name: Font_FightUnity_66
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 66
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 67
+    scale: 1
+    width: 33
+    x: 434
+    xAdvance: 0
+    xOffset: 0
+    y: 203
+    yOffset: 50
+    hashCode: -889985123
+    name: Font_FightUnity_67
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 67
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 41
+    id: 68
+    scale: 1
+    width: 30
+    x: 475
+    xAdvance: 0
+    xOffset: 0
+    y: 211
+    yOffset: 41
+    hashCode: -1293269650
+    name: Font_FightUnity_68
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 68
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 69
+    scale: 1
+    width: 38
+    x: 3
+    xAdvance: 0
+    xOffset: 0
+    y: 133
+    yOffset: 50
+    hashCode: 272814291
+    name: Font_FightUnity_69
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 69
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 70
+    scale: 1
+    width: 18
+    x: 56
+    xAdvance: 0
+    xOffset: 0
+    y: 142
+    yOffset: 50
+    hashCode: -1649500009
+    name: Font_FightUnity_70
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 70
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 71
+    scale: 1
+    width: 34
+    x: 90
+    xAdvance: 0
+    xOffset: 0
+    y: 147
+    yOffset: 49
+    hashCode: -83416068
+    name: Font_FightUnity_71
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 71
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 72
+    scale: 1
+    width: 35
+    x: 133
+    xAdvance: 0
+    xOffset: 0
+    y: 147
+    yOffset: 49
+    hashCode: -486700595
+    name: Font_FightUnity_72
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 72
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 73
+    scale: 1
+    width: 34
+    x: 177
+    xAdvance: 0
+    xOffset: 0
+    y: 147
+    yOffset: 49
+    hashCode: 1079383346
+    name: Font_FightUnity_73
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 73
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 44
+    id: 74
+    scale: 1
+    width: 33
+    x: 475
+    xAdvance: 0
+    xOffset: 0
+    y: 161
+    yOffset: 44
+    hashCode: 676098819
+    name: Font_FightUnity_74
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 74
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 75
+    scale: 1
+    width: 33
+    x: 5
+    xAdvance: 0
+    xOffset: 0
+    y: 77
+    yOffset: 50
+    hashCode: -2052784536
+    name: Font_FightUnity_75
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 75
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 76
+    scale: 1
+    width: 35
+    x: 47
+    xAdvance: 0
+    xOffset: 0
+    y: 87
+    yOffset: 49
+    hashCode: 1838898233
+    name: Font_FightUnity_76
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 76
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 77
+    scale: 1
+    width: 38
+    x: 89
+    xAdvance: 0
+    xOffset: 0
+    y: 91
+    yOffset: 50
+    hashCode: -889985122
+    name: Font_FightUnity_77
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 77
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 78
+    scale: 1
+    width: 33
+    x: 134
+    xAdvance: 0
+    xOffset: 0
+    y: 90
+    yOffset: 50
+    hashCode: -1293269649
+    name: Font_FightUnity_78
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 78
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 79
+    scale: 1
+    width: 18
+    x: 185
+    xAdvance: 0
+    xOffset: 0
+    y: 90
+    yOffset: 50
+    hashCode: 272814292
+    name: Font_FightUnity_79
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 79
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 80
+    scale: 1
+    width: 35
+    x: 219
+    xAdvance: 0
+    xOffset: 0
+    y: 105
+    yOffset: 49
+    hashCode: -1649499996
+    name: Font_FightUnity_80
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 80
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 41
+    id: 81
+    scale: 1
+    width: 30
+    x: 260
+    xAdvance: 0
+    xOffset: 0
+    y: 113
+    yOffset: 41
+    hashCode: -83416055
+    name: Font_FightUnity_81
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 81
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 44
+    id: 82
+    scale: 1
+    width: 33
+    x: 295
+    xAdvance: 0
+    xOffset: 0
+    y: 112
+    yOffset: 44
+    hashCode: -486700582
+    name: Font_FightUnity_82
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 82
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 83
+    scale: 1
+    width: 30
+    x: 10
+    xAdvance: 0
+    xOffset: 0
+    y: 21
+    yOffset: 50
+    hashCode: 1079383359
+    name: Font_FightUnity_83
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 83
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 84
+    scale: 1
+    width: 32
+    x: 49
+    xAdvance: 0
+    xOffset: 0
+    y: 31
+    yOffset: 49
+    hashCode: 676098832
+    name: Font_FightUnity_84
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 84
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 85
+    scale: 1
+    width: 33
+    x: 91
+    xAdvance: 0
+    xOffset: 0
+    y: 35
+    yOffset: 50
+    hashCode: -2052784523
+    name: Font_FightUnity_85
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 85
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 50
+    id: 86
+    scale: 1
+    width: 18
+    x: 142
+    xAdvance: 0
+    xOffset: 0
+    y: 34
+    yOffset: 50
+    hashCode: 1838898246
+    name: Font_FightUnity_86
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 86
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 49
+    id: 87
+    scale: 1
+    width: 35
+    x: 176
+    xAdvance: 0
+    xOffset: 0
+    y: 35
+    yOffset: 49
+    hashCode: -889985109
+    name: Font_FightUnity_87
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 87
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 43
+    id: 88
+    scale: 1
+    width: 31
+    x: 215
+    xAdvance: 0
+    xOffset: 0
+    y: 56
+    yOffset: 43
+    hashCode: -1293269636
+    name: Font_FightUnity_88
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 88
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 43
+    id: 89
+    scale: 1
+    width: 28
+    x: 253
+    xAdvance: 0
+    xOffset: 0
+    y: 56
+    yOffset: 43
+    hashCode: 272814305
+    name: Font_FightUnity_89
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 89
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 41
+    id: 90
+    scale: 1
+    width: 29
+    x: 287
+    xAdvance: 0
+    xOffset: 0
+    y: 64
+    yOffset: 41
+    hashCode: -1649499995
+    name: Font_FightUnity_90
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 90
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 43
+    id: 91
+    scale: 1
+    width: 30
+    x: 217
+    xAdvance: 0
+    xOffset: 0
+    y: 7
+    yOffset: 43
+    hashCode: -83416054
+    name: Font_FightUnity_91
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 91
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 42
+    id: 92
+    scale: 1
+    width: 15
+    x: 260
+    xAdvance: 0
+    xOffset: 0
+    y: 7
+    yOffset: 42
+    hashCode: -486700581
+    name: Font_FightUnity_92
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 92
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  - height: 43
+    id: 93
+    scale: 1
+    width: 28
+    x: 288
+    xAdvance: 0
+    xOffset: 0
+    y: 14
+    yOffset: 43
+    hashCode: 1079383360
+    name: Font_FightUnity_93
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+    key: 93
+    asciiCode: 0
+    group: Font_FightUnity
+    offest: {x: 0, y: 0}
+  spriteSheet: {fileID: 2800000, guid: 132af53c1fc8d5b4db20e57278d9650d, type: 3}
+--- !u!21 &21058022486174936
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: UI/Default
+  m_Shader: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 132af53c1fc8d5b4db20e57278d9650d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!21 &21826511349488522
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: UI/Default
+  m_Shader: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 132af53c1fc8d5b4db20e57278d9650d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}

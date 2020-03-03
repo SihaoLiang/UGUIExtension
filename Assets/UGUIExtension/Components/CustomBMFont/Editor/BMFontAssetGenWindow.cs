@@ -25,6 +25,7 @@ public class BMFontAssetGenWindow : EditorWindow
 
     List<BMFontSprite> m_FontSpriteInfoList = new List<BMFontSprite>();
     BMFontAsset m_FontAsset;
+    private UnityPackSetting SettingAsset;
 
     [MenuItem("图集工具/生成艺术字图集")]
     public static void ShowArtFontAssetGenWindow()
@@ -79,11 +80,11 @@ public class BMFontAssetGenWindow : EditorWindow
         }
         else if (AtlasPacking == PackingType.Custom)
         {
-            //CustomPackGUI();
+            CustomPackGUI();
         }
         else if (AtlasPacking == PackingType.UnityPack)
         {
-            //UnityPackGUI();
+            UnityPackGUI();
         }
 
         if (m_FontAsset != null)
@@ -92,7 +93,6 @@ public class BMFontAssetGenWindow : EditorWindow
             {
                 "生成富文本图集成功\n",
                 string.Format("本次生成精灵数量：{0}\n", m_FontAsset.spriteInfoList.Count),
-                //string.Format("本次生成动画数量：{0}\n", m_FontAsset.animateList.Count),
             });
 
         }
@@ -117,69 +117,90 @@ public class BMFontAssetGenWindow : EditorWindow
         EditorGUILayout.LabelField(this.m_ConsoleContent, m_LabelStyle, new GUILayoutOption[0]);
         GUILayout.EndVertical();
         GUILayout.Space(5f);
-        GUILayout.EndVertical();
-
-
-        //EditorGUI.BeginChangeCheck();
-        //this.m_TPTextSheet = (EditorGUILayout.ObjectField("Texture Data(Json)", this.m_TPTextSheet, typeof(TextAsset), false, new GUILayoutOption[0]) as TextAsset);
-        //this.m_TextureSource = (EditorGUILayout.ObjectField("Texture Atlas", this.m_TextureSource, typeof(Texture2D), false, new GUILayoutOption[0]) as Texture2D);
-        //if (EditorGUI.EndChangeCheck())
-        //{
-        //    this.m_ConsoleContent = string.Empty;
-        //}
-
-        //if (m_TPTextSheet == null || m_TextureSource == null)
-        //{
-        //    GUILayout.EndVertical();
-        //    return;
-        //}
-
-        //GUILayout.Space(10f);
-        //if (GUILayout.Button("Create Sprite Asset", new GUILayoutOption[0]))
-        //{
-        //    this.m_ConsoleContent = string.Empty;
-        //    TP.TexturePackJsonData spriteDataObject = JsonUtility.FromJson<TP.TexturePackJsonData>(this.m_TPTextSheet.text);
-        //    if (spriteDataObject != null && spriteDataObject.frames != null && spriteDataObject.frames.Count > 0)
-        //    {
-        //        int count = spriteDataObject.frames.Count;
-        //        this.m_ConsoleContent = "<b>Import Results</b>\n-----------------------------\n";
-        //        string str = this.m_ConsoleContent;
-        //        this.m_ConsoleContent = string.Concat(new object[]
-        //        {
-        //                    str,
-        //                    "<color=#C0ffff><b>",
-        //                    count,
-        //                    "</b></color> Sprites were imported from file."
-        //        });
-        //    }
-        //    m_FontSpriteInfoList = CreateSpriteInfoList(spriteDataObject);
-        //}
-
-        //GUILayout.Space(5f);
-        //GUI.enabled = (this.m_FontSpriteInfoList != null);
-        //if (GUILayout.Button("Save Sprite Asset", new GUILayoutOption[0]))
-        //{
-        //    string text = string.Empty;
-        //    text = EditorUtility.SaveFilePanel("Save Sprite Asset File", new FileInfo(AssetDatabase.GetAssetPath(this.m_TPTextSheet)).DirectoryName, this.m_TPTextSheet.name, "asset");
-        //    if (text.Length == 0)
-        //    {
-        //        return;
-        //    }
-        //    this.SaveSpriteAsset(text);
-        //}
-
-        //GUILayout.Space(5f);
-        //GUILayout.BeginVertical("box", new GUILayoutOption[]
-        //{
-        //    GUILayout.Height(60f)
-        //});
-
-        //EditorGUILayout.LabelField(this.m_ConsoleContent, m_LabelStyle, new GUILayoutOption[0]);
-        //GUILayout.EndVertical();
-
-        //GUILayout.Space(5f);
-        //GUILayout.EndVertical();
+        GUILayout.EndVertical(); 
     }
+
+
+    void CustomPackGUI()
+    {
+        EditorGUI.BeginChangeCheck();
+        SettingAsset = (EditorGUILayout.ObjectField("图集信息", this.SettingAsset, typeof(UnityPackSetting), false,
+            new GUILayoutOption[0]) as UnityPackSetting);
+        if (EditorGUI.EndChangeCheck())
+        {
+            this.m_ConsoleContent = string.Empty;
+        }
+
+        if (SettingAsset == null)
+        {
+            return;
+        }
+
+
+        if (GUILayout.Button("生成", new GUILayoutOption[0]))
+        {
+            m_TextureSource = SettingAsset.Atlas as Texture2D;
+            m_FontSpriteInfoList = CreateSpriteFromCustomPackSetting(SettingAsset);
+
+
+            string text = string.Empty;
+            text = EditorUtility.SaveFilePanel("保存富文本数据", SettingAsset.OutputAbsolutelyPath, SettingAsset.Name, "asset");
+            if (text.Length == 0)
+            {
+                return;
+            }
+            this.SaveSpriteAsset(text);
+        }
+
+        GUILayout.Space(5f);
+    }
+
+    /// <summary>
+    /// 利用Unity打包的图集
+    /// </summary>
+    void UnityPackGUI()
+    {
+        EditorGUI.BeginChangeCheck();
+        m_TextureSource = (EditorGUILayout.ObjectField("图集", this.m_TextureSource, typeof(Texture2D), false,
+            new GUILayoutOption[0]) as Texture2D);
+        if (EditorGUI.EndChangeCheck())
+        {
+            this.m_ConsoleContent = string.Empty;
+        }
+
+        if (m_TextureSource == null)
+        {
+            return;
+        }
+
+
+        GUILayout.Space(5f);
+        if (GUILayout.Button("生成", new GUILayoutOption[0]))
+        {
+            TextureImporter importer = AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(m_TextureSource)) as TextureImporter;
+
+            if (importer.spriteImportMode != SpriteImportMode.Multiple)
+            {
+                ShowNotification(new GUIContent("SpriteImportMode not equal SpriteImportMode.Multiple"));
+                return; ;
+            }
+
+
+            m_FontSpriteInfoList = CreateSpriteFromUnityPackSetting(importer);
+
+
+            string text = string.Empty;
+            text = EditorUtility.SaveFilePanel("Save Sprite Asset File", new FileInfo(AssetDatabase.GetAssetPath(this.m_TextureSource)).DirectoryName, this.m_TextureSource.name, "asset");
+            if (text.Length == 0)
+            {
+                return;
+            }
+            this.SaveSpriteAsset(text);
+        }
+
+        GUILayout.Space(5f);
+    }
+
 
 
     /// <summary>
@@ -222,6 +243,51 @@ public class BMFontAssetGenWindow : EditorWindow
         }
     }
 
+    private List<BMFontSprite> CreateSpriteFromCustomPackSetting(UnityPackSetting setting)
+    {
+        List<BMFontSprite> list = new List<BMFontSprite>();
+        for (int i = 0; i < setting.TexturePackSprite.Count; i++)
+        {
+            UnityPackSprite frame = setting.TexturePackSprite[i];
+
+            BMFontSprite spriteData = new BMFontSprite();
+            spriteData.id = i;
+            spriteData.name = frame.filename;
+            spriteData.hashCode = spriteData.name.GetHashCode();
+
+            string key = string.Empty;
+            int pos = spriteData.name.LastIndexOf("_");
+
+            if (pos == -1)
+            {
+                key = spriteData.name;
+                pos = spriteData.name.Length;
+            }
+            else
+            {
+                key = spriteData.name.Substring(pos + 1, spriteData.name.Length - pos - 1);
+            }
+
+
+            spriteData.key = key;
+            spriteData.group = spriteData.name.Substring(0, pos);
+            spriteData.x = frame.x;
+            spriteData.y = frame.y;
+            spriteData.width = frame.width;
+            spriteData.height = frame.height;
+            spriteData.pivot = frame.pivot;
+            spriteData.scale = 1f;
+            spriteData.xOffset = 0f - spriteData.width * spriteData.pivot.x;
+            spriteData.yOffset = spriteData.height - spriteData.height * spriteData.pivot.y;
+
+            list.Add(spriteData);
+
+          
+        }
+
+        return list;
+    } 
+
     private List<BMFontSprite> CreateSpriteInfoList(TP.TexturePackJsonData spriteDataObject)
     {
         List<TP.SpriteData> frames = spriteDataObject.frames;
@@ -242,7 +308,6 @@ public class BMFontAssetGenWindow : EditorWindow
             {
                 key = fontData.name;
                 pos = fontData.name.Length;
-                //Debug.LogError("图集命名不合法，不存在 '_'");
             }
             else
             {
@@ -297,8 +362,6 @@ public class BMFontAssetGenWindow : EditorWindow
         this.m_FontAsset.hashCode = this.m_FontAsset.name.GetHashCode();
         this.m_FontAsset.spriteSheet = this.m_TextureSource;
         this.m_FontAsset.spriteInfoList = this.m_FontSpriteInfoList;
-       // AssetDatabase.CreateAsset(this.m_FontAsset, str + ".asset");
-
 
         AddDefaultMaterial(this.m_FontAsset);
 
@@ -325,5 +388,50 @@ public class BMFontAssetGenWindow : EditorWindow
     {
         Vector2 minSize = this.minSize;
         this.minSize = new Vector2(Mathf.Max(230f, minSize.x), Mathf.Max(300f, minSize.y));
+    }
+
+
+    private List<BMFontSprite> CreateSpriteFromUnityPackSetting(TextureImporter importer)
+    {
+        List<BMFontSprite> list = new List<BMFontSprite>();
+
+        for (int i = 0; i < importer.spritesheet.Length; i++)
+        {
+            SpriteMetaData frame = importer.spritesheet[i];
+
+            BMFontSprite fontData = new BMFontSprite();
+            fontData.id = i;
+            fontData.name = Path.GetFileNameWithoutExtension(frame.name);
+            fontData.hashCode = fontData.name.GetHashCode();
+            int num = fontData.name.IndexOf('-');
+
+            //分组
+            string key = string.Empty;
+            int pos = fontData.name.LastIndexOf("_");
+
+            if (pos == -1)
+            {
+                key = fontData.name;
+                pos = fontData.name.Length;
+            }
+            else
+            {
+                key = fontData.name.Substring(pos + 1, fontData.name.Length - pos - 1);
+            }
+
+            fontData.key = key;
+            fontData.group = fontData.name.Substring(0, pos);
+            fontData.x = frame.rect.x;
+            fontData.y = frame.rect.y;
+            fontData.width = frame.rect.width;
+            fontData.height = frame.rect.height;
+            fontData.pivot = frame.pivot;
+            fontData.scale = 1f;
+            fontData.xOffset = 0f - fontData.width * fontData.pivot.x;
+            fontData.yOffset = fontData.height - fontData.height * fontData.pivot.y;
+            list.Add(fontData);
+
+        }
+        return list;
     }
 }

@@ -1,0 +1,1165 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc0967bd39338942b414b6517b8187b, type: 3}
+  m_Name: Num
+  m_EditorClassIdentifier: 
+  Name: Num
+  OutputAbsolutelyPath: D:\Lsh\GitHub\UGUIExtension\Assets\UGUIExtension\Examples\CustomBMFont
+  OutputPath: Assets\UGUIExtension\Examples\CustomBMFont
+  Atlas: {fileID: 2800000, guid: feecd3e6c0b85104d90c4955b9c79d9c, type: 3}
+  TexturePackSprite:
+  - filename: Atlas_BaoJi_0
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 108
+    height: 54
+    x: 0
+    y: 0
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_BaoJi_1
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 108
+    height: 54
+    x: 108
+    y: 0
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 1
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_GeDang_0
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 108
+    height: 54
+    x: 216
+    y: 0
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 2
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_BaoJi_0
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 0
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 3
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_BaoJi_1
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 0
+    y: 110
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 4
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_BaoJi_2
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 0
+    y: 166
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 5
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_BaoJi_3
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 0
+    y: 222
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 6
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_BaoJi_4
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 0
+    y: 278
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_BaoJi_5
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 0
+    y: 334
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 8
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_BaoJi_6
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 0
+    y: 390
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_BaoJi_7
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 0
+    y: 446
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 10
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_BaoJi_8
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 38
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 11
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_BaoJi_9
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 38
+    y: 110
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 12
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PoJi_0
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 38
+    y: 166
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 13
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PoJi_1
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 38
+    y: 222
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 14
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PoJi_2
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 38
+    y: 278
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 15
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PoJi_3
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 38
+    y: 334
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 16
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PoJi_4
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 38
+    y: 390
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 17
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PoJi_5
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 38
+    y: 446
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 18
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PoJi_6
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 76
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 19
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PoJi_7
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 114
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 20
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PoJi_8
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 152
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 21
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PoJi_9
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 190
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 22
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PuGong_0
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 324
+    y: 0
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 23
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PuGong_1
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 352
+    y: 0
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 24
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PuGong_2
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 380
+    y: 0
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 25
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PuGong_3
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 408
+    y: 0
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 26
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PuGong_4
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 436
+    y: 0
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 27
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PuGong_5
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 464
+    y: 0
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 28
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PuGong_6
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 228
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 29
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PuGong_7
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 256
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 30
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PuGong_8
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 284
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 31
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_PuGong_9
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 312
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 32
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiBao_0
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 340
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 33
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiBao_1
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 378
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 34
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiBao_2
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 416
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 35
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiBao_3
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 454
+    y: 54
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 36
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiBao_4
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 76
+    y: 110
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 37
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiBao_5
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 76
+    y: 166
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 38
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiBao_6
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 76
+    y: 222
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 39
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiBao_7
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 76
+    y: 278
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 40
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiBao_8
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 76
+    y: 334
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 41
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiBao_9
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 38
+    height: 56
+    x: 76
+    y: 390
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 42
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiLiao_0
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 76
+    y: 446
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 43
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiLiao_1
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 114
+    y: 110
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 44
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiLiao_2
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 114
+    y: 150
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 45
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiLiao_3
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 114
+    y: 190
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 46
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiLiao_4
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 114
+    y: 230
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 47
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiLiao_5
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 114
+    y: 270
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 48
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiLiao_6
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 114
+    y: 310
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 49
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiLiao_7
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 114
+    y: 350
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 50
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiLiao_8
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 114
+    y: 390
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 51
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_Num_ZhiLiao_9
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 28
+    height: 40
+    x: 114
+    y: 430
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 52
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_NuQi_0
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 108
+    height: 54
+    x: 142
+    y: 110
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 53
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_PoJi_0
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 108
+    height: 54
+    x: 250
+    y: 110
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 54
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_ShanBi_0
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 108
+    height: 54
+    x: 358
+    y: 110
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 55
+    border: {x: 0, y: 0, z: 0, w: 0}
+  - filename: Atlas_XiShou_0
+    frame:
+      h: 0
+      w: 0
+      x: 0
+      y: 0
+    pivot: {x: 0, y: 0}
+    rotated: 0
+    width: 108
+    height: 54
+    x: 142
+    y: 164
+    spriteSourceSize:
+      h: 512
+      w: 512
+      x: 0
+      y: 0
+    trimmed: 0
+    index: 56
+    border: {x: 0, y: 0, z: 0, w: 0}
+  Padding: 0
+  TrimAlpha: 0
+  TrimSimilar: 1
+  ForeSquare: 1
+  Width: 512
+  Height: 512
+  MaxSize: 4096

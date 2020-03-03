@@ -113,6 +113,115 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &39073465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 39073466}
+  - component: {fileID: 39073469}
+  - component: {fileID: 39073468}
+  - component: {fileID: 39073467}
+  - component: {fileID: 39073470}
+  m_Layer: 5
+  m_Name: BMFontMultText (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &39073466
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 39073465}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 753.85}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &39073467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 39073465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &39073468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 39073465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &39073469
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 39073465}
+--- !u!114 &39073470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 39073465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &44549127
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +287,1423 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &71090587
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 71090588}
+  - component: {fileID: 71090591}
+  - component: {fileID: 71090590}
+  - component: {fileID: 71090589}
+  - component: {fileID: 71090592}
+  m_Layer: 5
+  m_Name: BMFontMultText (19)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &71090588
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71090587}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &71090589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71090587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &71090590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71090587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &71090591
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71090587}
+--- !u!114 &71090592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71090587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &72384261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 72384262}
+  - component: {fileID: 72384265}
+  - component: {fileID: 72384264}
+  - component: {fileID: 72384263}
+  - component: {fileID: 72384266}
+  m_Layer: 5
+  m_Name: BMFontMultText (11)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &72384262
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 72384261}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 291.15}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &72384263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 72384261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &72384264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 72384261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &72384265
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 72384261}
+--- !u!114 &72384266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 72384261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &89593515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 89593516}
+  - component: {fileID: 89593519}
+  - component: {fileID: 89593518}
+  - component: {fileID: 89593517}
+  - component: {fileID: 89593520}
+  m_Layer: 5
+  m_Name: BMFontMultText (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &89593516
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89593515}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &89593517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89593515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &89593518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89593515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &89593519
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89593515}
+--- !u!114 &89593520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89593515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &100391329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 100391330}
+  - component: {fileID: 100391333}
+  - component: {fileID: 100391332}
+  - component: {fileID: 100391331}
+  - component: {fileID: 100391334}
+  m_Layer: 5
+  m_Name: BMFontMultText (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &100391330
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100391329}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &100391331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100391329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &100391332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100391329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &100391333
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100391329}
+--- !u!114 &100391334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 100391329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &129719797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 129719798}
+  - component: {fileID: 129719801}
+  - component: {fileID: 129719800}
+  - component: {fileID: 129719799}
+  - component: {fileID: 129719802}
+  m_Layer: 5
+  m_Name: BMFontMultText (16)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &129719798
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 129719797}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &129719799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 129719797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &129719800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 129719797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &129719801
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 129719797}
+--- !u!114 &129719802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 129719797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &313672646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 313672647}
+  - component: {fileID: 313672650}
+  - component: {fileID: 313672649}
+  - component: {fileID: 313672648}
+  - component: {fileID: 313672651}
+  m_Layer: 5
+  m_Name: BMFontMultText (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &313672647
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 313672646}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 420.44}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &313672648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 313672646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &313672649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 313672646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &313672650
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 313672646}
+--- !u!114 &313672651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 313672646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &342904977
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 342904978}
+  - component: {fileID: 342904981}
+  - component: {fileID: 342904980}
+  - component: {fileID: 342904979}
+  - component: {fileID: 342904982}
+  m_Layer: 5
+  m_Name: BMFontMultText (14)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &342904978
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342904977}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1131.04, y: 379.45}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &342904979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342904977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &342904980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342904977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &342904981
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342904977}
+--- !u!114 &342904982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 342904977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &486149239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 486149240}
+  - component: {fileID: 486149243}
+  - component: {fileID: 486149242}
+  - component: {fileID: 486149241}
+  - component: {fileID: 486149244}
+  m_Layer: 5
+  m_Name: BMFontMultText (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &486149240
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 486149239}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 477.96}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &486149241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 486149239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &486149242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 486149239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &486149243
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 486149239}
+--- !u!114 &486149244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 486149239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &556114701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 556114702}
+  - component: {fileID: 556114705}
+  - component: {fileID: 556114704}
+  - component: {fileID: 556114703}
+  - component: {fileID: 556114706}
+  m_Layer: 5
+  m_Name: BMFontMultText (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &556114702
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556114701}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &556114703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556114701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &556114704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556114701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &556114705
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556114701}
+--- !u!114 &556114706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556114701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &708002727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 708002728}
+  - component: {fileID: 708002731}
+  - component: {fileID: 708002730}
+  - component: {fileID: 708002729}
+  - component: {fileID: 708002732}
+  m_Layer: 5
+  m_Name: BMFontMultText (12)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &708002728
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 708002727}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 721.7}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &708002729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 708002727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &708002730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 708002727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &708002731
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 708002727}
+--- !u!114 &708002732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 708002727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &743694904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 743694905}
+  - component: {fileID: 743694908}
+  - component: {fileID: 743694907}
+  - component: {fileID: 743694906}
+  - component: {fileID: 743694909}
+  m_Layer: 5
+  m_Name: BMFontMultText (23)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &743694905
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 743694904}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 786.2, y: 684.47}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &743694906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 743694904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &743694907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 743694904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &743694908
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 743694904}
+--- !u!114 &743694909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 743694904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &745255020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 745255021}
+  - component: {fileID: 745255024}
+  - component: {fileID: 745255023}
+  - component: {fileID: 745255022}
+  - component: {fileID: 745255025}
+  m_Layer: 5
+  m_Name: BMFontMultText (18)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &745255021
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745255020}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &745255022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745255020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &745255023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745255020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &745255024
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745255020}
+--- !u!114 &745255025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 745255020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &843740460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 843740461}
+  - component: {fileID: 843740464}
+  - component: {fileID: 843740463}
+  - component: {fileID: 843740462}
+  - component: {fileID: 843740465}
+  m_Layer: 5
+  m_Name: BMFontMultText (9)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &843740461
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843740460}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 489.4, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &843740462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843740460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &843740463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843740460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &843740464
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843740460}
+--- !u!114 &843740465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 843740460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &911746528
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +1766,333 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &927836008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 927836009}
+  - component: {fileID: 927836012}
+  - component: {fileID: 927836011}
+  - component: {fileID: 927836010}
+  - component: {fileID: 927836013}
+  m_Layer: 5
+  m_Name: BMFontMultText (20)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &927836009
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 927836008}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 838.48}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &927836010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 927836008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &927836011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 927836008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 11133
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &927836012
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 927836008}
+--- !u!114 &927836013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 927836008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1201136629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1201136630}
+  - component: {fileID: 1201136633}
+  - component: {fileID: 1201136632}
+  - component: {fileID: 1201136631}
+  - component: {fileID: 1201136634}
+  m_Layer: 5
+  m_Name: BMFontMultText (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1201136630
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201136629}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1201136631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201136629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &1201136632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201136629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &1201136633
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201136629}
+--- !u!114 &1201136634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201136629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1570232264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1570232265}
+  - component: {fileID: 1570232268}
+  - component: {fileID: 1570232267}
+  - component: {fileID: 1570232266}
+  - component: {fileID: 1570232269}
+  m_Layer: 5
+  m_Name: BMFontMultText (17)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1570232265
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570232264}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1570232266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570232264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &1570232267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570232264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &1570232268
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570232264}
+--- !u!114 &1570232269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570232264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1604619843
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +2180,29 @@ RectTransform:
   m_Children:
   - {fileID: 1621564309}
   - {fileID: 2116167404}
+  - {fileID: 1782203170}
+  - {fileID: 556114702}
+  - {fileID: 486149240}
+  - {fileID: 1201136630}
+  - {fileID: 1683353657}
+  - {fileID: 89593516}
+  - {fileID: 100391330}
+  - {fileID: 39073466}
+  - {fileID: 843740461}
+  - {fileID: 313672647}
+  - {fileID: 72384262}
+  - {fileID: 708002728}
+  - {fileID: 2000354369}
+  - {fileID: 342904978}
+  - {fileID: 1701405825}
+  - {fileID: 129719798}
+  - {fileID: 1570232265}
+  - {fileID: 745255021}
+  - {fileID: 71090588}
+  - {fileID: 927836009}
+  - {fileID: 1811107799}
+  - {fileID: 1795718911}
+  - {fileID: 743694905}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -394,28 +2270,25 @@ MonoBehaviour:
   - m_Text: '11234556666666
 
 '
-    m_CurrentGroup: Atlas_Num_GeDang
+    m_CurrentGroup: Atlas_BaoJi
   - m_Text: 1113322
     m_CurrentGroup: Atlas_Num_ZhiBao
   - m_Text: 123323456789
     m_CurrentGroup: Atlas_Num_ZhiLiao
-  m_FontAsset: {fileID: 11400000, guid: c8a31638810b3e84a9849bb04a360085, type: 2}
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
   m_Gap: 3.97
   m_FontGroups:
   - Atlas_BaoJi
   - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
   - Atlas_NuQi
   - Atlas_PoJi
   - Atlas_ShanBi
   - Atlas_XiShou
-  - Atlas_Num_XiShou
-  - Atlas_Num_NuQi
-  - Atlas_Num_PuGong
-  - Atlas_Num_BaoJi
-  - Atlas_Num_GeDang
-  - Atlas_Num_ZhiBao
-  - Atlas_Num_ZhiLiao
-  - Atlas_Num_PoJi
 --- !u!222 &1621564311
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -435,6 +2308,551 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!1 &1683353656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1683353657}
+  - component: {fileID: 1683353660}
+  - component: {fileID: 1683353659}
+  - component: {fileID: 1683353658}
+  - component: {fileID: 1683353661}
+  m_Layer: 5
+  m_Name: BMFontMultText (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1683353657
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1683353656}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1683353658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1683353656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &1683353659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1683353656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &1683353660
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1683353656}
+--- !u!114 &1683353661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1683353656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1701405824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1701405825}
+  - component: {fileID: 1701405828}
+  - component: {fileID: 1701405827}
+  - component: {fileID: 1701405826}
+  - component: {fileID: 1701405829}
+  m_Layer: 5
+  m_Name: BMFontMultText (15)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1701405825
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1701405824}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 847.52, y: 69.70001}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1701405826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1701405824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &1701405827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1701405824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &1701405828
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1701405824}
+--- !u!114 &1701405829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1701405824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1782203169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1782203170}
+  - component: {fileID: 1782203173}
+  - component: {fileID: 1782203172}
+  - component: {fileID: 1782203171}
+  - component: {fileID: 1782203174}
+  m_Layer: 5
+  m_Name: BMFontMultText (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1782203170
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1782203169}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1782203171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1782203169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &1782203172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1782203169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &1782203173
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1782203169}
+--- !u!114 &1782203174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1782203169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1795718910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1795718911}
+  - component: {fileID: 1795718914}
+  - component: {fileID: 1795718913}
+  - component: {fileID: 1795718912}
+  - component: {fileID: 1795718915}
+  m_Layer: 5
+  m_Name: BMFontMultText (22)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1795718911
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1795718910}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 540}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1795718912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1795718910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &1795718913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1795718910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '11234556666666
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &1795718914
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1795718910}
+--- !u!114 &1795718915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1795718910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1811107798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1811107799}
+  - component: {fileID: 1811107802}
+  - component: {fileID: 1811107801}
+  - component: {fileID: 1811107800}
+  - component: {fileID: 1811107803}
+  m_Layer: 5
+  m_Name: BMFontMultText (21)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1811107799
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1811107798}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960, y: 150.54001}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1811107800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1811107798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &1811107801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1811107798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '112
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 1233234
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &1811107802
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1811107798}
+--- !u!114 &1811107803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1811107798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1965524630
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,6 +2934,115 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2000354368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2000354369}
+  - component: {fileID: 2000354372}
+  - component: {fileID: 2000354371}
+  - component: {fileID: 2000354370}
+  - component: {fileID: 2000354373}
+  m_Layer: 5
+  m_Name: BMFontMultText (13)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2000354369
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2000354368}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1604619847}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1176.02, y: 642.8}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2000354370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2000354368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &2000354371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2000354368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e8c35dbf55ad8408ffb6226b49e247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontDataList:
+  - m_Text: '1
+
+'
+    m_CurrentGroup: Atlas_BaoJi
+  - m_Text: 1113322
+    m_CurrentGroup: Atlas_Num_ZhiBao
+  - m_Text: 123323456789
+    m_CurrentGroup: Atlas_Num_ZhiLiao
+  m_FontAsset: {fileID: 11400000, guid: d41171af52d6768459d543050db11a81, type: 2}
+  m_Gap: 3.97
+  m_FontGroups:
+  - Atlas_BaoJi
+  - Atlas_GeDang
+  - Atlas_Num_BaoJi
+  - Atlas_Num_PoJi
+  - Atlas_Num_PuGong
+  - Atlas_Num_ZhiBao
+  - Atlas_Num_ZhiLiao
+  - Atlas_NuQi
+  - Atlas_PoJi
+  - Atlas_ShanBi
+  - Atlas_XiShou
+--- !u!222 &2000354372
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2000354368}
+--- !u!114 &2000354373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2000354368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ba923973efb9c4ebcbd1dbb77265fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2116167403
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +3103,60 @@ MonoBehaviour:
   m_CurrentGroup: a01
   m_FontGroups:
   - a01
+  - a02
+  - a03
+  - a04
+  - a05
+  - a06
+  - a07
+  - a08
+  - a09
+  - a10
+  - a11
+  - a12
+  - a13
+  - a14
+  - a15
+  - a16
+  - a17
+  - a18
+  - a19
+  - a20
+  - a21
+  - a22
+  - a23
+  - a24
+  - a25
+  - a26
+  - a27
+  - a28
+  - a29
+  - a30
+  - a31
+  - a32
+  - a33
+  - a34
+  - a35
+  - a36
+  - a37
+  - a38
+  - a39
+  - a40
+  - b01
+  - b02
+  - b03
+  - b04
+  - b05
+  - b06
+  - b07
+  - b08
+  - b09
+  - c01
+  - c02
+  - c03
+  - c04
+  - c05
+  - c06
 --- !u!222 &2116167406
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -1,0 +1,1611 @@
+fileFormatVersion: 2
+guid: 132af53c1fc8d5b4db20e57278d9650d
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Font_Fight 1_0
+    21300002: Font_Fight 1_1
+    21300004: Font_Fight 1_2
+    21300006: Font_Fight 1_3
+    21300008: Font_Fight 1_4
+    21300010: Font_Fight 1_5
+    21300012: Font_Fight 1_6
+    21300014: Font_Fight 1_7
+    21300016: Font_Fight 1_8
+    21300018: Font_Fight 1_9
+    21300020: Font_Fight 1_10
+    21300022: Font_Fight 1_11
+    21300024: Font_Fight 1_12
+    21300026: Font_Fight 1_13
+    21300028: Font_Fight 1_14
+    21300030: Font_Fight 1_15
+    21300032: Font_Fight 1_16
+    21300034: Font_Fight 1_17
+    21300036: Font_Fight 1_18
+    21300038: Font_Fight 1_19
+    21300040: Font_Fight 1_20
+    21300042: Font_Fight 1_21
+    21300044: Font_Fight 1_22
+    21300046: Font_Fight 1_23
+    21300048: Font_Fight 1_24
+    21300050: Font_Fight 1_25
+    21300052: Font_Fight 1_26
+    21300054: Font_Fight 1_27
+    21300056: Font_Fight 1_28
+    21300058: Font_Fight 1_29
+    21300060: Font_Fight 1_30
+    21300062: Font_Fight 1_31
+    21300064: Font_Fight 1_32
+    21300066: Font_Fight 1_33
+    21300068: Font_Fight 1_34
+    21300070: Font_Fight 1_35
+    21300072: Font_Fight 1_36
+    21300074: Font_Fight 1_37
+    21300076: Font_Fight 1_38
+    21300078: Font_Fight 1_39
+    21300080: Font_Fight 1_40
+    21300082: Font_Fight 1_41
+    21300084: Font_Fight 1_42
+    21300086: Font_Fight 1_43
+    21300088: Font_Fight 1_44
+    21300090: Font_Fight 1_45
+    21300092: Font_Fight 1_46
+    21300094: Font_Fight 1_47
+    21300096: Font_Fight 1_48
+    21300098: Font_Fight 1_49
+    21300100: Font_Fight 1_50
+    21300102: Font_Fight 1_51
+    21300104: Font_Fight 1_52
+    21300106: Font_Fight 1_53
+    21300108: Font_Fight 1_54
+    21300110: Font_Fight 1_55
+    21300112: Font_Fight 1_56
+    21300114: Font_Fight 1_57
+    21300116: Font_Fight 1_58
+    21300118: Font_Fight 1_59
+    21300120: Font_Fight 1_60
+    21300122: Font_Fight 1_61
+    21300124: Font_Fight 1_62
+    21300126: Font_Fight 1_63
+    21300128: Font_Fight 1_64
+    21300130: Font_Fight 1_65
+    21300132: Font_Fight 1_66
+    21300134: Font_Fight 1_67
+    21300136: Font_Fight 1_68
+    21300138: Font_Fight 1_69
+    21300140: Font_Fight 1_70
+    21300142: Font_Fight 1_71
+    21300144: Font_Fight 1_72
+    21300146: Font_Fight 1_73
+    21300148: Font_Fight 1_74
+    21300150: Font_Fight 1_75
+    21300152: Font_Fight 1_76
+    21300154: Font_Fight 1_77
+    21300156: Font_Fight 1_78
+    21300158: Font_Fight 1_79
+    21300160: Font_Fight 1_80
+    21300162: Font_Fight 1_81
+    21300164: Font_Fight 1_82
+    21300166: Font_Fight 1_83
+    21300168: Font_Fight 1_84
+    21300170: Font_Fight 1_85
+    21300172: Font_Fight 1_86
+    21300174: Font_Fight 1_87
+    21300176: Font_Fight 1_88
+    21300178: Font_Fight 1_89
+    21300180: Font_Fight 1_90
+    21300182: Font_Fight 1_91
+    21300184: Font_Fight 1_92
+    21300186: Font_Fight 1_93
+    21300188: Font_Fight 1_94
+    21300190: Font_FightUnity_0
+    21300192: Font_FightUnity_1
+    21300194: Font_FightUnity_2
+    21300196: Font_FightUnity_3
+    21300198: Font_FightUnity_4
+    21300200: Font_FightUnity_5
+    21300202: Font_FightUnity_6
+    21300204: Font_FightUnity_7
+    21300206: Font_FightUnity_8
+    21300208: Font_FightUnity_9
+    21300210: Font_FightUnity_10
+    21300212: Font_FightUnity_11
+    21300214: Font_FightUnity_12
+    21300216: Font_FightUnity_13
+    21300218: Font_FightUnity_14
+    21300220: Font_FightUnity_15
+    21300222: Font_FightUnity_16
+    21300224: Font_FightUnity_17
+    21300226: Font_FightUnity_18
+    21300228: Font_FightUnity_19
+    21300230: Font_FightUnity_20
+    21300232: Font_FightUnity_21
+    21300234: Font_FightUnity_22
+    21300236: Font_FightUnity_23
+    21300238: Font_FightUnity_24
+    21300240: Font_FightUnity_25
+    21300242: Font_FightUnity_26
+    21300244: Font_FightUnity_27
+    21300246: Font_FightUnity_28
+    21300248: Font_FightUnity_29
+    21300250: Font_FightUnity_30
+    21300252: Font_FightUnity_31
+    21300254: Font_FightUnity_32
+    21300256: Font_FightUnity_33
+    21300258: Font_FightUnity_34
+    21300260: Font_FightUnity_35
+    21300262: Font_FightUnity_36
+    21300264: Font_FightUnity_37
+    21300266: Font_FightUnity_38
+    21300268: Font_FightUnity_39
+    21300270: Font_FightUnity_40
+    21300272: Font_FightUnity_41
+    21300274: Font_FightUnity_42
+    21300276: Font_FightUnity_43
+    21300278: Font_FightUnity_44
+    21300280: Font_FightUnity_45
+    21300282: Font_FightUnity_46
+    21300284: Font_FightUnity_47
+    21300286: Font_FightUnity_48
+    21300288: Font_FightUnity_49
+    21300290: Font_FightUnity_50
+    21300292: Font_FightUnity_51
+    21300294: Font_FightUnity_52
+    21300296: Font_FightUnity_53
+    21300298: Font_FightUnity_54
+    21300300: Font_FightUnity_55
+    21300302: Font_FightUnity_56
+    21300304: Font_FightUnity_57
+    21300306: Font_FightUnity_58
+    21300308: Font_FightUnity_59
+    21300310: Font_FightUnity_60
+    21300312: Font_FightUnity_61
+    21300314: Font_FightUnity_62
+    21300316: Font_FightUnity_63
+    21300318: Font_FightUnity_64
+    21300320: Font_FightUnity_65
+    21300322: Font_FightUnity_66
+    21300324: Font_FightUnity_67
+    21300326: Font_FightUnity_68
+    21300328: Font_FightUnity_69
+    21300330: Font_FightUnity_70
+    21300332: Font_FightUnity_71
+    21300334: Font_FightUnity_72
+    21300336: Font_FightUnity_73
+    21300338: Font_FightUnity_74
+    21300340: Font_FightUnity_75
+    21300342: Font_FightUnity_76
+    21300344: Font_FightUnity_77
+    21300346: Font_FightUnity_78
+    21300348: Font_FightUnity_79
+    21300350: Font_FightUnity_80
+    21300352: Font_FightUnity_81
+    21300354: Font_FightUnity_82
+    21300356: Font_FightUnity_83
+    21300358: Font_FightUnity_84
+    21300360: Font_FightUnity_85
+    21300362: Font_FightUnity_86
+    21300364: Font_FightUnity_87
+    21300366: Font_FightUnity_88
+    21300368: Font_FightUnity_89
+    21300370: Font_FightUnity_90
+    21300372: Font_FightUnity_91
+    21300374: Font_FightUnity_92
+    21300376: Font_FightUnity_93
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 1
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 54
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 1
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Font_FightUnity_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 470
+        width: 77
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 470
+        width: 77
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_2
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 470
+        width: 76
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 468
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_4
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 469
+        width: 34
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_5
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 468
+        width: 41
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_6
+      rect:
+        serializedVersion: 2
+        x: 381
+        y: 470
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_7
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 469
+        width: 42
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_8
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 499
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_9
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 471
+        width: 39
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_10
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 413
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_11
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 424
+        width: 40
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_12
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 424
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_13
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 413
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_14
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 413
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_15
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 412
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_16
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 413
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_17
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 413
+        width: 32
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_18
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 413
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_19
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 413
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_20
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 413
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_21
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 420
+        width: 16
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_22
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 356
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_23
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 367
+        width: 38
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_24
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 374
+        width: 29
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_25
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 357
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_26
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 357
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_27
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 357
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_28
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 357
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_29
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 357
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_30
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 357
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_31
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 357
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_32
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 357
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_33
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 372
+        width: 31
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_34
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 301
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_35
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 311
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_36
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 325
+        width: 29
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_37
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 314
+        width: 57
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_38
+      rect:
+        serializedVersion: 2
+        x: 184
+        y: 301
+        width: 35
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_39
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 300
+        width: 32
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_40
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 301
+        width: 33
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_41
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 301
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_42
+      rect:
+        serializedVersion: 2
+        x: 357
+        y: 301
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_43
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 300
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_44
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 314
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_45
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 245
+        width: 32
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_46
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 255
+        width: 38
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_47
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 259
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_48
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 259
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_49
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 245
+        width: 32
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_50
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 245
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_51
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 245
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_52
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 245
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_53
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 245
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_54
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 259
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_55
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 291
+        width: 21
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_56
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 189
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_57
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 196
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_58
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 203
+        width: 32
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_59
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 203
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_60
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 203
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_61
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 196
+        width: 29
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_62
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 196
+        width: 27
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_63
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 196
+        width: 28
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_64
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 196
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_65
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 196
+        width: 30
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_66
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 196
+        width: 29
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_67
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 203
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_68
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 211
+        width: 30
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_69
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 133
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_70
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 142
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_71
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 147
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_72
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 147
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_73
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 147
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_74
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 161
+        width: 33
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_75
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 77
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_76
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 87
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_77
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 91
+        width: 38
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_78
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 90
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_79
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 90
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_80
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 105
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_81
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 113
+        width: 30
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_82
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 112
+        width: 33
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_83
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 21
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_84
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 31
+        width: 32
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_85
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 35
+        width: 33
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_86
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 34
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_87
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 35
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_88
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 56
+        width: 31
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_89
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 56
+        width: 28
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_90
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 64
+        width: 29
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_91
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 7
+        width: 30
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_92
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 7
+        width: 15
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Font_FightUnity_93
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 14
+        width: 28
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: font/font_fight/font_fight.ab
+  assetBundleVariant: 
