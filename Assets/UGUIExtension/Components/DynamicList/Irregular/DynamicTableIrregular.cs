@@ -65,7 +65,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
     /// <summary>
     /// 惯性系数Only used when inertia is enabled
     /// </summary>
-    public float DecelerationRate = 0.135f; 
+    public float DecelerationRate = 0.135f;
 
     /// <summary>
     /// 速度
@@ -204,6 +204,50 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
     /// </summary>
     bool IsAsyncLoading = false;
 
+    /// <summary>
+    /// 是否重置位置
+    /// </summary>
+    bool IgnoreContentPosition = false;
+    Vector2 LastContentPosition = Vector2.zero;
+    int ShowingCount = 0;
+    int MinShowingCount = 0;
+
+
+    [SerializeField]
+    private Scrollbar m_HorizontalScrollbar;
+    public Scrollbar horizontalScrollbar
+    {
+        get
+        {
+            return m_HorizontalScrollbar;
+        }
+        set
+        {
+            if (m_HorizontalScrollbar)
+                m_HorizontalScrollbar.onValueChanged.RemoveListener(SetHorizontalNormalizedPosition);
+            m_HorizontalScrollbar = value;
+            if (m_HorizontalScrollbar)
+                m_HorizontalScrollbar.onValueChanged.AddListener(SetHorizontalNormalizedPosition);
+        }
+    }
+
+    [SerializeField]
+    private Scrollbar m_VerticalScrollbar;
+    public Scrollbar verticalScrollbar
+    {
+        get
+        {
+            return m_VerticalScrollbar;
+        }
+        set
+        {
+            if (m_VerticalScrollbar)
+                m_VerticalScrollbar.onValueChanged.RemoveListener(SetVerticalNormalizedPosition);
+            m_VerticalScrollbar = value;
+            if (m_VerticalScrollbar)
+                m_VerticalScrollbar.onValueChanged.AddListener(SetVerticalNormalizedPosition);
+        }
+    }
     #endregion
 
     #region 布局相关
@@ -326,6 +370,54 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
 
     }
 
+
+    private void SetHorizontalNormalizedPosition(float value)
+    {
+        //SetNormalizedPosition(value, 0); 
+    }
+    private void SetVerticalNormalizedPosition(float value)
+    {
+
+    }
+
+
+    private void UpdateScrollbars()
+    {
+        if (TotalCount <= 0)
+            return;
+
+        int usingCount = UsingGridSet.Count;
+
+        int endIdx = StartIndex + usingCount;
+        int cur = 0;
+
+        if (endIdx >= TotalCount)
+        {
+            cur = TotalCount;
+            MinShowingCount = usingCount;
+        }
+        else if (StartIndex <= 1)
+            cur = 0;
+        else
+            cur = StartIndex + usingCount / 2;
+
+
+        float size = Mathf.Clamp01(MinShowingCount / (float)TotalCount);
+
+
+        if (m_HorizontalScrollbar)
+        {
+            m_HorizontalScrollbar.value = cur / TotalCount;
+            m_HorizontalScrollbar.size = size;
+        }
+
+        if (m_VerticalScrollbar)
+        {
+            m_VerticalScrollbar.value = cur / (float)TotalCount;
+            m_VerticalScrollbar.size = size;
+        }
+    }
+
     /// <summary>
     /// 设置内容框大小
     /// </summary>
@@ -406,6 +498,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         //记录上个位置和Content和ViewPort偏移
         if (ViewBounds != PrevViewBounds || ContentBounds != PrevContentBounds || Content.anchoredPosition != ContentPrevPosition)
         {
+            UpdateScrollbars();
             UISystemProfilerApi.AddMarker("DynamicTableIrregular.value", this);
             OnValueChange();
             UpdatePrevData();
@@ -641,6 +734,8 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         Content.anchorMin = new Vector2(0, 1);
         ObjectPool = Content.GetComponent<ObjectPools>();
         SetViewSize(rectTransform.rect.size);
+        if (m_VerticalScrollbar)
+            verticalScrollbar = m_VerticalScrollbar;
     }
 
     /// <summary>
@@ -671,6 +766,14 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
             StopAllCoroutines();
         }
 
+        if (IsInitCompeleted && startIndex == -1)
+        {
+            IgnoreContentPosition = true;
+            LastContentPosition = Content.anchoredPosition;
+            ShowingCount = UsingGridSet.Count;
+        }
+
+
         StopMovement();
 
         //重置内容框大小
@@ -698,6 +801,14 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         }
 
         StopMovement();
+
+
+        if (IsInitCompeleted && startIndex == -1)
+        {
+            IgnoreContentPosition = true;
+            LastContentPosition = Content.anchoredPosition;
+        }
+
 
         //重置内容框大小
         ResetContentSize();
@@ -740,7 +851,6 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         bool IsGridFillToFull = true;
         int index = StartIndex;
         bool isBottom = false;
-
         //第一次加载先填满可视区域
         while (containerSize < GetAxis(ViewSize))
         {
@@ -763,7 +873,6 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
                 PushGridHead(grid);
 
             yield return new WaitForEndOfFrame();
-
             index++;
             containerSize += GetAxis(grid.GetSize());
         }
@@ -795,7 +904,6 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
                     IsGridFillToFull = false;
                     break;
                 }
-
                 yield return new WaitForEndOfFrame();
 
             }
@@ -824,6 +932,8 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
             }
         }
 
+        MinShowingCount = UsingGridSet.Count;
+
         IsInitCompeleted = true;
         IsAsyncLoading = false;
         OnTableGridReloadCompleted();
@@ -843,7 +953,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         int index = StartIndex;
         bool isBottom = false;
         //第一次加载先填满可视区域
-        while (containerSize < GetAxis(ViewSize))
+        while (containerSize < GetAxis(ViewSize) || gridCount < ShowingCount)
         {
             //没有铺满可视区域
             if (TotalCount <= index)
@@ -872,9 +982,9 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
         {
             IsGridFillToFull = true;
             isBottom = true;
-            while (containerSize < GetAxis(ViewSize))
+            while (containerSize < GetAxis(ViewSize) || gridCount < ShowingCount)
             {
-      
+
                 StartIndex = StartIndex - 1;
 
                 DynamicGrid grid = DynamicGridAtIndex(StartIndex);
@@ -896,8 +1006,13 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
                 }
             }
         }
-
-        if (!IsReverse)
+        if (IgnoreContentPosition)
+        {
+            Content.anchoredPosition = LastContentPosition;
+            IgnoreContentPosition = false;
+            ShowingCount = 0;
+        }
+        else if (!IsReverse)
         {
             if (IsGridFillToFull && !isBottom)
             {
@@ -922,6 +1037,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
             }
         }
 
+        MinShowingCount = UsingGridSet.Count;
         IsInitCompeleted = true;
         OnTableGridReloadCompleted();
     }

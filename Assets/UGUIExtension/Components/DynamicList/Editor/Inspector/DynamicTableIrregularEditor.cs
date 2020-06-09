@@ -16,6 +16,8 @@ public class DynamicTableIrregularEditor : Editor
     protected SerializedProperty Elasticity;
     protected SerializedProperty Inertia;
     protected SerializedProperty DecelerationRate;
+    protected SerializedProperty HorizontalScrollbar;
+    protected SerializedProperty VerticalScrollbar;
 
     protected SerializedProperty TotalCount;
     protected SerializedProperty ViewSize;
@@ -52,6 +54,9 @@ public class DynamicTableIrregularEditor : Editor
     protected GUIContent ClearButtonContent;
     protected GUIContent CorrectButtonContent;
 
+
+    protected GUIContent HorizontalScrollbarContent;
+    protected GUIContent VerticalScrollbarContent;
     protected virtual void OnEnable()
     {
         Content = serializedObject.FindProperty("Content");
@@ -61,6 +66,8 @@ public class DynamicTableIrregularEditor : Editor
         Inertia = serializedObject.FindProperty("Inertia");
         Elasticity = serializedObject.FindProperty("Elasticity");
         DecelerationRate = serializedObject.FindProperty("DecelerationRate");
+        HorizontalScrollbar = serializedObject.FindProperty("m_HorizontalScrollbar");
+        VerticalScrollbar = serializedObject.FindProperty("m_VerticalScrollbar");
 
         TotalCount = serializedObject.FindProperty("TotalCount");
         ViewSize = serializedObject.FindProperty("ViewSize");
@@ -97,6 +104,9 @@ public class DynamicTableIrregularEditor : Editor
 
         ClearButtonContent = new GUIContent("清空动态节点", "清空动态节点");
         CorrectButtonContent = new GUIContent("重载动态节点", "重载动态节点");
+
+        HorizontalScrollbarContent = new GUIContent("横向进度条");
+        VerticalScrollbarContent = new GUIContent("纵向进度条");
     }
 
     public override void OnInspectorGUI()
@@ -119,6 +129,11 @@ public class DynamicTableIrregularEditor : Editor
         EditorGUILayout.PropertyField(Inertia, InertiaContent, true);
         if (Inertia.boolValue)
             EditorGUILayout.PropertyField(DecelerationRate, DecelerationRateContent, true);
+
+
+        EditorGUILayout.PropertyField(VerticalScrollbar, VerticalScrollbarContent, true);
+        EditorGUILayout.PropertyField(HorizontalScrollbar, HorizontalScrollbarContent, true);
+
         EditorGUILayout.EndVertical();
 
         //基础信息
