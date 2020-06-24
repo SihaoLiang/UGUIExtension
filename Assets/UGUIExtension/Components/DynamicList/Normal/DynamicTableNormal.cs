@@ -879,7 +879,7 @@ public class DynamicTableNormal : UIBehaviour
         {
             column = ConstraintCount;
             if (Direction == LayoutRule.Direction.Vertical)
-                row = Mathf.Max(1, Mathf.CeilToInt((height - Padding.vertical + Spacing.y + CALCULATE_OFFSET) / (GridSize.y + Spacing.y))) + 1;
+                row = Mathf.Max(1, Mathf.CeilToInt((height + Spacing.y + CALCULATE_OFFSET) / (GridSize.y + Spacing.y))) + 1;
             else //一般不考虑这种情况，尽量垂直限定列数,水平限定行数
                 row = Mathf.CeilToInt(TotalCount / (float)column);
 
@@ -889,7 +889,7 @@ public class DynamicTableNormal : UIBehaviour
         {
             row = ConstraintCount;
             if (Direction == LayoutRule.Direction.Horizontal)
-                column = Mathf.Max(1, Mathf.CeilToInt((width - Padding.horizontal + Spacing.x + CALCULATE_OFFSET) / (GridSize.x + Spacing.x))) + 1;
+                column = Mathf.Max(1, Mathf.CeilToInt((width + Spacing.x + CALCULATE_OFFSET) / (GridSize.x + Spacing.x))) + 1;
             else //一般不考虑这种情况，尽量垂直限定列数,水平限定行数
                 column = Mathf.CeilToInt(TotalCount / (float)row);
         }
@@ -898,13 +898,13 @@ public class DynamicTableNormal : UIBehaviour
         {
             if (Direction == LayoutRule.Direction.Vertical)
             {
-                row = Mathf.Max(1, Mathf.CeilToInt((height - Padding.vertical + Spacing.y + CALCULATE_OFFSET) / (GridSize.y + Spacing.y))) + 1;
-                column = Mathf.Max(1, Mathf.FloorToInt((width - Padding.horizontal + Spacing.x - CALCULATE_OFFSET) / (GridSize.x + Spacing.x)));
+                row = Mathf.Max(1, Mathf.CeilToInt((height + Spacing.y + CALCULATE_OFFSET) / (GridSize.y + Spacing.y))) + 1;
+                column = Mathf.Max(1, Mathf.FloorToInt((width + Spacing.x - CALCULATE_OFFSET) / (GridSize.x + Spacing.x)));
             }
             else if (Direction == LayoutRule.Direction.Horizontal)
             {
-                row = Mathf.Max(1, Mathf.FloorToInt((height - Padding.vertical + Spacing.y - CALCULATE_OFFSET) / (GridSize.y + Spacing.y)));
-                column = Mathf.Max(1, Mathf.CeilToInt((width - Padding.horizontal + Spacing.x + CALCULATE_OFFSET) / (GridSize.x + Spacing.x))) + 1;
+                row = Mathf.Max(1, Mathf.FloorToInt((height  + Spacing.y - CALCULATE_OFFSET) / (GridSize.y + Spacing.y)));
+                column = Mathf.Max(1, Mathf.CeilToInt((width  + Spacing.x + CALCULATE_OFFSET) / (GridSize.x + Spacing.x))) + 1;
             }
         }
 

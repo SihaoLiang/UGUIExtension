@@ -996,6 +996,7 @@ public class DynamicTableIrregular : UIBehaviour, IInitializePotentialDragHandle
                 else
                     PushGridHead(grid);
 
+                gridCount++;
                 containerSize += GetAxis(grid.GetSize());
 
                 //没有铺满可视区域
