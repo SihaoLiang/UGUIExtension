@@ -1,5 +1,6 @@
 # UGUIExtension
-# 2019 02 14 UGUI拓展包，目前包含3个动态列表和部分布局组件
-# 2019 02 18 备忘：
-  1.Normal需要自动设置Grid的大小
-  2.初始化的跳转的地方有个Bug  485：JumpToIndex(StartIndex);
+# UGUI拓展包，目前包含3个动态列表，富文本，艺术字，打字机，部分布局等常用的UI组件
+># 动态列表
+>>## DynamicTableNormal
+>>> 支持C# 和 lua 使用，支持简单的布局设置
+>>> ![](https://github.com/SihaoLiang/UGUIExtension/Icons/dlist1.png)  
