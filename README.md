@@ -29,4 +29,12 @@
     3.另一个关于Scrollrect的阉割版本，拆出来后只做纯粹的滑动逻辑，对于后续添加其他功能也可以较好支持，例如下拉加载更多之类的
     
   ### 三.DynamicTableCurve
+  DynamicTableCurve 曲线列表，根据曲线布局Gird。
+  ![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/clist.gif)  
+  ![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/clist.png)  
+ 
+  DynamicTableCurve 目前只支持位置，缩放，层次调整三个曲线，拓展性不怎么好，这里推荐一个比较好的曲线列表：
+  [FancyScrollView](https://github.com/jorik041/UnityUIExtensions/tree/master/Examples/FancyScrollView)这个曲线列表做的很好，可以定制很多样式，甚至可以自己用公式插值
+ 
+
 
