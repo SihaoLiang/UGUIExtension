@@ -44,7 +44,22 @@
 BMFontText 单一艺术字
 BMFontMultText 可混合组艺术字
 
-![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/font2.png)  
 ![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/font.png)  
 
+## 富文本
+### RichText
+内含生成图集工具
+兼容原有的富文本，原理：利用quad作为占位渲染图片
+支持图文混拼
+支持序列帧表情
+支持单图
+支持超链接
+支持下划线
+
+![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/richText.png)  
+![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/richText1.png)  
+![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/richText2.png)  
+![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/richText3.png)  
+
+    没有支持inputField 输入和整体删除，建议在使用时，在输入框中配表易名,比如 [a01] 映射一张图片，之前还看到一种思路就是对文本节点化，之前在cocos做过一版，或许有空的话支持一下，或许....
 
