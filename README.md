@@ -36,5 +36,15 @@
   DynamicTableCurve 目前只支持位置，缩放，层次调整三个曲线，拓展性不怎么好，这里推荐一个比较好的曲线列表：
   [FancyScrollView](https://github.com/jorik041/UnityUIExtensions/tree/master/Examples/FancyScrollView)这个曲线列表做的很好，可以定制很多样式，甚至可以自己用公式插值
  
+ ## 战斗飘字艺术字
+ ### BMFontText BMFontMultText
+ UGUI的Text 做动态变幻时性能不好，会出现频繁重绘和打断合批问题，所以做了一个艺术字组件，原理把艺术字的图片打进一张图集中，动态进行Uv拼接。（当然现在TMP的发展好像也能搞
+，之前有研究，这两年没怎么用）
+
+BMFontText 单一艺术字
+BMFontMultText 可混合组艺术字
+
+![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/font2.png)  
+![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/font.png)  
 
 
