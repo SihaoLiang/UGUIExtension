@@ -79,7 +79,7 @@ TextTypewriter 原理：动态重组字符串的网格
 ## 对齐组件 AutoLayoutGroup LayoutNode 
 这里不细说，当初使用VLayoutGroup 和 HLayoutGroup 觉得不好用，所以自己写了两个
 
-##图集打包工具
+## 图集打包工具
 ### TexturePackTool 
 类似TP工具，把散图打进一张图集，支持一键生成精灵，九宫格目前需要手动配置。使用二叉树原理合图，支持相同uv剔除。
 富文本和艺术字可以使用该工具打出来的图集，一键生成可以用数据，当然也支持TP导入。
