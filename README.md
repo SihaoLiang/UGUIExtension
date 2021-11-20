@@ -66,17 +66,17 @@ BMFontMultText 可混合组艺术字
 
     没有支持inputField 输入和整体删除，建议在使用时，在输入框中配表易名,比如 [a01] 映射一张图片，之前还看到一种思路就是对文本节点化，之前在cocos做过一版，或许有空的话支持一下，或许....
 
-##简单打字机
+## 简单打字机
 TextTypewriter 原理：动态重组字符串的网格
 
 ![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/Typew.gif)  
 
-##视频播放
+## 视频播放
 对原生的VideoPlayer 简单封装了一下，当然我不建议使用原生的VideoPlayer，内存消耗高，码率超过3500 就会卡屏，推荐用Cri，或者AvPro
 
 ![image](https://github.com/SihaoLiang/UGUIExtension/blob/master/Icons/video.png)  
 
-##对齐组件 AutoLayoutGroup LayoutNode 
+## 对齐组件 AutoLayoutGroup LayoutNode 
 这里不细说，当初使用VLayoutGroup 和 HLayoutGroup 觉得不好用，所以自己写了两个
 
 ##图集打包工具
@@ -89,4 +89,4 @@ TextTypewriter 原理：动态重组字符串的网格
 ## 由于本工具是我这几年工作中需要用到的时候造的轮子（今天才想起来要整理一下），时间跨度比较大，代码写得不怎么好，大家多多包涵。
 
 ## 如果有什么可以问题或者BUG 可以联系 QQ 928441097
-## 或者大家有什么需求或者改进的地方也可以跟我交流一下
+## 或者大家工作上有什么问题也可以跟我交流一下
